@@ -2,9 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
+:root{
+  --color1: #F5F5F5 ;
+  --color2: #E0E0E0 ;
+  --color3: #BDBDBD ;
+  --color4: #757575 ;
+  --color5: #424242 ;
+  --color6: #212121 ;
+
+  --accent-muted-gold: #D4AF37;
+  --accent-deep-navy: #002B5B;
+  --accent-teal: #008080;
+  --accent-burgundy: #800020;
+  --accent-electric-blue: #007BFF;
+  --accent-emerald-green: #50C878;
+  --accent-soft-coral: #FF6F61;
+}
+
 *{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
+body{
+  background-color: var(--color6);
+}
+
+/* Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;  
+} 
+
+::-webkit-scrollbar-track {
+  background: var(--color2);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color4);
+  border-radius: 4px;
+}
+
 
