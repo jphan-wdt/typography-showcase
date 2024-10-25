@@ -23,7 +23,8 @@ export default function Home() {
   return (
     <div>
       <Hero/>
-      <ParallaxScroll/>
+      <ParallaxScroll activeDesign={0}/>
+      <StickyScroll/>
 
     </div>
     

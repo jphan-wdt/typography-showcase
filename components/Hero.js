@@ -10,14 +10,14 @@ export default function Hero() {
         target: scrollRef,
         offset: ['start end', 'end start']
     })
-    const scale = useTransform(scrollYProgress, [0, 0.3], ["100%", "85%"])
+    const scale = useTransform(scrollYProgress, [0, 0.3], ["100%", "90%"])
     const opacity = useTransform(scrollYProgress, [0, 1], ["100%", "100%"])
-    const y = useTransform(scrollYProgress, [0.3, 0.5], ["0%", "-10%"])
+    const y = useTransform(scrollYProgress, [0, 0.2, 0.5], ["0%", "5%", "-5%"])
 
     return(
             <div className="mb-[-100vh]">
                 <motion.div
-                    className="sticky top-0 w-full h-screen"
+                    className="sticky top-0 w-full h-screen z-[-2]"
                     style={{ scale, opacity, y }}>
                     
                         <Image
