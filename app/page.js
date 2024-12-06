@@ -3,9 +3,9 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
 
-import ParallaxScroll from "@/components/ParallaxScroll";
 import StickyScroll from "@/components/StickyScroll";
 import Hero from "@/components/Hero"
+import ParallaxText from "@/components/ParallaxText";
 
 export default function Home() {
 
@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <div>
       <Hero/>
-      <ParallaxScroll activeDesign={0}/>
+      <ParallaxText activeDesign={0}/>
       <StickyScroll/>
 
     </div>

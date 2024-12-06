@@ -1,38 +1,112 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
-import { useRef } from "react";
+import { useState } from "react";
+import ParallaxScroll from "./ParallaxScroll";
 
-export default function ParallaxText({text, inputStart, offsetStart, offsetEnd, outputStart, outputEnd, top = false, bottom = false, imagePath}) {
+export default function ParallaxText({activeDesign}) {
 
-    const scrollRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: scrollRef,
-        offset: [offsetStart, offsetEnd]
-    })
-    const y = useTransform(scrollYProgress, [inputStart, 1], [outputStart, outputEnd])
+    const propData = [
+        [
+            // Smooth scroll 0
+            {
+                text: "Lorem",
+                inputStart: 0,
+                offsetStart: "start end",
+                offsetEnd: "end start",
+                outputStart: "-400%",
+                outputEnd: "300%",
+                top: true,
+                imagePath: "/Image 10.png",
+            },
+            {
+                text: "Ipsum",
+                inputStart: 0,
+                offsetStart: "start end",
+                offsetEnd: "end start",
+                outputStart: "-400%",
+                outputEnd: "300%",
+                imagePath: "/Image 11.png",
+            },
+            {
+                text: "Dolor",
+                inputStart: 0,
+                offsetStart: "start end",
+                offsetEnd: "end start",
+                outputStart: "-400%",
+                outputEnd: "300%",
+                bottom: true,
+                imagePath: "/Image 7.png",
+            }
+        ],
+        [    
+            // Scroll into each other 1
+            {
+                text: "Lorem",
+                inputStart: 0,
+                offsetStart: "start start",
+                offsetEnd: "end start",
+                outputStart: "-100%",
+                outputEnd: "600%",
+                top: true,
+                imagePath: "/Image 10.png",
+            },
+            {
+                text: "Ipsum",
+                inputStart: 0.3,
+                offsetStart: "start end",
+                offsetEnd: "end start",
+                outputStart: "-350%",
+                outputEnd: "600%",
+                imagePath: "/Image 11.png",
+            },
+            {
+                text: "Dolor",
+                inputStart: 0.3,
+                offsetStart: "start end",
+                offsetEnd: "end start",
+                outputStart: "-350%",
+                outputEnd: "600%",
+                bottom: true,
+                imagePath: "/Image 7.png",
+            }
+        ],
+        [
+            // Smooth scroll 3
+            {
+                text: "lorem.",
+                inputStart: 0,
+                offsetStart: "start end",
+                offsetEnd: "end start",
+                outputStart: "-400%",
+                outputEnd: "300%",
+                top: true,
+                imagePath: "/Image 10.png",
+            },
+            {
+                text: "ipsum.",
+                inputStart: 0,
+                offsetStart: "start end",
+                offsetEnd: "end start",
+                outputStart: "-400%",
+                outputEnd: "300%",
+                imagePath: "/Image 11.png",
+            },
+            {
+                text: "dolor.",
+                inputStart: 0,
+                offsetStart: "start end",
+                offsetEnd: "end start",
+                outputStart: "-400%",
+                outputEnd: "300%",
+                bottom: true,
+                imagePath: "/Image 7.png",
+            }
+        ]
+    ]
 
-    return (
-
-            <div className="h-[125vh] w-full relative" ref={scrollRef}>
-                <Image
-                    src={imagePath}
-                    layout="fill"
-                    objectFit="cover"
-                    alt="1"
-                    className={`z-[-1]
-                        ${top ? 'rounded-t-xl drop-shadow-[0px_0px_50px_rgba(0,0,0,0.6)]' : ''}
-                        ${bottom ? 'rounded-b-xl' : ''}`}
-                />
-
-                <motion.div
-                    className="absolute top-1/2 left-1/2
-                    text-white text-9xl font-extrabold tracking-wide
-                    drop-shadow-[0px_0px_6px_rgba(0,0,0,1)]] z-[-1]"
-                    style={{ y , x: "-50%"}}
-                >
-                    {text}
-                </motion.div>
-
-            </div>
+    return(
+        <div>
+            {propData[activeDesign].map((props, index) => (
+                <ParallaxScroll key={index} {...props} />
+            ))}
+        </div>
     );
 }
