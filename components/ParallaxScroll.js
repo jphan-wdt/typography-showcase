@@ -32,6 +32,7 @@ export default function ParallaxScroll({activeDesign}) {
                 offsetEnd: "end start",
                 outputStart: "-400%",
                 outputEnd: "300%",
+                bottom: true,
                 imagePath: "/Image 7.png",
             }
         ],
@@ -63,6 +64,39 @@ export default function ParallaxScroll({activeDesign}) {
                 offsetEnd: "end start",
                 outputStart: "-350%",
                 outputEnd: "600%",
+                bottom: true,
+                imagePath: "/Image 7.png",
+            }
+        ],
+        [
+            // Smooth scroll 3
+            {
+                text: "vision.",
+                inputStart: 0,
+                offsetStart: "start end",
+                offsetEnd: "end start",
+                outputStart: "-400%",
+                outputEnd: "300%",
+                top: true,
+                imagePath: "/Image 10.png",
+            },
+            {
+                text: "style.",
+                inputStart: 0,
+                offsetStart: "start end",
+                offsetEnd: "end start",
+                outputStart: "-400%",
+                outputEnd: "300%",
+                imagePath: "/Image 11.png",
+            },
+            {
+                text: "design.",
+                inputStart: 0,
+                offsetStart: "start end",
+                offsetEnd: "end start",
+                outputStart: "-400%",
+                outputEnd: "300%",
+                bottom: true,
                 imagePath: "/Image 7.png",
             }
         ]
