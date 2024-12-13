@@ -1,14 +1,14 @@
-'use client'
+"use client";
 
 import { useEffect } from "react";
 import Lenis from "lenis";
 
 import StickyScroll from "@/components/StickyScroll";
-import Hero from "@/components/Hero"
+import Hero from "@/components/Hero";
 import ParallaxText from "@/components/ParallaxText";
+import ScrollWheel from "@/components/ScrollWheel";
 
 export default function Home() {
-
   useEffect(() => {
     const lenis = new Lenis();
     function raf(time) {
@@ -16,18 +16,14 @@ export default function Home() {
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
-  },
-  []
-  )
+  }, []);
 
   return (
     <div>
-      <Hero/>
-      <ParallaxText activeDesign={0}/>
-      <StickyScroll/>
-
+      <Hero />
+      <ParallaxText activeDesign={0} />
+      <StickyScroll />
+      <ScrollWheel />
     </div>
-    
-      
   );
 }
