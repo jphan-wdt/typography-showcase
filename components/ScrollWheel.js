@@ -24,12 +24,18 @@ export default function ScrollWheel() {
   const scrollRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: scrollRef,
-    offset: ["start end", "end start"],
+    offset: ["start start", "end end"],
   });
 
-  const increment = 10;
-  const sinOffset = 80;
-  const sinScale = -125;
+  const increment = 50; // smoothness of curve path
+  const sinOffset = 100; // height of base 80
+  const sinScale = -120; // height of curve -120
+
+  const xStart = 140;
+  const xEnd = -200;
+  const xMid = (xStart + xEnd) / 2;
+
+  const rotation = 45; // start/end orientation in deg 45
 
   const sinArray = [];
   for (let i = 0; i <= increment; i++) {
@@ -43,7 +49,7 @@ export default function ScrollWheel() {
     const x = useTransform(
       scrollYProgress,
       [start, (start + end) / 2, end],
-      ["120%", "-30%", "-180%"]
+      [`${xStart}%`, `${xMid}%`, `${xEnd}%`]
     );
 
     const startToEnd = [];
@@ -57,18 +63,18 @@ export default function ScrollWheel() {
     const rotate = useTransform(
       scrollYProgress,
       [start, (start + end) / 2, end],
-      ["50deg", "0deg", "-50deg"]
+      [`${rotation}deg`, "0deg", `-${rotation}deg`]
     );
     return { x, y, rotate };
   };
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     switch (true) {
-      case latest < 0.275:
+      case latest < 0.29:
         setActiveText("1.");
         break;
 
-      case latest >= 0.275 && latest < 0.5:
+      case latest >= 0.29 && latest < 0.5:
         setActiveText("2.");
         break;
 
@@ -83,32 +89,27 @@ export default function ScrollWheel() {
   });
 
   return (
-    <div
-      className="h-[300vh] w-full border relative mb-[100vh]"
-      ref={scrollRef}
-    >
-      <div className="h-screen w-full border-green-500 border-solid border sticky top-0 overflow-hidden">
-        <div className="text-9xl text-white font-extrabold tracking-tighter p-4 absolute top-0 right-0 whitespace-pre-line">
-          {"Picture\n" + activeText}
-        </div>
-
-        <div className="h-screen w-full border-red-700 border-solid border">
-          {pictures.map(({ src, start, end }, index) => (
-            <motion.div
-              key={index}
-              className="absolute h-[60vh] w-[60vw] right-0 bottom-0"
-              style={getTransforms(scrollYProgress, start, end)}
-            >
-              <Image
-                src={src}
-                objectFit="cover"
-                alt={`Image ${index + 1}`}
-                className="rounded-xl"
-              />
-            </motion.div>
-          ))}
-        </div>
+    <div className="h-[400vh] w-full relative" ref={scrollRef}>
+      <div className="text-9xl text-white font-extrabold tracking-tighter p-4 sticky top-0 right-0 whitespace-pre-line mb-[-100vh]">
+        {"Picture\n" + activeText}
       </div>
+      <div className="h-screen w-full sticky top-0 overflow-hidden">
+        {pictures.map(({ src, start, end }, index) => (
+          <motion.div
+            key={index}
+            className="absolute w-[60vw] right-0 bottom-0"
+            style={getTransforms(scrollYProgress, start, end)}
+          >
+            <Image
+              src={src}
+              objectFit="cover"
+              alt={`Image ${index + 1}`}
+              className="rounded-xl"
+            />
+          </motion.div>
+        ))}
+      </div>
+      <div className="h-screen" />
     </div>
   );
 }

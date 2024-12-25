@@ -66,7 +66,7 @@ export default function StickyScroll() {
               className={`${
                 activePicture === index + 1
                   ? "h-[60vh] -translate-x-14 scale-110 flex items-center justify-center transition-all duration-500"
-                  : "h-[60vh] flex items-center justify-center transition-all duration-700"
+                  : "h-[60vh] flex items-center justify-center transition-all duration-700 brightness-50 grayscale"
               }`}
             >
               <Image

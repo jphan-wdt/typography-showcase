@@ -12,7 +12,7 @@ export default function ParallaxText({ activeDesign }) {
         offsetEnd: "end start",
         outputStart: "-400%",
         outputEnd: "300%",
-        // top: true,
+        top: true,
         imagePath: "/Image 10.png",
       },
       {

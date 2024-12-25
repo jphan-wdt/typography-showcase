@@ -37,7 +37,7 @@ export default function Hero() {
           </div>
         </div>
       </motion.div>
-      <div className="h-[100vh]" ref={scrollRef} />
+      <div className="h-screen" ref={scrollRef} />
     </div>
   );
 }

@@ -7,6 +7,7 @@ import StickyScroll from "@/components/StickyScroll";
 import Hero from "@/components/Hero";
 import ParallaxText from "@/components/ParallaxText";
 import ScrollWheel from "@/components/ScrollWheel";
+import StickyLadder from "@/components/StickyLadder";
 
 export default function Home() {
   useEffect(() => {
@@ -24,6 +25,8 @@ export default function Home() {
       <ParallaxText activeDesign={0} />
       <StickyScroll />
       <ScrollWheel />
+      <StickyLadder />
+      <div className="h-screen bg-white" />
     </div>
   );
 }
