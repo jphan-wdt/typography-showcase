@@ -97,14 +97,17 @@ export default function ScrollWheel() {
         {pictures.map(({ src, start, end }, index) => (
           <motion.div
             key={index}
-            className="absolute w-[60vw] right-0 bottom-0"
+            className="absolute right-0 bottom-0"
             style={getTransforms(scrollYProgress, start, end)}
           >
             <Image
               src={src}
-              objectFit="cover"
+              width={1600}
+              height={900}
               alt={`Image ${index + 1}`}
-              className="rounded-xl"
+              className={`w-[60vw] rounded-xl transition-all duration-500 ${
+                activeText === index + 1 + "." ? "" : "brightness-50 grayscale"
+              }`}
             />
           </motion.div>
         ))}

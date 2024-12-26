@@ -21,10 +21,10 @@ export default function Hero() {
       >
         <Image
           src={image}
-          layout="fill"
-          objectFit="cover"
+          width={1600}
+          height={900}
           alt="1"
-          className="rounded-xl"
+          className="absolute rounded-xl h-full w-full object-cover"
         />
         <div className="absolute h-full w-4/5">
           <div className="relative top-64 left-12">
