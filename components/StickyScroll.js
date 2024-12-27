@@ -6,7 +6,7 @@ import { useScroll, useMotionValueEvent } from "framer-motion";
 export default function StickyScroll() {
   const [activePicture, setActivePicture] = useState(1);
   const [activeText, setActiveText] = useState("lorem.");
-  const image = [images[3].src, images[4].src, images[5].src, images[11].src];
+  const image = [images[3].src, images[4].src, images[5].src, images[2].src];
 
   const scrollRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -15,7 +15,7 @@ export default function StickyScroll() {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log(latest);
+    // console.log(latest);
     switch (true) {
       case latest < 0.075:
         if (activePicture != 1) {

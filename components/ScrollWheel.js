@@ -9,7 +9,7 @@ import Image from "next/image";
 import images from "./images";
 
 export default function ScrollWheel() {
-  const [activeText, setActiveText] = useState("1.");
+  const [activeText, setActiveText] = useState("Gallery");
 
   const image = [
     images[1],
@@ -33,12 +33,12 @@ export default function ScrollWheel() {
   });
 
   const increment = 50; // smoothness of curve path
-  const sinOffset = 15; // height of base 15
-  const sinScale = -30; // height of curve -30
+  const sinOffset = 15; // height of base 15%
+  const sinScale = -30; // height of curve -30%
 
   const rotation = 25; // start/end orientation in deg 25
 
-  const xStart = 130;
+  const xStart = 150;
   const xEnd = -450;
   const xMid = (xStart + xEnd) / 2;
 
@@ -74,23 +74,24 @@ export default function ScrollWheel() {
   };
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    switch (true) {
-      case latest < 0.29:
-        setActiveText("1.");
-        break;
-
-      case latest >= 0.29 && latest < 0.5:
-        setActiveText("2.");
-        break;
-
-      case latest >= 0.5 && latest < 0.7:
-        setActiveText("3.");
-        break;
-
-      case latest >= 0.7 && latest < 1:
-        setActiveText("4.");
-        break;
+    console.log(latest);
+    if (latest < 0.1) {
+      setActiveText("Gallery");
+      return;
     }
+    if (latest >= 0.9) {
+      setActiveText("Gallery");
+      return;
+    }
+
+    const adjustedLatest = latest - 0.1;
+    const increment = 0.8 / image.length;
+
+    const index = Math.min(
+      Math.floor(adjustedLatest / increment),
+      image.length - 1
+    );
+    setActiveText(`${index + 1}.`);
   });
 
   return (
@@ -116,7 +117,9 @@ export default function ScrollWheel() {
               height={900}
               alt={`Image ${index + 1}`}
               className={`h-[80vh] w-[50vh] rounded-xl transition-all duration-500 object-cover ${
-                activeText === index + 1 + "." ? "" : " "
+                activeText === index + 1 + "."
+                  ? ""
+                  : "brightness-[0.4] grayscale"
               }`}
             />
           </motion.div>
