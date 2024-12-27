@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ParallaxScroll from "./ParallaxScroll";
+import images from "./images";
 
 export default function ParallaxText({ activeDesign }) {
   const propData = [
@@ -13,7 +14,7 @@ export default function ParallaxText({ activeDesign }) {
         outputStart: "-400%",
         outputEnd: "300%",
         top: true,
-        imagePath: "/Image 10.png",
+        imagePath: images[8].src,
       },
       {
         text: "Ipsum",
@@ -22,7 +23,7 @@ export default function ParallaxText({ activeDesign }) {
         offsetEnd: "end start",
         outputStart: "-400%",
         outputEnd: "300%",
-        imagePath: "/Image 7.png",
+        imagePath: images[9].src,
       },
       {
         text: "Dolor",
@@ -32,7 +33,7 @@ export default function ParallaxText({ activeDesign }) {
         outputStart: "-400%",
         outputEnd: "300%",
         bottom: true,
-        imagePath: "/Image 11.png",
+        imagePath: images[1].src,
       },
     ],
     [

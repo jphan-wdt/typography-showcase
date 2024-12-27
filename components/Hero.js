@@ -1,5 +1,5 @@
 import Image from "next/image";
-import image from "@/public/Image 1.png";
+import images from "@/components/images";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect } from "react";
 
@@ -20,7 +20,7 @@ export default function Hero() {
         style={{ scale, opacity, y }}
       >
         <Image
-          src={image}
+          src={images[0].src}
           width={1600}
           height={900}
           alt="1"

@@ -6,19 +6,24 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 import Image from "next/image";
-import image1 from "@/public/Image 5.png";
-import image2 from "@/public/Image 3.png";
-import image3 from "@/public/Image 6.png";
-import image4 from "@/public/Image 9.png";
+import images from "./images";
 
 export default function ScrollWheel() {
   const [activeText, setActiveText] = useState("1.");
 
-  const pictures = [
-    { src: image1, start: 0, end: 0.4 },
-    { src: image2, start: 0.2, end: 0.6 },
-    { src: image3, start: 0.4, end: 0.8 },
-    { src: image4, start: 0.6, end: 1 },
+  const image = [
+    images[1],
+    images[3],
+    images[4],
+    images[5],
+    images[6],
+    images[7],
+    images[8],
+    images[9],
+    images[10],
+    images[11],
+    images[12],
+    images[13],
   ];
 
   const scrollRef = useRef(null);
@@ -28,14 +33,14 @@ export default function ScrollWheel() {
   });
 
   const increment = 50; // smoothness of curve path
-  const sinOffset = 100; // height of base 80
-  const sinScale = -120; // height of curve -120
+  const sinOffset = 15; // height of base 15
+  const sinScale = -30; // height of curve -30
 
-  const xStart = 140;
-  const xEnd = -200;
+  const rotation = 25; // start/end orientation in deg 25
+
+  const xStart = 130;
+  const xEnd = -450;
   const xMid = (xStart + xEnd) / 2;
-
-  const rotation = 45; // start/end orientation in deg 45
 
   const sinArray = [];
   for (let i = 0; i <= increment; i++) {
@@ -89,24 +94,29 @@ export default function ScrollWheel() {
   });
 
   return (
-    <div className="h-[400vh] w-full relative" ref={scrollRef}>
-      <div className="text-9xl text-white font-extrabold tracking-tighter p-4 sticky top-0 right-0 whitespace-pre-line mb-[-100vh]">
+    <div className="h-[600vh] relative" ref={scrollRef}>
+      <div className="text-9xl text-white font-extrabold tracking-tighter p-4 sticky top-0 whitespace-pre-line mb-[-100vh]">
         {"Picture\n" + activeText}
       </div>
+      {/* todo: make text go on right side screen */}
       <div className="h-screen w-full sticky top-0 overflow-hidden">
-        {pictures.map(({ src, start, end }, index) => (
+        {image.map(({ src }, index) => (
           <motion.div
             key={index}
             className="absolute right-0 bottom-0"
-            style={getTransforms(scrollYProgress, start, end)}
+            style={getTransforms(
+              scrollYProgress,
+              (0.8 * index) / image.length,
+              (0.8 * index) / image.length + 0.28
+            )}
           >
             <Image
               src={src}
               width={1600}
               height={900}
               alt={`Image ${index + 1}`}
-              className={`w-[60vw] rounded-xl transition-all duration-500 ${
-                activeText === index + 1 + "." ? "" : "brightness-50 grayscale"
+              className={`h-[80vh] w-[50vh] rounded-xl transition-all duration-500 object-cover ${
+                activeText === index + 1 + "." ? "" : " "
               }`}
             />
           </motion.div>
