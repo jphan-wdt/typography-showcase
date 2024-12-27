@@ -9,7 +9,7 @@ import Image from "next/image";
 import images from "./images";
 
 export default function ScrollWheel() {
-  const [activeText, setActiveText] = useState("Gallery");
+  const [activeText, setActiveText] = useState("Wheel");
 
   const image = [
     images[1],
@@ -32,34 +32,37 @@ export default function ScrollWheel() {
     offset: ["start start", "end end"],
   });
 
-  const increment = 50; // smoothness of curve path
+  const sinSmoothing = 50; // smoothness of curve path
   const sinOffset = 15; // height of base 15%
   const sinScale = -30; // height of curve -30%
 
   const rotation = 25; // start/end orientation in deg 25
 
   const xStart = 150;
-  const xEnd = -450;
+  const xEnd = -460;
   const xMid = (xStart + xEnd) / 2;
 
+  // array of sin values for y
   const sinArray = [];
-  for (let i = 0; i <= increment; i++) {
-    const angle = (i * Math.PI) / increment;
+  for (let i = 0; i <= sinSmoothing; i++) {
+    const angle = (i * Math.PI) / sinSmoothing;
     const sinValue = Math.sin(angle);
     sinArray.push(`${sinOffset + sinValue * sinScale}%`);
   }
   sinArray[sinArray.length - 1] = `${sinOffset}%`;
 
   const getTransforms = (scrollYProgress, start, end) => {
+    // maps inital and final values to start and end
     const x = useTransform(
       scrollYProgress,
       [start, (start + end) / 2, end],
       [`${xStart}%`, `${xMid}%`, `${xEnd}%`]
     );
 
+    // array to map sin values to y values
     const startToEnd = [];
-    for (let i = 0; i <= increment; i++) {
-      const value = start + (i * (end - start)) / increment;
+    for (let i = 0; i <= sinSmoothing; i++) {
+      const value = start + (i * (end - start)) / sinSmoothing;
       startToEnd.push(value);
     }
 
@@ -73,34 +76,30 @@ export default function ScrollWheel() {
     return { x, y, rotate };
   };
 
+  const normalisedIncrements = 0.8 / image.length;
+
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     console.log(latest);
-    if (latest < 0.1) {
-      setActiveText("Gallery");
+    if (latest < 0.1 || latest >= 0.9) {
+      setActiveText("Wheel");
       return;
     }
-    if (latest >= 0.9) {
-      setActiveText("Gallery");
-      return;
-    }
-
-    const adjustedLatest = latest - 0.1;
-    const increment = 0.8 / image.length;
 
     const index = Math.min(
-      Math.floor(adjustedLatest / increment),
+      Math.floor((latest - 0.1) / normalisedIncrements),
       image.length - 1
     );
+
     setActiveText(`${index + 1}.`);
   });
 
   return (
-    <div className="h-[600vh] relative" ref={scrollRef}>
-      <div className="text-9xl text-white font-extrabold tracking-tighter p-4 sticky top-0 whitespace-pre-line mb-[-100vh]">
+    <div className="relative h-[600vh]" ref={scrollRef}>
+      <div className="sticky top-0 p-4 mb-[-100vh] text-9xl text-white font-extrabold tracking-tighter whitespace-pre-line">
         {"Picture\n" + activeText}
       </div>
       {/* todo: make text go on right side screen */}
-      <div className="h-screen w-full sticky top-0 overflow-hidden">
+      <div className="sticky h-screen w-full top-0 overflow-hidden">
         {image.map(({ src }, index) => (
           <motion.div
             key={index}

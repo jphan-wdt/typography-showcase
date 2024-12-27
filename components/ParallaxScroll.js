@@ -25,13 +25,13 @@ export default function ParallaxScroll({
   );
 
   return (
-    <div className="h-[125vh] w-full relative" ref={scrollRef}>
+    <div className="relative h-[125vh] w-full" ref={scrollRef}>
       <Image
         src={imagePath}
         width={1600}
         height={900}
         alt="1"
-        className={`z-[-1] h-full w-full absolute object-cover
+        className={`absolute h-full w-full object-cover z-[-1]
                         ${
                           top
                             ? "rounded-t-xl drop-shadow-[0px_0px_50px_rgba(0,0,0,0.6)]"

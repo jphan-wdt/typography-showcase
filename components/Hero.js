@@ -24,7 +24,7 @@ export default function Hero() {
           width={1600}
           height={900}
           alt="1"
-          className="absolute rounded-xl h-full w-full object-cover"
+          className="absolute h-full w-full rounded-xl object-cover"
         />
         <div className="absolute h-full w-4/5">
           <div className="relative top-64 left-12">

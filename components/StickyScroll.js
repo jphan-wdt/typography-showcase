@@ -50,17 +50,17 @@ export default function StickyScroll() {
   return (
     <div className="relative h-auto bg-6">
       <div className="h-auto w-full flex my-12" ref={scrollRef}>
-        <div className="h-[60vh] w-1/2 sticky top-40">
+        <div className="sticky top-40 h-[60vh] w-1/2">
           <div className="text-5xl text-white font-extrabold tracking-tighter text-center mt-[30vh] -translate-y-1/2">
             {activeText}
           </div>
         </div>
 
-        <div className="h-auto w-1/2 flex flex-col">
+        <div className="flex flex-col h-auto w-1/2 ">
           {image.map((img, index) => (
             <div
               key={index}
-              className={`flex h-[60vh] items-center justify-center transition-all my-8 ${
+              className={`flex items-center justify-center my-8 h-[60vh] transition-all ${
                 activePicture === index + 1
                   ? "-translate-x-14 scale-110 duration-500"
                   : "duration-700 brightness-50 grayscale"
@@ -71,7 +71,7 @@ export default function StickyScroll() {
                 width={1600}
                 height={900}
                 alt={`Image ${index + 1}`}
-                className="rounded-xl right-10 relative"
+                className="relative right-10 rounded-xl"
               />
             </div>
           ))}
