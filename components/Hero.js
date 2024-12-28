@@ -26,13 +26,15 @@ export default function Hero() {
           alt="1"
           className="absolute h-full w-full rounded-xl object-cover"
         />
-        <div className="absolute h-full w-4/5">
-          <div className="relative top-64 left-12">
-            <div className="text-white text-8xl tracking-tighter font-semibold text-balance">
-              Lorem ipsum dolor sit amet, consectetur adipiscing consequat...
+        <div className="absolute h-full w-11/12">
+          <div className="relative top-[40rem] left-12">
+            <div className="text-[#fff0e0] font-custom text-8xl tracking-tight text-balance">
+              "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING CONSEQUAT..."
             </div>
-            <div className="mt-5 text-gray-100 text-4xl tracking-tighter font-light text-pretty italic">
-              "Maecenas vel diam non est cursus elit."
+            <div className="w-2/5 text-[#fff0e0] text-xl tracking-tighter font-light text-pretty">
+              The text above is set in the Anton typeface. This text is set in
+              the Inter typeface. All images created and captured from the block
+              game Minecraft with community-made shaders.
             </div>
           </div>
         </div>

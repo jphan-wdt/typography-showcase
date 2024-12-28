@@ -31,10 +31,6 @@ body {
   margin-right: 12px;
 }
 
-.bg-6 {
-  background-color: var(--color6);
-}
-
 /* Lenis */
 html.lenis,
 html.lenis body {

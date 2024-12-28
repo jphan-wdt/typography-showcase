@@ -3,7 +3,7 @@ import img from "@/public/Image 5.png";
 
 export default function StickyLadder() {
   return (
-    <div className="relative h-[420vh] bg-yellow-600">
+    <div className="relative h-[400vh] bg-6">
       <div className="sticky top-0 h-screen text-white">TITLE</div>
       <div>
         {/* <Image
@@ -15,18 +15,46 @@ export default function StickyLadder() {
         /> */}
       </div>
 
-      <div className="sticky top-[10vh] h-[90vh] bg-green-400">
+      <div className="sticky top-[10vh] h-[90vh] bg-[#e0e1dd]">
         <div className="flex justify-around items-center h-full w-full ">
-          <div className="flex flex-col justify-around items-center basis-1/5 h-full w-full">
-            <div>NUMBER HERE</div>
-            <div>TITLE</div>
+          <div className="basis-1/5 h-full w-full font-anton text-9xl text-[#0c4d1e]">
+            <div className="mt-8">01.</div>
+            <div className="mt-[18rem] text-center">TITLE</div>
           </div>
-
           <div className="flex flex-col justify-end h-full">
-            <div className="flex items-center justify-between basis-24">
-              <div>lorem</div>
-              <div>ipsum</div>
-              <div>dolor</div>
+            <div
+              className="flex items-center justify-between basis-24
+                        font-anton tracking-widest text-4xl text-[#ffbf00]"
+            >
+              <div>LOREM</div>
+              <div>IPSUM</div>
+              <div>DOLOR</div>
+            </div>
+            <Image
+              src={img}
+              width={1600}
+              height={900}
+              alt={`Image `}
+              className="bottom-0 right-0 h-[80vh] w-auto overflow-hidden object-cover"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="sticky top-[10vh] h-[90vh] bg-[#0c1129] mt-[10vh]">
+        <div className="flex justify-around items-center h-full w-full ">
+          <div className="basis-1/5 h-full w-full font-anton text-9xl text-[#e0e1dd]">
+            <div className="mt-8">02.</div>
+            <div className="mt-[18rem] text-center">TITLE</div>
+          </div>
+          <div className="flex flex-col justify-end h-full">
+            <div
+              className="flex items-center justify-between basis-24
+                        font-anton tracking-widest text-4xl text-[#d1a877]"
+            >
+              <div>LOREM</div>
+              <div>IPSUM</div>
+              <div>DOLOR</div>
             </div>
             <Image
               src={img}
@@ -39,48 +67,27 @@ export default function StickyLadder() {
         </div>
       </div>
 
-      <div className="bg-red-400 sticky top-[10vh] h-[90vh] mt-[5vh]">
-        <div className=" h-full w-full flex justify-around items-center">
-          <div className="h-full w-full basis-1/5 flex flex-col justify-around items-center ">
-            <div>NUMBER HERE</div>
-            <div>TITLE</div>
+      <div className="sticky top-[10vh] h-[90vh] bg-[#212121] mt-[10vh]">
+        <div className="flex justify-around items-center h-full w-full ">
+          <div className="basis-1/5 h-full w-full font-anton text-9xl text-[#661111]">
+            <div className="mt-8">03.</div>
+            <div className="mt-[18rem] text-center">TITLE</div>
           </div>
-
-          <div className="h-full flex flex-col justify-end">
-            <div className="flex basis-24 items-center justify-between">
-              <div>lorem</div>
-              <div>ipsum</div>
-              <div>dolor</div>
+          <div className="flex flex-col justify-end h-full">
+            <div
+              className="flex items-center justify-between basis-24
+                        font-anton tracking-widest text-4xl text-[#e0e1dd]"
+            >
+              <div>LOREM</div>
+              <div>IPSUM</div>
+              <div>DOLOR</div>
             </div>
             <Image
               src={img}
               width={1600}
               height={900}
               alt={`Image `}
-              className="h-[80vh] bottom-0 right-0 w-auto overflow-hidden rounded-xl object-cover"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="bg-purple-400 sticky top-[10vh] h-[90vh] mt-[5vh]">
-        <div className=" h-full w-full flex justify-around items-center">
-          <div className="h-full w-full basis-1/5 flex flex-col justify-around items-center ">
-            <div>NUMBER HERE</div>
-            <div>TITLE</div>
-          </div>
-
-          <div className="h-full flex flex-col justify-end">
-            <div className="flex basis-24 items-center justify-between">
-              <div>lorem</div>
-              <div>ipsum</div>
-              <div>dolor</div>
-            </div>
-            <Image
-              src={img}
-              width={1600}
-              height={900}
-              alt={`Image `}
-              className="h-[80vh] bottom-0 right-0 w-auto overflow-hidden rounded-xl object-cover"
+              className="bottom-0 right-0 h-[80vh] w-auto rounded-xl overflow-hidden object-cover"
             />
           </div>
         </div>

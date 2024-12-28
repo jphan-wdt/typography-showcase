@@ -4,25 +4,18 @@ import { useRef } from "react";
 
 export default function ParallaxScroll({
   text,
-  inputStart,
-  offsetStart,
-  offsetEnd,
-  outputStart,
-  outputEnd,
   top = false,
   bottom = false,
   imagePath,
+  colour,
+  font,
 }) {
   const scrollRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: scrollRef,
-    offset: [offsetStart, offsetEnd],
+    offset: ["start end", "end start"],
   });
-  const y = useTransform(
-    scrollYProgress,
-    [inputStart, 1],
-    [outputStart, outputEnd]
-  );
+  const y = useTransform(scrollYProgress, [0, 1], ["-400%", "350%"]);
 
   return (
     <div className="relative h-[125vh] w-full" ref={scrollRef}>
@@ -39,12 +32,13 @@ export default function ParallaxScroll({
                         }
                         ${bottom ? "rounded-b-xl" : ""}`}
       />
-
+      {/* text-[${colour}] */}
       <motion.div
-        className="absolute top-1/2 left-1/2
-                    text-white text-9xl tracking-tighter
-                    drop-shadow-[0px_0px_6px_rgba(0,0,0,1)]] z-[-1]"
-        style={{ y, x: "-50%" }}
+        className={`absolute top-1/2 left-1/2
+                    tracking-tig font-semibold text-9xl
+                    drop-shadow-[0px_0px_6px_rgba(0,0,0,1)]] z-[-1]
+                    font-${font} text-white`}
+        style={{ y, x: "-50%", color: colour }}
       >
         {text}
       </motion.div>

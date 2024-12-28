@@ -5,41 +5,32 @@ import images from "./images";
 export default function ParallaxText({ activeDesign }) {
   const propData = [
     [
-      // Smooth scroll 0
+      // Smooth scroll [0]
       {
-        text: "Lorem",
-        inputStart: 0,
-        offsetStart: "start end",
-        offsetEnd: "end start",
-        outputStart: "-400%",
-        outputEnd: "300%",
+        text: "LOREM",
         top: true,
         imagePath: images[8].src,
+        colour: "#2c3c56",
+        font: "custom",
       },
       {
-        text: "Ipsum",
-        inputStart: 0,
-        offsetStart: "start end",
-        offsetEnd: "end start",
-        outputStart: "-400%",
-        outputEnd: "300%",
+        text: "Ipsum.",
         imagePath: images[9].src,
+        colour: "#ffffff",
+        font: "",
       },
       {
         text: "Dolor",
-        inputStart: 0,
-        offsetStart: "start end",
-        offsetEnd: "end start",
-        outputStart: "-400%",
-        outputEnd: "300%",
         bottom: true,
         imagePath: images[1].src,
+        colour: "#ffff00",
+        font: "custom2",
       },
     ],
     [
-      // Scroll into each other 1
+      // Scroll into each other [1] do not use
       {
-        text: "Lorem",
+        text: "LOREM",
         inputStart: 0,
         offsetStart: "start start",
         offsetEnd: "end start",
@@ -49,7 +40,7 @@ export default function ParallaxText({ activeDesign }) {
         imagePath: "/Image 7.png",
       },
       {
-        text: "Ipsum",
+        text: "IPSUM",
         inputStart: 0.25,
         offsetStart: "start end",
         offsetEnd: "end start",
@@ -58,7 +49,7 @@ export default function ParallaxText({ activeDesign }) {
         imagePath: "/Image 11.png",
       },
       {
-        text: "Dolor",
+        text: "DOLOR",
         inputStart: 0.25,
         offsetStart: "start end",
         offsetEnd: "end start",
