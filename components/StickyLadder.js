@@ -3,16 +3,10 @@ import img from "@/public/Image 5.png";
 
 export default function StickyLadder() {
   return (
-    <div className="relative h-[400vh] bg-6">
-      <div className="sticky top-0 h-screen text-white">TITLE</div>
-      <div>
-        {/* <Image
-          src={img}
-          width={1600}
-          height={900}
-          alt={`Image `}
-          className="rounded-xl relative h-[20vh] w-[40vw] overflow-hidden"
-        /> */}
+    <div className="relative h-[520vh] w-full bg-green-300">
+      <div className="sticky top-0 h-[200vh] bg-red-300 text-white">
+        TITLE
+        <div className="relative h-full m-16 bg-red-600"></div>
       </div>
 
       <div className="sticky top-[10vh] h-[90vh] bg-[#e0e1dd]">

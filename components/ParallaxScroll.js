@@ -24,7 +24,7 @@ export default function ParallaxScroll({
         width={1600}
         height={900}
         alt="1"
-        className={`absolute h-full w-full object-cover z-[-1]
+        className={`relative h-full w-full object-cover
                         ${
                           top
                             ? "rounded-t-xl drop-shadow-[0px_0px_50px_rgba(0,0,0,0.6)]"
@@ -36,8 +36,7 @@ export default function ParallaxScroll({
       <motion.div
         className={`absolute top-1/2 left-1/2
                     tracking-tig font-semibold text-9xl
-                    drop-shadow-[0px_0px_6px_rgba(0,0,0,1)]] z-[-1]
-                    font-${font} text-white`}
+                    ${font} text-white`}
         style={{ y, x: "-50%", color: colour }}
       >
         {text}

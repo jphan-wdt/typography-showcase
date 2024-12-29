@@ -16,7 +16,7 @@ export default function Hero() {
   return (
     <div className="mb-[-100vh]">
       <motion.div
-        className="sticky top-4 w-full h-screen z-[-1]"
+        className="sticky top-4 w-full h-screen"
         style={{ scale, opacity, y }}
       >
         <Image
@@ -31,7 +31,7 @@ export default function Hero() {
             <div className="text-[#fff0e0] font-custom text-8xl tracking-tight text-balance">
               "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING CONSEQUAT..."
             </div>
-            <div className="w-2/5 text-[#fff0e0] text-xl tracking-tighter font-light text-pretty">
+            <div className="relative w-2/5 text-[#fff0e0] text-lg tracking-tighter font-extralight text-pretty">
               The text above is set in the Anton typeface. This text is set in
               the Inter typeface. All images created and captured from the block
               game Minecraft with community-made shaders.

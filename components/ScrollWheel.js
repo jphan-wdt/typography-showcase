@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import {
   motion,
   useScroll,
@@ -9,22 +9,8 @@ import Image from "next/image";
 import images from "./images";
 
 export default function ScrollWheel() {
-  const [activeText, setActiveText] = useState("Wheel");
-
-  const image = [
-    images[1],
-    images[3],
-    images[4],
-    images[5],
-    images[6],
-    images[7],
-    images[8],
-    images[9],
-    images[10],
-    images[11],
-    images[12],
-    images[13],
-  ];
+  const [activeText, setActiveText] = useState("SCROLL DOWN");
+  const [activeFont, setActiveFont] = useState("font-custom");
 
   const scrollRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -36,95 +22,100 @@ export default function ScrollWheel() {
   const sinOffset = 15; // height of base 15%
   const sinScale = -30; // height of curve -30%
 
-  const rotation = 25; // start/end orientation in deg 25
+  const rotation = 20; // start/end orientation in deg 25
 
-  const xStart = 150;
-  const xEnd = -460;
+  const xStart = 190;
+  const xEnd = -470;
   const xMid = (xStart + xEnd) / 2;
 
   // array of sin values for y
-  const sinArray = [];
-  for (let i = 0; i <= sinSmoothing; i++) {
-    const angle = (i * Math.PI) / sinSmoothing;
-    const sinValue = Math.sin(angle);
-    sinArray.push(`${sinOffset + sinValue * sinScale}%`);
-  }
-  sinArray[sinArray.length - 1] = `${sinOffset}%`;
-
-  const getTransforms = (scrollYProgress, start, end) => {
-    // maps inital and final values to start and end
-    const x = useTransform(
-      scrollYProgress,
-      [start, (start + end) / 2, end],
-      [`${xStart}%`, `${xMid}%`, `${xEnd}%`]
-    );
-
-    // array to map sin values to y values
-    const startToEnd = [];
+  const sinArray = useMemo(() => {
+    const arr = [];
     for (let i = 0; i <= sinSmoothing; i++) {
-      const value = start + (i * (end - start)) / sinSmoothing;
-      startToEnd.push(value);
+      const angle = (i * Math.PI) / sinSmoothing;
+      const sinValue = Math.sin(angle);
+      arr.push(`${sinOffset + sinValue * sinScale}%`);
     }
-
-    const y = useTransform(scrollYProgress, startToEnd, sinArray);
-
-    const rotate = useTransform(
-      scrollYProgress,
-      [start, (start + end) / 2, end],
-      [`${rotation}deg`, "0deg", `-${rotation}deg`]
-    );
-    return { x, y, rotate };
-  };
-
-  const normalisedIncrements = 0.8 / image.length;
+    arr[arr.length - 1] = `${sinOffset}%`;
+    return arr;
+  }, []);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log(latest);
     if (latest < 0.1 || latest >= 0.9) {
-      setActiveText("Wheel");
+      setActiveFont("font-custom");
+      setActiveText("SCROLL DOWN");
       return;
     }
 
     const index = Math.min(
-      Math.floor((latest - 0.1) / normalisedIncrements),
-      image.length - 1
+      Math.floor((latest - 0.1) / (0.8 / images.length)),
+      images.length - 1
     );
 
+    setActiveFont("font-custom2");
     setActiveText(`${index + 1}.`);
   });
 
   return (
-    <div className="relative h-[600vh]" ref={scrollRef}>
-      <div className="sticky top-0 p-4 mb-[-100vh] text-9xl text-white font-extrabold tracking-tighter whitespace-pre-line">
-        {"Picture\n" + activeText}
+    <div className="relative h-[800vh] w-full" ref={scrollRef}>
+      <div className="sticky top-4 p-4 mb-[-100vh] text-9xl text-white">
+        <div
+          className={`${activeFont} ${
+            activeFont === "font-custom" ? "text-2xl tracking-tight" : ""
+          }`}
+        >
+          {activeText}
+        </div>
       </div>
       {/* todo: make text go on right side screen */}
       <div className="sticky h-screen w-full top-0 overflow-hidden">
-        {image.map(({ src }, index) => (
-          <motion.div
-            key={index}
-            className="absolute right-0 bottom-0"
-            style={getTransforms(
-              scrollYProgress,
-              (0.8 * index) / image.length,
-              (0.8 * index) / image.length + 0.28
-            )}
-          >
-            <Image
-              src={src}
-              width={1600}
-              height={900}
-              alt={`Image ${index + 1}`}
-              className={`h-[80vh] w-[50vh] rounded-xl transition-all duration-500 object-cover ${
-                activeText === index + 1 + "."
-                  ? ""
-                  : "brightness-[0.4] grayscale"
-              }`}
-            />
-          </motion.div>
-        ))}
+        {images.map(({ src }, index) => {
+          const start = (0.8 * index) / images.length;
+          const end = start + 0.25;
+
+          // maps inital and final values to start and end
+          const x = useTransform(
+            scrollYProgress,
+            [start, (start + end) / 2, end],
+            [`${xStart}%`, `${xMid}%`, `${xEnd}%`]
+          );
+
+          // array to map sin values to y values
+          const startToEnd = [];
+          for (let i = 0; i <= sinSmoothing; i++) {
+            const value = start + (i * (end - start)) / sinSmoothing;
+            startToEnd.push(value);
+          }
+
+          const y = useTransform(scrollYProgress, startToEnd, sinArray);
+
+          const rotate = useTransform(
+            scrollYProgress,
+            [start, (start + end) / 2, end],
+            [`${rotation}deg`, "0deg", `-${rotation}deg`]
+          );
+
+          return (
+            <motion.div
+              key={index}
+              className="absolute right-0 bottom-0"
+              style={{ x, y, rotate, willChange: "transform" }}
+            >
+              <Image
+                src={src}
+                width={1600}
+                height={900}
+                alt={`Image ${index + 1}`}
+                className={`h-[70vh] w-[50vh] rounded-xl transition-all duration-500 object-cover ${
+                  activeText === index + 1 + "."
+                    ? ""
+                    : "brightness-[0.4] grayscale"
+                }`}
+              />
+            </motion.div>
+          );
+        })}
       </div>
-      <div className="h-screen" />
     </div>
   );
 }

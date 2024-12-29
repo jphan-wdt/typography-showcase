@@ -7,24 +7,24 @@ export default function ParallaxText({ activeDesign }) {
     [
       // Smooth scroll [0]
       {
-        text: "LOREM",
+        text: "Georgia.",
         top: true,
         imagePath: images[8].src,
         colour: "#2c3c56",
-        font: "custom",
+        font: "font-serif",
       },
       {
-        text: "Ipsum.",
-        imagePath: images[9].src,
+        text: "ANTON",
+        imagePath: images[12].src,
         colour: "#ffffff",
-        font: "",
+        font: "font-custom",
       },
       {
-        text: "Dolor",
+        text: "Maguntia",
         bottom: true,
-        imagePath: images[1].src,
+        imagePath: images[2].src,
         colour: "#ffff00",
-        font: "custom2",
+        font: "font-custom2",
       },
     ],
     [

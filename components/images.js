@@ -28,7 +28,6 @@ const images = [
   { src: image11, start: 0.7073, end: 0.8714 },
   { src: image12, start: 0.7716, end: 0.9357 },
   { src: image13, start: 0.8359, end: 1 },
-  { increment: 0.164 },
 ];
 
 export default images;
