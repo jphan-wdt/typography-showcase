@@ -4,7 +4,7 @@ import img from "@/public/Image 5.png";
 export default function StickyLadder() {
   return (
     <div className="relative h-[520vh] w-full bg-green-300">
-      <div className="sticky top-0 h-[200vh] bg-red-300 text-white">
+      <div className="sticky top-0 h-[200vh] w-full bg-red-300 text-white">
         TITLE
         <div className="relative h-full m-16 bg-red-600"></div>
       </div>

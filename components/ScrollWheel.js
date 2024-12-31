@@ -24,8 +24,8 @@ export default function ScrollWheel() {
 
   const rotation = 20; // start/end orientation in deg 25
 
-  const xStart = 190;
-  const xEnd = -470;
+  const xStart = 220;
+  const xEnd = -330;
   const xMid = (xStart + xEnd) / 2;
 
   // array of sin values for y
@@ -58,17 +58,20 @@ export default function ScrollWheel() {
 
   return (
     <div className="relative h-[800vh] w-full" ref={scrollRef}>
-      <div className="sticky top-4 p-4 mb-[-100vh] text-9xl text-white">
+      <div className="sticky top-4 p-4 text-9xl text-white">
         <div
           className={`${activeFont} ${
-            activeFont === "font-custom" ? "text-2xl tracking-tight" : ""
+            activeFont === "font-custom"
+              ? "text-2xl tracking-tight text-center"
+              : ""
           }`}
         >
           {activeText}
+          {/* animate to number and back*/}
         </div>
       </div>
       {/* todo: make text go on right side screen */}
-      <div className="sticky h-screen w-full top-0 overflow-hidden">
+      <div className="sticky bg-slate-30 h-screen w-full top-0 overflow-hidden">
         {images.map(({ src }, index) => {
           const start = (0.8 * index) / images.length;
           const end = start + 0.25;
@@ -98,7 +101,7 @@ export default function ScrollWheel() {
           return (
             <motion.div
               key={index}
-              className="absolute right-0 bottom-0"
+              className="absolute left-1/2 bottom-0"
               style={{ x, y, rotate, willChange: "transform" }}
             >
               <Image
