@@ -16,7 +16,7 @@ export default function Hero() {
   return (
     <div className="mb-[-100vh]">
       <motion.div
-        className="sticky top-4 w-full h-screen"
+        className="sticky top-4 w-full h-screen overflow-hidden"
         style={{ scale, opacity, y }}
       >
         <Image
@@ -26,16 +26,14 @@ export default function Hero() {
           alt="1"
           className="absolute h-full w-full rounded-xl object-cover"
         />
-        <div className="absolute h-full w-11/12">
-          <div className="relative top-[40rem] left-12">
-            <div className="text-[#fff0e0] font-custom text-8xl tracking-tight text-balance">
-              "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING CONSEQUAT..."
-            </div>
-            <div className="relative w-2/5 text-[#fff0e0] text-lg tracking-tighter font-extralight text-pretty">
-              The text above is set in the Anton typeface. This text is set in
-              the Inter typeface. All images created and captured from the block
-              game Minecraft with community-made shaders.
-            </div>
+        <div className="relative top-96 pt-64 p-12 text-[#fff0e0]">
+          <div className="font-custom text-8xl tracking-tight text-balance">
+            "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING CONSEQUAT..."
+          </div>
+          <div className="w-2/5 text-lg tracking-tighter font-extralight text-pretty">
+            The text above is set in the Anton typeface. This text is set in the
+            Inter typeface. All images created and captured from the block game
+            Minecraft with community-made shaders.
           </div>
         </div>
       </motion.div>

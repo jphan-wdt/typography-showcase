@@ -1,5 +1,4 @@
-import { useState } from "react";
-import ParallaxScroll from "./ParallaxScroll";
+import ParallaxImage from "./ParallaxImage";
 import images from "./images";
 
 export default function ParallaxText({ activeDesign }) {
@@ -64,7 +63,7 @@ export default function ParallaxText({ activeDesign }) {
   return (
     <div>
       {propData[activeDesign].map((props, index) => (
-        <ParallaxScroll key={index} {...props} />
+        <ParallaxImage key={index} {...props} />
       ))}
     </div>
   );

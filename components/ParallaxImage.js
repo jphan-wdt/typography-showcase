@@ -18,7 +18,7 @@ export default function ParallaxScroll({
   const y = useTransform(scrollYProgress, [0, 1], ["-400%", "350%"]);
 
   return (
-    <div className="relative h-[125vh] w-full" ref={scrollRef}>
+    <div className="relative h-[125vh] w-full overflow-hidden" ref={scrollRef}>
       <Image
         src={imagePath}
         width={1600}

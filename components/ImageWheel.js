@@ -58,12 +58,12 @@ export default function ScrollWheel() {
 
   return (
     <div className="relative h-[800vh] w-full" ref={scrollRef}>
-      <div className="sticky top-4 p-4 text-9xl text-white">
+      <div className="sticky top-4 p-4 text-2xl tracking-tight text-center text-white">
         <div
           className={`${activeFont} ${
             activeFont === "font-custom"
-              ? "text-2xl tracking-tight text-center"
-              : ""
+              ? ""
+              : "text-9xl tracking-widest text-left"
           }`}
         >
           {activeText}
@@ -111,8 +111,8 @@ export default function ScrollWheel() {
                 alt={`Image ${index + 1}`}
                 className={`h-[70vh] w-[50vh] rounded-xl transition-all duration-500 object-cover ${
                   activeText === index + 1 + "."
-                    ? ""
-                    : "brightness-[0.4] grayscale"
+                    ? "border border-white p-1"
+                    : "brightness-[0.4] grayscale p-10"
                 }`}
               />
             </motion.div>
