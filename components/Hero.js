@@ -26,14 +26,16 @@ export default function Hero() {
           alt="1"
           className="absolute h-full w-full rounded-xl object-cover"
         />
-        <div className="relative top-96 pt-64 p-12 text-[#fff0e0]">
-          <div className="font-custom text-8xl tracking-tight text-balance">
-            "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING CONSEQUAT..."
-          </div>
-          <div className="w-2/5 text-lg tracking-tighter font-extralight text-pretty">
-            The text above is set in the Anton typeface. This text is set in the
-            Inter typeface. All images created and captured from the block game
-            Minecraft with community-made shaders.
+        <div className="absolute bottom-96">
+          <div className="relative top-96 pt-64 p-12 text-[#fff0e0]">
+            <div className="font-custom text-8xl tracking-tight text-balance">
+              "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING CONSEQUAT..."
+            </div>
+            <div className="w-2/5 text-lg tracking-tighter font-extralight text-pretty">
+              The text above is set in the Anton typeface. This text is set in
+              the Inter typeface. All images created and captured from the block
+              game Minecraft with community-made shaders.
+            </div>
           </div>
         </div>
       </motion.div>

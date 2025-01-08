@@ -5,9 +5,10 @@ import Lenis from "lenis";
 
 import StickyScroll from "@/components/StickyScroll";
 import Hero from "@/components/Hero";
-import ParallaxText from "@/components/ParallaxText";
 import ImageWheel from "@/components/ImageWheel";
 import StickyReveal from "@/components/StickyReveal";
+import ParallaxImage from "@/components/ParallaxImage";
+import ParallaxGallery from "@/components/ParallaxGallery";
 
 export default function Home() {
   useEffect(() => {
@@ -22,9 +23,12 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <ParallaxText activeDesign={0} />
-      <StickyScroll />
+      <ParallaxImage />
+
       <ImageWheel />
+      <ParallaxGallery />
+
+      <StickyScroll />
       <StickyReveal />
       <div className="h-screen bg-white" />
     </div>

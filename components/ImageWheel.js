@@ -25,7 +25,7 @@ export default function ScrollWheel() {
   const rotation = 20; // start/end orientation in deg 25
 
   const xStart = 220;
-  const xEnd = -330;
+  const xEnd = -320;
   const xMid = (xStart + xEnd) / 2;
 
   // array of sin values for y
@@ -48,8 +48,8 @@ export default function ScrollWheel() {
     }
 
     const index = Math.min(
-      Math.floor((latest - 0.1) / (0.8 / images.length)),
-      images.length - 1
+      Math.floor((latest - 0.1) / (0.7 / images.slice(0, 5).length)),
+      images.slice(0, 5).length - 1
     );
 
     setActiveFont("font-custom2");
@@ -57,7 +57,7 @@ export default function ScrollWheel() {
   });
 
   return (
-    <div className="relative h-[800vh] w-full" ref={scrollRef}>
+    <div className="relative h-[400vh] w-full" ref={scrollRef}>
       <div className="sticky top-4 p-4 text-2xl tracking-tight text-center text-white">
         <div
           className={`${activeFont} ${
@@ -72,9 +72,9 @@ export default function ScrollWheel() {
       </div>
       {/* todo: make text go on right side screen */}
       <div className="sticky bg-slate-30 h-screen w-full top-0 overflow-hidden">
-        {images.map(({ src }, index) => {
-          const start = (0.8 * index) / images.length;
-          const end = start + 0.25;
+        {images.slice(0, 5).map(({ src }, index) => {
+          const start = (0.6 * index) / images.slice(0, 5).length; // scale scroll range of all images
+          const end = start + 0.5; // scroll duration of individual image
 
           // maps inital and final values to start and end
           const x = useTransform(
