@@ -37,7 +37,7 @@ export default function ParallaxGallery() {
   });
 
   return (
-    <div className="relative h-[200vh] w-full flow-root py-10" ref={scrollRef}>
+    <div className="relative h-[200vh] w-full flow-root p-8" ref={scrollRef}>
       <div className="flex gap-5 h-full w-full overflow-hidden">
         {columns.map((column, index) => {
           // Use start and end from the column data

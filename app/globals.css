@@ -19,6 +19,10 @@
   --accent-soft-coral: #ff6f61;
 }
 
+.bg-6 {
+  background-color: var(--color6);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

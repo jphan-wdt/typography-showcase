@@ -17,7 +17,7 @@ function ParallaxImage({ text, top, bottom, imagePath, colour, font }) {
       className={`relative h-[110vh] w-full overflow-hidden 
                   ${
                     top
-                      ? "rounded-t-xl drop-shadow-[0px_0px_ 50px_rgba(0,0,0,0.6)]"
+                      ? "rounded-t-xl drop-shadow-[0px_-50px_100px_rgba(0,0,0,0.6)]"
                       : ""
                   }
                   ${bottom ? "rounded-b-xl" : ""}`}

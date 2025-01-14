@@ -9,7 +9,7 @@ import Image from "next/image";
 import images from "./images";
 
 export default function ScrollWheel() {
-  const [activeText, setActiveText] = useState("SCROLL DOWN");
+  const [activeText, setActiveText] = useState("");
   const [activeFont, setActiveFont] = useState("font-custom");
 
   const scrollRef = useRef(null);
@@ -18,7 +18,7 @@ export default function ScrollWheel() {
     offset: ["start start", "end end"],
   });
 
-  const sinSmoothing = 50; // smoothness of curve path
+  const sinSmoothing = 7; // smoothness of curve path
   const sinOffset = 15; // height of base 15%
   const sinScale = -30; // height of curve -30%
 
@@ -41,9 +41,10 @@ export default function ScrollWheel() {
   }, []);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    console.log(latest);
     if (latest < 0.1 || latest >= 0.9) {
       setActiveFont("font-custom");
-      setActiveText("SCROLL DOWN");
+      setActiveText("");
       return;
     }
 
@@ -57,7 +58,7 @@ export default function ScrollWheel() {
   });
 
   return (
-    <div className="relative h-[400vh] w-full" ref={scrollRef}>
+    <div className="relative h-[500vh] w-full" ref={scrollRef}>
       <div className="sticky top-4 p-4 text-2xl tracking-tight text-center text-white">
         <div
           className={`${activeFont} ${
