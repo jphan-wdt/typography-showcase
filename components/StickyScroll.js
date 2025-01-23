@@ -13,7 +13,8 @@ export default function StickyScroll() {
   const [activePicture, setActivePicture] = useState(1);
   const [activeText, setActiveText] = useState("lorem.");
 
-  const image = transformData();
+  const grid = gridData();
+  const transform = transformData();
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -64,16 +65,46 @@ export default function StickyScroll() {
     }
   });
 
+  //   const imageData = [
+  //   { path: images[3].src, rowStart: 1, colStart: 1, rowSpan: 2, colSpan: 3 },
+  //   { path: images[4].src, rowStart: 3, colStart: 2, rowSpan: 3, colSpan: 4 },
+  //   // Add more items as needed
+  // ];
+
+  // <div className="grid grid-cols-12 grid-rows-12">
+  //   {imageData.map(({ path, rowStart, colStart, rowSpan, colSpan }, index) => (
+  //     <div
+  //
+  //       }}
+
+  // <div
+  //   key={index}
+  //   className="absolute h-full w-full"
+  //   style={{
+  //     height: `${height}vh`,
+  //     width: `${width}vh`,
+  //     transform: `translate(${transX}vw, ${transY}vh)`,
+  //   }}
+  // ></div>
+
   return (
-    <div className="relative h-[500vh] w-full overflow-clip" ref={scrollRef}>
-      {image.map(({ path, height, width, transX, transY }, index) => (
+    <div
+      className="relative h-[400vh] w-full overflow-clip grid grid-cols-12 grid-rows-[repeat(20,_minmax(0,1fr))] gap-3 py-3"
+      ref={scrollRef}
+    >
+      <div className="row-start-7 row-span-1 col-start-8 -col-end-2 bg-white"></div>
+      <div className="row-start-13 row-span-7 col-start-2 col-span-1 bg-white"></div>
+      <div className="row-start-[18] row-span-1 col-start-4 col-end-8 bg-white"></div>
+
+      {grid.map(({ path, rowStart, colStart, rowSpan, colSpan }, index) => (
         <div
           key={index}
-          className="absolute h-full w-full"
+          className="relative"
           style={{
-            height: `${height}vh`,
-            width: `${width}vh`,
-            transform: `translate(${transX}vw, ${transY}vh)`,
+            gridRowStart: rowStart,
+            gridRowEnd: `span ${rowSpan}`,
+            gridColumnStart: colStart,
+            gridColumnEnd: `span ${colSpan}`,
           }}
         >
           <div
@@ -96,6 +127,38 @@ export default function StickyScroll() {
         </div>
       ))}
 
+      <div className="row-start-2 row-end-6 col-start-2 -col-end-2">
+        {transform.map(({ path, height, width, transX, transY }, index) => (
+          <div
+            key={index}
+            className="absolute h-full w-full"
+            style={{
+              height: `${height}rem`,
+              width: `${width}rem`,
+              transform: `translate(${transX}rem, ${transY}rem)`,
+            }}
+          >
+            <div
+              className={`h-full w-full border-black border-8 overflow-hidden drop-shadow-[0_0px_10px_rgba(0,0,0,1)]`}
+            >
+              <Image
+                src={path}
+                width={1600}
+                height={900}
+                alt="1"
+                className={`h-full w-full object-cover`}
+                style={{
+                  transform: `translate(${mousePos.x * 0.1}%, ${
+                    mousePos.y * 0.1
+                  }%)`,
+                  scale: "120%",
+                }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+
       <div className="sticky top-0 h-screen" onMouseMove={handleMouseMove}>
         <div className="relative top-1/2 w-1/2 left-1/2 -translate-x-1/2">
           <div className="text-5xl text-white font-extrabold tracking-tighter text-center">
@@ -112,121 +175,80 @@ export function transformData() {
     // section 1
     {
       path: images[12].src,
-      height: 60,
-      width: 60,
-      transX: 25,
-      transY: 15,
-    },
-    {
-      path: images[2].src,
-      height: 50,
-      width: 50,
-      transX: 45,
+      height: 30,
+      width: 40,
+      transX: 15,
       transY: 5,
-    },
-    {
-      path: images[5].src,
-      height: 50,
-      width: 70,
-      transX: 28,
-      transY: 60,
+      dirX: -1,
+      dirY: 1,
     },
     {
       path: images[2].src,
-      height: 60,
-      width: 60,
-      transX: 53,
-      transY: 35,
+      height: 25,
+      width: 25,
+      transX: 40,
+      transY: -5,
+      dirX: -1,
+      dirY: -1,
     },
+    {
+      path: images[5].src,
+      height: 25,
+      width: 35,
+      transX: 23,
+      transY: 25,
+      dirX: 1,
+      dirY: -1,
+    },
+    {
+      path: images[2].src,
+      height: 30,
+      width: 30,
+      transX: 48,
+      transY: 15,
+      dirX: 1,
+      dirY: 1,
+    },
+  ];
+}
 
-    // section 2 maybe smaller
+export function gridData() {
+  return [
+    // section 2
     {
       path: images[12].src,
-      height: 100,
-      width: 75,
-      transX: 11.5,
-      transY: 117,
+      colStart: 2,
+      colSpan: 5,
+      rowStart: 7,
+      rowSpan: 5,
     },
     {
       path: images[2].src,
-      height: 60,
-      width: 51,
-      transX: 49.5,
-      transY: 157,
+      colStart: 7,
+      colSpan: 3,
+      rowStart: 9,
+      rowSpan: 3,
+    },
+    {
+      path: images[2].src,
+      colStart: 4,
+      colSpan: 3,
+      rowStart: 12,
+      rowSpan: 3,
     },
     {
       path: images[5].src,
-      height: 60,
-      width: 51,
-      transX: 23.4,
-      transY: 219,
+      colStart: 7,
+      colSpan: 5,
+      rowStart: 12,
+      rowSpan: 5,
     },
     {
       path: images[2].src,
-      height: 100,
-      width: 75,
-      transX: 49.5,
-      transY: 219,
+      colStart: 9,
+      colSpan: 3,
+      rowStart: 17,
+      rowSpan: 3,
     },
-    {
-      path: images[2].src,
-      height: 60,
-      width: 50,
-      transX: 62,
-      transY: 320.5,
-    },
-
-    // section 3
-    {
-      path: images[5].src,
-      height: 90,
-      width: 50,
-      transX: 11,
-      transY: 395,
-    },
-    {
-      path: images[2].src,
-      height: 100,
-      width: 50,
-      transX: 36.5,
-      transY: 370,
-    },
-    {
-      path: images[12].src,
-      height: 110,
-      width: 50,
-      transX: 62,
-      transY: 382,
-    },
-
-    // section 2.2
-    // {
-    //   path: images[12].src,
-    //   height: 100,
-    //   width: 75,
-    //   transX: 11.5,
-    //   transY: 120,
-    // },
-    // {
-    //   path: images[2].src,
-    //   height: 60,
-    //   width: 51,
-    //   transX: 49.5,
-    //   transY: 160,
-    // },
-    // {
-    //   path: images[5].src,
-    //   height: 60,
-    //   width: 51,
-    //   transX: 23.4,
-    //   transY: 222,
-    // },
-    // {
-    //   path: images[2].src,
-    //   height: 100,
-    //   width: 75,
-    //   transX: 49.5,
-    //   transY: 222,
-    // },
   ];
 }
