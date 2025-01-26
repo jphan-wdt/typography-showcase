@@ -58,7 +58,7 @@ export default function ScrollWheel() {
   });
 
   return (
-    <div className="relative h-[500vh] w-full" ref={scrollRef}>
+    <div className="relative h-[300vh] w-full" ref={scrollRef}>
       <div className="sticky top-4 p-4 text-2xl tracking-tight text-center text-white">
         <div
           className={`${activeFont} ${

@@ -20,7 +20,11 @@ function ParallaxImage({ text, top, bottom, imagePath, colour, font }) {
                       ? "rounded-t-xl drop-shadow-[0px_-50px_100px_rgba(0,0,0,0.6)]"
                       : ""
                   }
-                  ${bottom ? "rounded-b-xl" : ""}`}
+                  ${
+                    bottom
+                      ? "rounded-b-xl drop-shadow-[0px_50px_100px_rgba(0,0,0,1)]"
+                      : ""
+                  }`}
       ref={scrollRef}
     >
       <motion.div className="h-full w-full" style={{ y: y2 }}>

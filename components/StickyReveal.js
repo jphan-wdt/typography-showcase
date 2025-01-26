@@ -32,26 +32,23 @@ export default function StickyReveal() {
     },
   ];
   return (
-    <div className={`relative h-[320vh] w-full flow-root`}>
-      <div className="sticky top-0 h-[10vh] bg-black/5 border-black border-b-2 backdrop-blur-3xl z-10">
-        TITLE
-      </div>
+    <div className={`relative h-[340vh] w-full flow-root`}>
       {sections.map((section, index) => (
         <div
-          className={`sticky top-[10vh] h-[90vh] mt-[10vh] px-10 ${section.bgColour} border-black border-t-2 overflow-hidden `}
+          className={`sticky top-0 h-screen mt-[10vh] px-5 ${section.bgColour} border-black border-t-2 overflow-hidden `}
           key={index}
         >
-          <div className="relative flex h-full w-full">
+          <div className="relative grid grid-cols-3 h-full w-full">
             <div
-              className={`h-full basis-2/5 flex flex-col justify-between pt-10 text-9xl ${section.titleColour} ${section.font}`}
+              className={`h-full col-start-1 col-end-2 flex flex-col justify-between pt-10 text-9xl ${section.titleColour} ${section.font}`}
             >
               <div className="">{`0${index + 1}.`}</div>
-              <div className="pb-72 pr-20">{section.title}</div>
+              <div className="">{section.title}</div>
             </div>
 
-            <div className="flex flex-col">
+            <div className="col-start-2 col-end-4 flex flex-col justify-between">
               <div
-                className={`flex justify-between py-10
+                className={`flex justify-between py-12
                         ${section.font} tracking-widest text-4xl ${section.textColour}`}
               >
                 <div>LOREM</div>
@@ -64,7 +61,7 @@ export default function StickyReveal() {
                 width={1600}
                 height={900}
                 alt={`Image`}
-                className="h-[80vh] object-cover"
+                className="h-full w-full object-cover"
               />
             </div>
           </div>

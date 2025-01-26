@@ -1,16 +1,9 @@
 import Image from "next/image";
 import images from "@/components/images";
-import { useEffect, useRef, useState } from "react";
-import {
-  motion,
-  useScroll,
-  useMotionValueEvent,
-  useTransform,
-} from "framer-motion";
-// resdesign
+import { useRef, useState } from "react";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 
 export default function StickyScroll() {
-  const [activePicture, setActivePicture] = useState(1);
   const [activeText, setActiveText] = useState("lorem.");
 
   const grid = gridData();
@@ -18,7 +11,6 @@ export default function StickyScroll() {
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // Function to update mouse position
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width - 0.5) * 100;
@@ -33,68 +25,71 @@ export default function StickyScroll() {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log(latest);
     switch (true) {
       case latest < 0.075:
-        if (activePicture != 1) {
-          setActivePicture(1);
+        if (activeText != "lorem.") {
           setActiveText("lorem.");
         }
         break;
 
       case latest >= 0.075 && latest < 0.325:
-        if (activePicture != 2) {
-          setActivePicture(2);
+        if (activeText != "ipsum.") {
           setActiveText("ipsum.");
         }
         break;
 
       case latest >= 0.325 && latest < 0.575:
-        if (activePicture != 3) {
-          setActivePicture(3);
+        if (activeText != "dolor.") {
           setActiveText("dolor.");
         }
         break;
 
       case latest >= 0.575 && latest < 1:
-        if (activePicture != 4) {
-          setActivePicture(4);
+        if (activeText != "sit amet.") {
           setActiveText("sit amet.");
         }
         break;
     }
   });
 
-  //   const imageData = [
-  //   { path: images[3].src, rowStart: 1, colStart: 1, rowSpan: 2, colSpan: 3 },
-  //   { path: images[4].src, rowStart: 3, colStart: 2, rowSpan: 3, colSpan: 4 },
-  //   // Add more items as needed
-  // ];
-
-  // <div className="grid grid-cols-12 grid-rows-12">
-  //   {imageData.map(({ path, rowStart, colStart, rowSpan, colSpan }, index) => (
-  //     <div
-  //
-  //       }}
-
-  // <div
-  //   key={index}
-  //   className="absolute h-full w-full"
-  //   style={{
-  //     height: `${height}vh`,
-  //     width: `${width}vh`,
-  //     transform: `translate(${transX}vw, ${transY}vh)`,
-  //   }}
-  // ></div>
-
   return (
     <div
-      className="relative h-[400vh] w-full overflow-clip grid grid-cols-12 grid-rows-[repeat(20,_minmax(0,1fr))] gap-3 py-3"
+      className="relative h-[400vh] w-full -mb-[10vh] overflow-clip grid grid-cols-12 grid-rows-[repeat(20,_minmax(0,1fr))] gap-3 py-3"
       ref={scrollRef}
     >
-      <div className="row-start-7 row-span-1 col-start-8 -col-end-2 bg-white"></div>
-      <div className="row-start-13 row-span-7 col-start-2 col-span-1 bg-white"></div>
-      <div className="row-start-[18] row-span-1 col-start-4 col-end-8 bg-white"></div>
+      <div
+        className="sticky top-0 h-screen col-start-1 -col-end-1 z-10"
+        onMouseMove={handleMouseMove}
+      >
+        <div className="relative top-1/2 left-1/2 -translate-x-1/2">
+          <div
+            className="text-5xl text-white font-extrabold tracking-tighter text-center"
+            style={{
+              transform: `translate(${mousePos.x * -0.05}%, ${
+                mousePos.y * -1
+              }%)`,
+            }}
+          >
+            {activeText}
+          </div>
+        </div>
+      </div>
+
+      <div className="row-start-7 row-span-2 col-start-8 -col-end-2 text-center font-custom text-white text-9xl overflow-hidden">
+        TEST
+      </div>
+      <div
+        className="row-start-13 row-span-7 col-start-2 col-span-1 text-center font-custom text-white text-9xl overflow-hidden"
+        style={{
+          writingMode: "vertical-rl",
+          textOrientation: "upright",
+        }}
+      >
+        TEST2
+      </div>
+      <div className="row-start-[17] row-span-2 col-start-3 col-end-8 text-center font-custom text-white text-9xl overflow-hidden">
+        TEST3
+      </div>
 
       {grid.map(({ path, rowStart, colStart, rowSpan, colSpan }, index) => (
         <div
@@ -157,14 +152,6 @@ export default function StickyScroll() {
             </div>
           </div>
         ))}
-      </div>
-
-      <div className="sticky top-0 h-screen" onMouseMove={handleMouseMove}>
-        <div className="relative top-1/2 w-1/2 left-1/2 -translate-x-1/2">
-          <div className="text-5xl text-white font-extrabold tracking-tighter text-center">
-            {activeText}
-          </div>
-        </div>
       </div>
     </div>
   );
