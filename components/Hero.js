@@ -16,7 +16,7 @@ export default function Hero() {
   return (
     <div className="mb-[-100vh]">
       <motion.div
-        className="sticky top-4 w-full h-screen overflow-hidden"
+        className="sticky top-4 w-full h-[100svh] overflow-hidden"
         style={{ scale, opacity, y }}
       >
         <Image

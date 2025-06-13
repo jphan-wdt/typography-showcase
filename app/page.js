@@ -25,8 +25,9 @@ export default function Home() {
       <Hero />
       <ParallaxImage />
 
-      <ImageWheel />
       <ParallaxGallery />
+
+      <ImageWheel />
 
       <StickyScroll />
       <StickyReveal />

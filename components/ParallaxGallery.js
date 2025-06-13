@@ -37,11 +37,11 @@ export default function ParallaxGallery() {
   });
 
   return (
-    <div
-      className="relative h-[100vw] w-full border rounded-full overflow-hidden"
-      ref={scrollRef}
-    >
-      <div className="flex gap-5 h-full w-full">
+    <div className="relative h-[100vw] mt-[70vh] w-full flex items-center justify-center bg-white">
+      <div
+        className="h-[100vw] w-full flex gap-5 border rounded-full overflow-hidden bg-6"
+        ref={scrollRef}
+      >
         {columns.map((column, index) => {
           // Use start and end from the column data
           const y = useTransform(

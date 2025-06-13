@@ -40,21 +40,29 @@ export default function ScrollWheel() {
     return arr;
   }, []);
 
+  let index = -1; // index for active image
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     console.log(latest);
-    if (latest < 0.1 || latest >= 0.9) {
-      setActiveFont("font-custom");
-      setActiveText("");
-      return;
-    }
 
-    const index = Math.min(
+    const lastIndex = Math.min(
       Math.floor((latest - 0.1) / (0.7 / images.slice(0, 5).length)),
       images.slice(0, 5).length - 1
     );
 
-    setActiveFont("font-custom2");
-    setActiveText(`${index + 1}.`);
+    if (latest < 0.1 || latest >= 0.9) {
+      if (index !== -1) {
+        setActiveFont("font-custom");
+        setActiveText("");
+        index = -1;
+      }
+      return;
+    }
+
+    if (index !== lastIndex) {
+      setActiveFont("font-custom2");
+      setActiveText(`${lastIndex + 1}.`);
+      index = lastIndex;
+    }
   });
 
   return (
@@ -107,13 +115,14 @@ export default function ScrollWheel() {
             >
               <Image
                 src={src}
-                width={1600}
-                height={900}
+                width={1200}
+                height={675}
+                loading="lazy"
                 alt={`Image ${index + 1}`}
                 className={`h-[70vh] w-[50vh] rounded-xl transition-all duration-500 object-cover ${
                   activeText === index + 1 + "."
-                    ? "border border-white p-1"
-                    : "brightness-[0.4] grayscale p-10"
+                    ? "border border-white p-2"
+                    : "p-10"
                 }`}
               />
             </motion.div>

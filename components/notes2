@@ -1,0 +1,91 @@
+return [
+  // section 1
+  {
+    path: images[12].src,
+    rowStart: 1,
+    colStart: 1,
+    rowSpan: 2,
+    colSpan: 3,
+  },
+  {
+    path: images[2].src,
+    rowStart: 1,
+    colStart: 1,
+    rowSpan: 2,
+    colSpan: 3,
+  },
+  {
+    path: images[5].src,
+    rowStart: 1,
+    colStart: 1,
+    rowSpan: 2,
+    colSpan: 3,
+  },
+  {
+    path: images[2].src,
+    rowStart: 1,
+    colStart: 1,
+    rowSpan: 2,
+    colSpan: 3,
+  },
+
+  // section 2 maybe smaller
+  {
+    path: images[12].src,
+    rowStart: 1,
+    colStart: 1,
+    rowSpan: 2,
+    colSpan: 3,
+  },
+  {
+    path: images[2].src,
+    rowStart: 1,
+    colStart: 1,
+    rowSpan: 2,
+    colSpan: 3,
+  },
+  {
+    path: images[2].src,
+    rowStart: 1,
+    colStart: 1,
+    rowSpan: 2,
+    colSpan: 3,
+  },
+  {
+    path: images[5].src,
+    rowStart: 1,
+    colStart: 1,
+    rowSpan: 2,
+    colSpan: 3,
+  },
+  {
+    path: images[2].src,
+    rowStart: 1,
+    colStart: 1,
+    rowSpan: 2,
+    colSpan: 3,
+  },
+
+  // section 3
+  {
+    path: images[5].src,
+    rowStart: 1,
+    colStart: 1,
+    rowSpan: 2,
+    colSpan: 3,
+  },
+  {
+    path: images[2].src,
+    rowStart: 1,
+    colStart: 1,
+    rowSpan: 2,
+    colSpan: 3,
+  },
+  {
+    path: images[12].src,
+    rowStart: 1,
+    colStart: 1,
+    rowSpan: 2,
+    colSpan: 3,
+  },
+];

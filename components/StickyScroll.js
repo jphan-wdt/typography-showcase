@@ -11,7 +11,11 @@ export default function StickyScroll() {
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
+  const isTouchDevice =
+    typeof window !== "undefined" && "ontouchstart" in window;
+
   const handleMouseMove = (e) => {
+    if (isTouchDevice) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width - 0.5) * 100;
     const y = ((e.clientY - rect.top) / rect.height - 0.5) * 100;
@@ -110,7 +114,7 @@ export default function StickyScroll() {
               width={1600}
               height={900}
               alt="1"
-              className={`h-full w-full object-cover`}
+              className={`h-full w-full object-cover transition-transform duration-300`}
               style={{
                 transform: `translate(${mousePos.x * 0.1}%, ${
                   mousePos.y * 0.1
@@ -122,15 +126,15 @@ export default function StickyScroll() {
         </div>
       ))}
 
-      <div className="row-start-2 row-end-6 col-start-2 -col-end-2">
+      <div className="row-start-2 row-end-6 col-start-2 -col-end-2 flex justify-center items-center flex-wrap">
         {transform.map(({ path, height, width, transX, transY }, index) => (
           <div
             key={index}
-            className="absolute h-full w-full"
+            className="relative h-full w-full"
             style={{
-              height: `${height}rem`,
-              width: `${width}rem`,
-              transform: `translate(${transX}rem, ${transY}rem)`,
+              height: `${height}vw`,
+              width: `${width}vw`,
+              transform: `translate(${transX}%, ${transY}%)`,
             }}
           >
             <div
@@ -162,19 +166,19 @@ export function transformData() {
     // section 1
     {
       path: images[12].src,
-      height: 30,
-      width: 40,
-      transX: 15,
-      transY: 5,
+      height: 40,
+      width: 60,
+      transX: -10,
+      transY: 50,
       dirX: -1,
       dirY: 1,
     },
     {
       path: images[2].src,
-      height: 25,
-      width: 25,
-      transX: 40,
-      transY: -5,
+      height: 40,
+      width: 30,
+      transX: 25,
+      transY: -110,
       dirX: -1,
       dirY: -1,
     },
@@ -182,8 +186,8 @@ export function transformData() {
       path: images[5].src,
       height: 25,
       width: 35,
-      transX: 23,
-      transY: 25,
+      transX: 30,
+      transY: 0,
       dirX: 1,
       dirY: -1,
     },
@@ -191,8 +195,8 @@ export function transformData() {
       path: images[2].src,
       height: 30,
       width: 30,
-      transX: 48,
-      transY: 15,
+      transX: 0,
+      transY: 0,
       dirX: 1,
       dirY: 1,
     },
@@ -204,36 +208,36 @@ export function gridData() {
     // section 2
     {
       path: images[12].src,
-      colStart: 2,
-      colSpan: 5,
+      colStart: 1,
+      colSpan: 6,
       rowStart: 7,
       rowSpan: 5,
     },
     {
       path: images[2].src,
       colStart: 7,
-      colSpan: 3,
+      colSpan: 4,
       rowStart: 9,
       rowSpan: 3,
     },
     {
       path: images[2].src,
-      colStart: 4,
-      colSpan: 3,
+      colStart: 3,
+      colSpan: 4,
       rowStart: 12,
       rowSpan: 3,
     },
     {
       path: images[5].src,
       colStart: 7,
-      colSpan: 5,
+      colSpan: 6,
       rowStart: 12,
       rowSpan: 5,
     },
     {
       path: images[2].src,
       colStart: 9,
-      colSpan: 3,
+      colSpan: 4,
       rowStart: 17,
       rowSpan: 3,
     },
