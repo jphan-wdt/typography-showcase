@@ -15,17 +15,19 @@ function ParallaxImage({ text, top, bottom, imagePath, colour, font }) {
     offset: ["start end", "end start"],
   });
   const y = bottom
-    ? useTransform(scrollYProgress, [0, 1], ["-1030%", "1030%"])
+    ? useTransform(scrollYProgress, [0, 1], ["-1060%", "530%"])
     : useTransform(scrollYProgress, [0, 1], ["-770%", "770%"]); // text parallax
-  const y2 = useTransform(scrollYProgress, [0, 1], ["-65%", "65%"]); // image parallax
+  const y2 = bottom
+    ? useTransform(scrollYProgress, [0, 1], ["-30%", "30%"])
+    : useTransform(scrollYProgress, [0, 1], ["-65%", "65%"]); // image parallax
   const textScale = bottom
-    ? useTransform(scrollYProgress, [0.4, 0.65], [1, 80])
+    ? useTransform(scrollYProgress, [0.5, 0.6, 0.7, 0.85], [1, 5, 20, 80])
     : 1;
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     console.log(latest);
     if (bottom) {
-      if (latest >= 1.625) {
+      if (latest >= 0.625) {
         document.body.style.backgroundColor = "#ffffff";
         document.documentElement.style.setProperty("--color6", "#ffffff");
       } else {

@@ -39,7 +39,7 @@ export default function ParallaxGallery() {
   return (
     <div className="relative h-[100vw] mt-[70vh] w-full flex items-center justify-center bg-white">
       <div
-        className="h-[100vw] w-full flex gap-5 border rounded-full overflow-hidden bg-6"
+        className="h-[100vw] w-full flex gap-5 border rounded-full overflow-hidden bg-[#212121]"
         ref={scrollRef}
       >
         {columns.map((column, index) => {
