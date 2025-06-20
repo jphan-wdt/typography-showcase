@@ -107,7 +107,7 @@ export default function StickyScroll() {
           }}
         >
           <div
-            className={`h-full w-full border-black border-8 overflow-hidden drop-shadow-[0_0px_10px_rgba(0,0,0,1)]`}
+            className={`h-full w-full border-blac border- overflow-hidden drop-shadow-[0_0px_10px_rgba(0,0,0,1)]`}
           >
             <Image
               src={path}
@@ -138,7 +138,7 @@ export default function StickyScroll() {
             }}
           >
             <div
-              className={`h-full w-full border-black border-8 overflow-hidden drop-shadow-[0_0px_10px_rgba(0,0,0,1)]`}
+              className={`h-full w-full border-blac border- overflow-hidden drop-shadow-[0_0px_10px_rgba(0,0,0,1)]`}
             >
               <Image
                 src={path}

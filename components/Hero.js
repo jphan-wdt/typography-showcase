@@ -34,7 +34,8 @@ export default function Hero() {
             <div className="w-2/5 text-lg tracking-tighter font-extralight text-pretty">
               The text above is set in the Anton typeface. This text is set in
               the Inter typeface. All images created and captured from the block
-              game Minecraft with community-made shaders.
+              game Minecraft with community-made shaders. TODO: single parallax
+              image+fonts
             </div>
           </div>
         </div>

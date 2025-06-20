@@ -6,9 +6,11 @@ import Lenis from "lenis";
 import StickyScroll from "@/components/StickyScroll";
 import Hero from "@/components/Hero";
 import ImageWheel from "@/components/ImageWheel";
-import StickyReveal from "@/components/StickyReveal";
+import StickyStack from "@/components/StickyStack";
 import ParallaxImage from "@/components/ParallaxImage";
 import ParallaxGallery from "@/components/ParallaxGallery";
+import StickyPanel from "@/components/StickyPanel";
+import TransitionFade from "@/components/TransitionFade";
 
 export default function Home() {
   useEffect(() => {
@@ -24,14 +26,23 @@ export default function Home() {
     <div>
       <Hero />
       <ParallaxImage />
+      <div className="h-[100vh] bg-[#fff0e0]"></div>
+      <StickyPanel />
+      <TransitionFade />
 
-      <ParallaxGallery />
+      <StickyScroll />
+
+      <StickyStack />
+
+      {/* <div className="h-[200vh] bg-blue-500" /> */}
+
+      {/* <ParallaxGallery />
 
       <ImageWheel />
 
       <StickyScroll />
-      <StickyReveal />
-      <div className="h-screen bg-white" />
+      <StickyReveal /> */}
+      <div className="h-screen bg-red-500" />
     </div>
   );
 }

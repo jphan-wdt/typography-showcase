@@ -21,36 +21,30 @@ function ParallaxImage({ text, top, bottom, imagePath, colour, font }) {
     ? useTransform(scrollYProgress, [0, 1], ["-30%", "30%"])
     : useTransform(scrollYProgress, [0, 1], ["-65%", "65%"]); // image parallax
   const textScale = bottom
-    ? useTransform(scrollYProgress, [0.5, 0.6, 0.7, 0.85], [1, 5, 20, 80])
+    ? useTransform(scrollYProgress, [0.6, 0.7, 0.8, 0.85], [1, 5, 25, 80])
     : 1;
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     console.log(latest);
     if (bottom) {
-      if (latest >= 0.625) {
-        document.body.style.backgroundColor = "#ffffff";
-        document.documentElement.style.setProperty("--color6", "#ffffff");
+      if (latest >= 0.825) {
+        document.documentElement.style.setProperty("--color6", "#fff0e0");
       } else {
-        document.body.style.backgroundColor = "#212121";
         document.documentElement.style.setProperty("--color6", "#212121");
-        document.documentElement.style.setProperty("--color4", "#757575");
       }
     }
   });
 
   return (
-    <div
-      className={`${top ? "h-[110vh]" : bottom ? "h-[110vh]" : "h-[110vh]"}`}
-      ref={scrollRef}
-    >
+    <div className={`h-[110vh]`} ref={scrollRef}>
       <div
-        className={`h-[110vh] w-full overflow-hidden 
+        className={`w-full overflow-hidden 
                   ${
                     top
                       ? "h-[110vh] relative rounded-t-xl drop-shadow-[0px_-50px_100px_rgba(0,0,0,0.6)]"
                       : bottom
-                      ? "sticky top-0 h-[180vh]"
-                      : "relative"
+                      ? "h-[180vh] sticky top-0"
+                      : "h-[110vh] relative"
                   }`}
       >
         <motion.div className="h-full w-full" style={{ y: y2 }}>
@@ -59,19 +53,18 @@ function ParallaxImage({ text, top, bottom, imagePath, colour, font }) {
             width={1600}
             height={900}
             alt="1"
-            className={`relative h-full w-full ${
-              bottom ? `object-cover` : `object-cover`
-            }`}
+            className={`relative h-full w-full object-cover`}
           />
         </motion.div>
         <motion.div
           className={`absolute top-1/2
                     font-semibold text-9xl
-                    ${font} text-white`}
+                    ${font}`}
           style={{
             y,
-            right: "50%",
-            x: "50%",
+            x: "-50%",
+            // right: "50%",
+            left: "50%",
             color: colour,
             scale: textScale,
           }}
@@ -94,16 +87,15 @@ export default function ParallaxData() {
     },
     {
       text: "Maguntia",
-      // bottom: true,
       imagePath: images[2].src,
       colour: "#ffff00",
       font: "font-custom2",
     },
     {
       text: "ANTON",
-      imagePath: images[7].src,
+      imagePath: images[6].src,
       bottom: true,
-      colour: "#ffffff",
+      colour: "#fff0e0",
       font: "font-custom",
     },
   ];

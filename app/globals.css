@@ -9,10 +9,11 @@
   --color4: #757575;
   --color5: #424242;
   --color6: #212121;
+  --background: "#fff0e0";
 }
 
-.bg-6 {
-  background-color: var(--color6);
+.bg-background {
+  background-color: var(--background);
 }
 
 * {
@@ -23,7 +24,7 @@
 
 body {
   background-color: var(--color6);
-  transition: background-color 1s ease;
+  transition: background-color 0.3s ease;
   margin-left: 12px;
   margin-right: 12px;
 }

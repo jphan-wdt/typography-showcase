@@ -37,9 +37,12 @@ export default function ParallaxGallery() {
   });
 
   return (
-    <div className="relative h-[100vw] mt-[70vh] w-full flex items-center justify-center bg-white">
+    <div className="relative h-[100vw] mt-[70vh] w-full flex items-center justify-center bg-[#fff0e0]">
+      <div className="absolute left-0 z-10 w-full h-screen rounded-full bg-black/50">
+        TEXT
+      </div>
       <div
-        className="h-[100vw] w-full flex gap-5 border rounded-full overflow-hidden bg-[#212121]"
+        className="h-[100vh] w-full flex gap-1 rounded-full overflow-hidden bg-[#212121"
         ref={scrollRef}
       >
         {columns.map((column, index) => {
@@ -53,7 +56,7 @@ export default function ParallaxGallery() {
           return (
             <motion.div
               key={index}
-              className="h-[80vh] flex flex-col w-1/4 gap-5"
+              className="h-[80vh] flex flex-col w-1/4 gap-1"
               style={{ y }}
             >
               {column.img.map((imgSrc, imgIndex) => (
@@ -63,7 +66,7 @@ export default function ParallaxGallery() {
                   width={1600}
                   height={900}
                   alt={`Image ${imgIndex + 1}`}
-                  className="flex-none h-[80vh] object-cover rounded-2xl"
+                  className="flex-none h-[80vh] object-cover rounded-xl"
                 />
               ))}
             </motion.div>
