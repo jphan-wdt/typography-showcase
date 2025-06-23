@@ -17,7 +17,7 @@ export default function TransitionFade() {
 
   const opacity = useTransform(
     scrollYProgress,
-    [0, 0.15, 0.45, 0.65],
+    [0, 0.15, 0.45, 0.625],
     [0, 1, 1, 0]
   );
 

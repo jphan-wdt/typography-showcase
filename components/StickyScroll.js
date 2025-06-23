@@ -58,11 +58,11 @@ export default function StickyScroll() {
 
   return (
     <div
-      className="relative h-[400vh] w-full -mb-[10vh] overflow-clip grid grid-cols-12 grid-rows-[repeat(20,_minmax(0,1fr))] gap-3 py-3"
+      className="relative h-[400vh] w-full -mb-[10vh] overflow-clip grid grid-cols-6 gap-3 py-3"
       ref={scrollRef}
     >
       <div
-        className="sticky top-0 h-screen col-start-1 -col-end-1 z-10"
+        className="sticky top-0 h-screen w-full z-10"
         onMouseMove={handleMouseMove}
       >
         <div className="relative top-1/2 left-1/2 -translate-x-1/2">
@@ -100,8 +100,8 @@ export default function StickyScroll() {
           key={index}
           className="relative"
           style={{
-            gridRowStart: rowStart,
-            gridRowEnd: `span ${rowSpan}`,
+            // gridRowStart: rowStart,
+            // gridRowEnd: `span ${rowSpan}`,
             gridColumnStart: colStart,
             gridColumnEnd: `span ${colSpan}`,
           }}
@@ -126,7 +126,7 @@ export default function StickyScroll() {
         </div>
       ))}
 
-      <div className="row-start-2 row-end-6 col-start-2 -col-end-2 flex justify-center items-center flex-wrap">
+      {/* <div className="row-start-2 row-end-6 col-start-2 -col-end-2 flex justify-center items-center flex-wrap">
         {transform.map(({ path, height, width, transX, transY }, index) => (
           <div
             key={index}
@@ -156,7 +156,7 @@ export default function StickyScroll() {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

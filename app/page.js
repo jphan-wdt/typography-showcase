@@ -27,21 +27,45 @@ export default function Home() {
       <Hero />
       <ParallaxImage />
       <div className="h-[100vh] bg-[#fff0e0]"></div>
-      <StickyPanel />
+      <StickyPanel
+        leftLayout="text"
+        rightLayout="images"
+        leftParallax="height"
+        rightParallax="translate"
+        heightRange={["55vw", "65vw"]}
+        translateRange={["10%", "-40%"]}
+      />
+      <TransitionFade />
+      <StickyPanel
+        leftLayout="images"
+        rightLayout="images"
+        leftParallax="translate"
+        rightParallax="translate"
+        heightRange={["55vw", "65vw"]}
+        translateRange={["10%", "-40%"]}
+      />
+      <TransitionFade />
+      <StickyPanel
+        leftLayout="text"
+        rightLayout="text"
+        leftParallax="height"
+        rightParallax="height"
+        heightRange={["55vw", "65vw"]}
+        translateRange={["10%", "-40%"]}
+      />
       <TransitionFade />
 
+      <ParallaxImage />
       <StickyScroll />
 
       <StickyStack />
 
-      {/* <div className="h-[200vh] bg-blue-500" /> */}
+      <div className="h-[200vh] bg-blue-500" />
 
-      {/* <ParallaxGallery />
+      <ParallaxGallery />
 
       <ImageWheel />
 
-      <StickyScroll />
-      <StickyReveal /> */}
       <div className="h-screen bg-red-500" />
     </div>
   );
