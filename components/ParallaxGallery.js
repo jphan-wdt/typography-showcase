@@ -37,7 +37,7 @@ export default function ParallaxGallery() {
   });
 
   return (
-    <div className="relative h-[100vw] mt-[70vh] w-full flex items-center justify-center bg-[#fff0e0]">
+    <div className="relative h-[100vw] mt-[70vh] w-full flex items-center justify-center">
       <div className="absolute left-0 z-10 w-full h-screen rounded-full bg-black/50">
         TEXT
       </div>

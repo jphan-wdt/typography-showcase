@@ -43,13 +43,8 @@ export default function StickyReveal() {
     target: scrollRef,
     offset: ["start end", "end start"],
   });
-  const opacity = useTransform(scrollYProgress, [0.2, 0.24], [0, 0.4]); // border
-  const opacity2 = useTransform(scrollYProgress, [0.2, 0.24], [0, 0.4]); // darken
-  const x = useTransform(scrollYProgress, [0.28, 0.32], ["-2.5rem", "-1.5rem"]);
-  const x2 = useTransform(scrollYProgress, [0.28, 0.32], ["2.5rem", "1.5rem"]);
-  const y = useTransform(scrollYProgress, [0.28, 0.32], ["-2.5rem", "-1.5rem"]);
-  const y2 = useTransform(scrollYProgress, [0.28, 0.32], ["2.5rem", "1.5rem"]);
-  const scale = useTransform(scrollYProgress, [0.18, 0.36], [1, 1]);
+  const opacity = useTransform(scrollYProgress, [0.24, 0.28], [0, 0.4]); // border
+  const opacity2 = useTransform(scrollYProgress, [0.3, 0.32], [0, 0.4]); // darken
 
   return (
     <div
@@ -64,22 +59,6 @@ export default function StickyReveal() {
           className="absolute top-0 left-0 w-full h-full bg-black"
           style={{ opacity: opacity2 }}
         />
-        {/* <motion.div
-          className="absolute h-[40vh] w-[2vw] left-0 top-1/2 rounded-full bg-[#fff0e0]"
-          style={{ x, y: "-50%" }}
-        />
-        <motion.div
-          className="absolute h-[40vh] w-[2vw] right-0 top-1/2 rounded-full bg-[#fff0e0]"
-          style={{ x: x2, y: "-50%" }}
-        />
-        <motion.div
-          className="absolute h-[2vw] w-[40vw] top-0 left-1/2 trans rounded-full bg-[#fff0e0]"
-          style={{ x: "-50%", y }}
-        />
-        <motion.div
-          className="absolute h-[2vw] w-[40vw] bottom-0 left-1/2 rounded-full bg-[#fff0e0]"
-          style={{ x: "-50%", y: y2 }}
-        /> */}
       </motion.div>
 
       <div className=" absolute top-0 left-0 w-full h-full">

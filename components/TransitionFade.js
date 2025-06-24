@@ -8,7 +8,12 @@ import {
   useTransform,
 } from "framer-motion";
 
-export default function TransitionFade() {
+export default function TransitionFade({
+  image,
+  top = false,
+  colourFrom,
+  colourTo,
+}) {
   const scrollRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: scrollRef,
@@ -17,7 +22,7 @@ export default function TransitionFade() {
 
   const opacity = useTransform(
     scrollYProgress,
-    [0, 0.15, 0.45, 0.625],
+    [0.15, 0.25, 0.4, 0.6],
     [0, 1, 1, 0]
   );
 
@@ -26,9 +31,9 @@ export default function TransitionFade() {
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     console.log(latest);
     if (latest >= 0.25) {
-      document.documentElement.style.setProperty("--color6", "#372316");
+      document.documentElement.style.setProperty("--color6", colourTo);
     } else {
-      document.documentElement.style.setProperty("--color6", "#fff0e0");
+      document.documentElement.style.setProperty("--color6", colourFrom);
     }
   });
 
@@ -39,7 +44,7 @@ export default function TransitionFade() {
     >
       <div className="sticky top-0 h-screen">
         <Image
-          src={images[0].src}
+          src={image}
           width={1600}
           height={900}
           alt="1"

@@ -6,7 +6,6 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
-import images from "./images";
 
 function ParallaxImage({ text, top, bottom, imagePath, colour, font }) {
   const scrollRef = useRef(null);
@@ -25,7 +24,7 @@ function ParallaxImage({ text, top, bottom, imagePath, colour, font }) {
     : 1;
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log(latest);
+    // console.log(latest);
     if (bottom) {
       if (latest >= 0.825) {
         document.documentElement.style.setProperty("--color6", "#fff0e0");
@@ -76,30 +75,7 @@ function ParallaxImage({ text, top, bottom, imagePath, colour, font }) {
   );
 }
 
-export default function ParallaxData() {
-  const sections = [
-    {
-      text: "Georgia.",
-      top: true,
-      imagePath: images[8].src,
-      colour: "#2c3c56",
-      font: "font-serif",
-    },
-    {
-      text: "Maguntia",
-      imagePath: images[2].src,
-      colour: "#ffff00",
-      font: "font-custom2",
-    },
-    {
-      text: "ANTON",
-      imagePath: images[6].src,
-      bottom: true,
-      colour: "#fff0e0",
-      font: "font-custom",
-    },
-  ];
-
+export default function ParallaxData({ sections = [] }) {
   return (
     <div>
       {sections.map((section, index) => (
