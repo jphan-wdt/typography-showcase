@@ -7,7 +7,16 @@ import {
 import Image from "next/image";
 import { useRef } from "react";
 
-function ParallaxImage({ text, top, bottom, imagePath, colour, font }) {
+function ParallaxImage({
+  text,
+  top,
+  bottom,
+  alt,
+  sourcePath,
+  colourFrom,
+  colourTo,
+  font,
+}) {
   const scrollRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: scrollRef,
@@ -26,29 +35,40 @@ function ParallaxImage({ text, top, bottom, imagePath, colour, font }) {
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     // console.log(latest);
     if (bottom) {
-      if (latest >= 0.825) {
-        document.documentElement.style.setProperty("--color6", "#fff0e0");
+      if (latest >= 0.525) {
+        document.documentElement.style.setProperty("--color6", colourTo);
       } else {
-        document.documentElement.style.setProperty("--color6", "#212121");
+        document.documentElement.style.setProperty("--color6", colourFrom);
       }
     }
   });
 
   return (
-    <div className={`h-[110vh]`} ref={scrollRef}>
+    <div
+      className={`h-[130vh] ${
+        top && alt
+          ? "[clip-path:polygon(0_0,0%_100%,100%_90%,100%_0%)]"
+          : bottom && alt
+          ? "[clip-path:polygon(0%_5%,0%_100%,100%_100%,100%_0%)]"
+          : ""
+      } `}
+      ref={scrollRef}
+    >
       <div
         className={`w-full overflow-hidden 
                   ${
-                    top
-                      ? "h-[110vh] relative rounded-t-xl drop-shadow-[0px_-50px_100px_rgba(0,0,0,0.6)]"
-                      : bottom
-                      ? "h-[180vh] sticky top-0"
-                      : "h-[110vh] relative"
+                    top && !alt
+                      ? "h-[130vh] relative rounded-t-xl drop-shadow-[0px_-50px_100px_rgba(0,0,0,0.6)]"
+                      : bottom && !alt
+                      ? "h-[200vh] sticky top-0"
+                      : "h-[130vh] relative"
                   }`}
       >
+        {/* Clip overlay */}
+
         <motion.div className="h-full w-full" style={{ y: y2 }}>
           <Image
-            src={imagePath}
+            src={sourcePath}
             width={1600}
             height={900}
             alt="1"
@@ -64,7 +84,7 @@ function ParallaxImage({ text, top, bottom, imagePath, colour, font }) {
             x: "-50%",
             // right: "50%",
             left: "50%",
-            color: colour,
+            color: colourTo,
             scale: textScale,
           }}
         >
@@ -75,7 +95,7 @@ function ParallaxImage({ text, top, bottom, imagePath, colour, font }) {
   );
 }
 
-export default function ParallaxData({ sections = [] }) {
+export default function ParallaxImageData({ sections = [] }) {
   return (
     <div>
       {sections.map((section, index) => (

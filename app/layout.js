@@ -1,4 +1,15 @@
-import { Inter, Anton, UnifrakturMaguntia, Montserrat } from "next/font/google";
+import {
+  Inter, // Bebas, Anton
+  Anton, // Nunito, Open Sans
+  UnifrakturMaguntia, // Mont, Lora
+  Montserrat, // Lora
+  Nunito, // Open Sans
+  Bebas_Neue, // Nunito
+  Lora, // Open Sans, Mont
+  Open_Sans, // Lora
+  Allura, // Mont
+  Beau_Rivage, // Inter
+} from "next/font/google";
 import "./globals.css";
 
 const custom = Anton({

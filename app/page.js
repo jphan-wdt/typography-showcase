@@ -13,11 +13,11 @@ import StickyScroll from "@/components/StickyScroll";
 import Hero from "@/components/Hero";
 import ImageWheel from "@/components/ImageWheel";
 import StickyStack from "@/components/StickyStack";
-import ParallaxImage from "@/components/ParallaxImage";
+import ParallaxVideoData from "@/components/ParallaxVideo";
 import ParallaxGallery from "@/components/ParallaxGallery";
 import StickyPanel from "@/components/StickyPanel";
 import TransitionFade from "@/components/TransitionFade";
-import ParallaxData from "@/components/ParallaxImage";
+import ParallaxImageData from "@/components/ParallaxImage";
 
 import images from "@/components/images";
 
@@ -39,12 +39,12 @@ export default function Home() {
 
   const colour = useTransform(
     scrollYProgress,
-    [0, 0.33, 0.66, 1],
+    [0, 0.33, 0.44, 0.48],
     [
-      "rgba(0, 165, 165, 0.2)", // red
-      "rgba(0, 165, 0, 0.2)", // orange
-      "rgba(0, 0, 255, 0.2)", // blue
-      "rgba(0, 255, 0, 0.2)", // green
+      "rgba(28, 24, 40, 0)",
+      "rgba(28, 24, 40, 1)",
+      "rgba(55, 113, 134, 1)",
+      "rgba(139, 124, 197, 1)",
     ]
   );
 
@@ -55,9 +55,9 @@ export default function Home() {
   );
 
   const x = useTransform(scrollYProgress, [0, 1], ["100%", "100%"]);
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "0%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["10%", "10%"]);
 
-  const radius = useTransform(scrollYProgress, [0, 1], ["1000px", "1000px"]);
+  const radius = useTransform(scrollYProgress, [0, 1], ["1500px", "1500px"]);
 
   const gradient = useTransform([colour, x, y, radius], ([c, x, y, r]) => {
     return `radial-gradient(circle ${r} at ${x} ${y}, ${c}, transparent)`;
@@ -79,31 +79,39 @@ export default function Home() {
       </motion.div>
 
       <Hero />
-      <ParallaxData
+      <ParallaxVideoData
         sections={[
           {
             text: "Georgia.",
             top: true,
-            imagePath: images[8].src,
-            colour: "#2c3c56",
+            sourcePath: "/_fordgt.mp4",
+            colourTo: "#f0f0f0",
             font: "font-serif",
           },
           {
             text: "Maguntia",
-            imagePath: images[2].src,
-            colour: "#ffff00",
+            sourcePath: "/_porsche.mp4",
+            colourTo: "#212121",
             font: "font-custom2",
           },
           {
             text: "ANTON",
-            imagePath: images[6].src,
+            sourcePath: "/_mclaren.mp4",
             bottom: true,
-            colour: "#fff0e0",
+            colourFrom: "#212121",
+            colourTo: "#f0f0f0",
             font: "font-custom",
           },
         ]}
       />
-      <div className="h-[100vh] bg-[#fff0e0]"></div>
+      <div className="h-[100vh] bg-[#f0f0f0"></div>
+
+      <TransitionFade
+        sourcePath={"/_porsche.mp4"}
+        top={true}
+        colourFrom="#f0f0f0"
+        colourTo="#111117"
+      />
 
       <StickyPanel
         leftLayout="text"
@@ -118,10 +126,10 @@ export default function Home() {
       />
 
       <TransitionFade
-        image={images[1].src}
+        sourcePath={"/_porsche.mp4"}
         top={true}
-        colourFrom="#fff0e0"
-        colourTo="#372316"
+        colourFrom="#f0f0f0"
+        colourTo="#111117"
       />
 
       <StickyPanel
@@ -129,7 +137,7 @@ export default function Home() {
         rightLayout="text"
         leftParallax="height"
         rightParallax="translate"
-        heightRange={["55vw", "80vw"]}
+        heightRange={["150vh", "70vh"]}
         translateRange={["0vw", "0vw"]}
         image1={images[10].src}
         image2={images[11].src}
@@ -137,9 +145,9 @@ export default function Home() {
       />
 
       <TransitionFade
-        image={images[4].src}
-        colourFrom="#372316"
-        colourTo="#000000"
+        sourcePath={"/_porsche.mp4"}
+        colourFrom="#111117"
+        colourTo="#2b375a"
       />
 
       <StickyPanel
@@ -147,35 +155,40 @@ export default function Home() {
         rightLayout="images"
         leftParallax="height"
         rightParallax="translate"
-        heightRange={["80vw", "50vw"]}
+        heightRange={["90vh", "170vh"]}
         translateRange={["0vw", "0vw"]}
         image1={images[4].src}
         image2={images[5].src}
         image3={images[6].src}
       />
+      <TransitionFade
+        sourcePath={"/_porsche.mp4"}
+        colourFrom="#2b375a"
+        colourTo="#674974"
+      />
 
       <div className="h-[20vh]"></div>
 
-      <ParallaxData
+      <ParallaxImageData
         sections={[
           {
-            text: "",
-            imagePath: images[6].src,
-            colour: "#fff0e0",
-            font: "font-custom",
+            sourcePath: images[6].src,
+            top: true,
+            alt: true,
           },
         ]}
       />
 
       <ImageWheel />
 
-      <ParallaxData
+      <ParallaxImageData
         sections={[
           {
-            text: "",
-            imagePath: images[6].src,
-            colour: "#fff0e0",
-            font: "font-custom",
+            sourcePath: images[6].src,
+            colourFrom: "#674974",
+            colourTo: "#674974",
+            bottom: true,
+            alt: true,
           },
         ]}
       />
@@ -183,6 +196,25 @@ export default function Home() {
       <StickyStack />
       <StickyScroll />
       <ParallaxGallery />
+
+      <video
+        className="relative h-screen w-full object-contain"
+        muted
+        autoPlay
+        loop
+        preload="auto"
+      >
+        <source src={"/AgeraRS.mp4"} type="video/mp4" />
+      </video>
+      <video
+        className="relative h-screen w-full object-contain"
+        muted
+        autoPlay
+        loop
+        preload="auto"
+      >
+        <source src={"/output2.mp4"} type="video/mp4" />
+      </video>
     </div>
   );
 }

@@ -74,9 +74,9 @@ html.lenis body {
   width: 12px;
 }
 
-/* ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: transparent;
-} */
+}
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--color4);

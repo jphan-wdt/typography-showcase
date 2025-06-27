@@ -16,7 +16,7 @@ export default function Hero() {
   return (
     <div className="mb-[-100vh]">
       <motion.div
-        className="sticky top-4 w-full h-[100svh] overflow-hidden"
+        className="sticky pt-4 px-4 w-full h-[100svh] overflow-hidden"
         style={{ scale, opacity, y }}
       >
         <Image
@@ -24,7 +24,7 @@ export default function Hero() {
           width={1600}
           height={900}
           alt="1"
-          className="absolute h-full w-full rounded-xl object-cover"
+          className="relative h-full w-full rounded-xl object-cover"
         />
         <div className="absolute bottom-96">
           <div className="relative top-96 pt-64 p-12 text-[#fff0e0]">
@@ -34,8 +34,7 @@ export default function Hero() {
             <div className="w-2/5 text-lg tracking-tighter font-extralight text-pretty">
               The text above is set in the Anton typeface. This text is set in
               the Inter typeface. All images created and captured from the block
-              game Minecraft with community-made shaders. TODO: single parallax
-              image+fonts
+              game Minecraft with community-made shaders. TODO: (scale effect?)
             </div>
           </div>
         </div>

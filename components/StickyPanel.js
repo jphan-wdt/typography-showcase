@@ -94,7 +94,7 @@ export default function StickyPanel({
     const alignLeft = side === "left" ? "items-end" : "items-start";
     return (
       <motion.div
-        className={`top-0 h-full  w-full flex flex-col ${alignLeft} text-8xl gap-5 `}
+        className={`sticky top-[20%] h-full w-full flex flex-col ${alignLeft} text-8xl gap-5 `}
         style={right}
       >
         <div className="w-full aspect-square overflow-hiddn">
