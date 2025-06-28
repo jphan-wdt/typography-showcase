@@ -1,6 +1,6 @@
 import Image from "next/image";
 import images from "@/components/images";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useEffect } from "react";
 
 export default function Hero() {
@@ -9,9 +9,9 @@ export default function Hero() {
     target: scrollRef,
     offset: ["start end", "end start"],
   });
-  const scale = useTransform(scrollYProgress, [0, 0.3], ["100%", "90%"]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], ["100%", "90%"]);
   const opacity = useTransform(scrollYProgress, [0, 1], ["100%", "20%"]);
-  const y = useTransform(scrollYProgress, [0, 0.2, 0.5], ["0%", "15%", "-5%"]);
+  const y = useTransform(scrollYProgress, [0, 0.2, 1], ["0%", "50%", "175%"]);
 
   return (
     <div className="mb-[-100vh]">
@@ -28,7 +28,7 @@ export default function Hero() {
         />
         <div className="absolute bottom-96">
           <div className="relative top-96 pt-64 p-12 text-[#fff0e0]">
-            <div className="font-custom text-8xl tracking-tight text-balance">
+            <div className="font-anton text-8xl tracking-tight text-balance">
               "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING CONSEQUAT..."
             </div>
             <div className="w-2/5 text-lg tracking-tighter font-extralight text-pretty">

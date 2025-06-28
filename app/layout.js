@@ -7,35 +7,70 @@ import {
   Bebas_Neue, // Nunito
   Lora, // Open Sans, Mont
   Open_Sans, // Lora
-  Allura, // Mont
-  Beau_Rivage, // Inter
+  Allura, // (Dianora) Mont
+  Beau_Rivage, // (Affair) Inter
 } from "next/font/google";
 import "./globals.css";
 
-const custom = Anton({
+const anton = Anton({
   weight: "400",
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-custom",
+  variable: "--font-anton",
 });
 
-const custom2 = UnifrakturMaguntia({
+const maguntia = UnifrakturMaguntia({
   weight: "400",
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-custom2",
+  variable: "--font-maguntia",
 });
 
-const custom3 = Montserrat({
+const montserrat = Montserrat({
   weight: "400",
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-custom3",
+  variable: "--font-montserrat",
 });
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+});
+
+const nunito = Nunito({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-nunito",
+});
+
+const lora = Lora({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-lora",
+});
+
+const openSans = Open_Sans({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-open-sans",
+});
+
+const allura = Allura({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-allura",
+});
+
+const beauRivage = Beau_Rivage({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-beau",
 });
 
 export const metadata = {
@@ -47,7 +82,15 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${custom.variable} ${custom2.variable} ${custom3.variable}`}
+      className={`
+        ${anton.variable}
+        ${maguntia.variable}
+        ${montserrat.variable}
+        ${nunito.variable}
+        ${lora.variable}
+        ${openSans.variable}
+        ${allura.variable}
+        ${beauRivage.variable}`}
     >
       <body className={`${inter.className} antialiased`}>{children}</body>
     </html>

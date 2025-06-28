@@ -7,7 +7,8 @@ import {
 import Image from "next/image";
 import { useRef } from "react";
 
-function ParallaxVideo({
+export default function ParallaxVideo({
+  children,
   text,
   top,
   bottom,
@@ -23,8 +24,8 @@ function ParallaxVideo({
     offset: ["start end", "end start"],
   });
   const y = bottom
-    ? useTransform(scrollYProgress, [0, 1], ["-1120%", "600%"]) // bottom
-    : useTransform(scrollYProgress, [0, 1], ["-840%", "840%"]); // text parallax
+    ? useTransform(scrollYProgress, [0, 1], ["-500%", "100%"]) // bottom
+    : useTransform(scrollYProgress, [0, 1], ["-100%", "40%"]); // text parallax
   const y2 = bottom
     ? useTransform(scrollYProgress, [0, 1], ["-30%", "30%"]) // bottom
     : useTransform(scrollYProgress, [0, 1], ["-65%", "65%"]); // image parallax
@@ -55,7 +56,7 @@ function ParallaxVideo({
       ref={scrollRef}
     >
       <div
-        className={`w-full overflow-hidden 
+        className={`w-full overflow-hidden
                   ${
                     top && !alt
                       ? "h-[130vh] relative rounded-t-xl drop-shadow-[0px_-50px_100px_rgba(0,0,0,0.6)]"
@@ -78,9 +79,7 @@ function ParallaxVideo({
           </motion.video>
         </motion.div>
         <motion.div
-          className={`absolute top-1/2
-                    font-semibold text-9xl
-                    ${font}`}
+          className={`absolute top-1/2 ${bottom ? "" : "h-full"}`}
           style={{
             y,
             x: "-50%",
@@ -90,19 +89,9 @@ function ParallaxVideo({
             scale: textScale,
           }}
         >
-          {text}
+          {children}
         </motion.div>
       </div>
-    </div>
-  );
-}
-
-export default function ParallaxVideoData({ sections = [] }) {
-  return (
-    <div>
-      {sections.map((section, index) => (
-        <ParallaxVideo key={index} {...section} />
-      ))}
     </div>
   );
 }

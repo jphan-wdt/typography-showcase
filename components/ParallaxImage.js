@@ -7,7 +7,7 @@ import {
 import Image from "next/image";
 import { useRef } from "react";
 
-function ParallaxImage({
+export default function ParallaxImage({
   text,
   top,
   bottom,
@@ -91,16 +91,6 @@ function ParallaxImage({
           {text}
         </motion.div>
       </div>
-    </div>
-  );
-}
-
-export default function ParallaxImageData({ sections = [] }) {
-  return (
-    <div>
-      {sections.map((section, index) => (
-        <ParallaxImage key={index} {...section} />
-      ))}
     </div>
   );
 }

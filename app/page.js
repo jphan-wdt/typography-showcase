@@ -13,11 +13,11 @@ import StickyScroll from "@/components/StickyScroll";
 import Hero from "@/components/Hero";
 import ImageWheel from "@/components/ImageWheel";
 import StickyStack from "@/components/StickyStack";
-import ParallaxVideoData from "@/components/ParallaxVideo";
 import ParallaxGallery from "@/components/ParallaxGallery";
 import StickyPanel from "@/components/StickyPanel";
 import TransitionFade from "@/components/TransitionFade";
-import ParallaxImageData from "@/components/ParallaxImage";
+import ParallaxImage from "@/components/ParallaxImage";
+import ParallaxVideo from "@/components/ParallaxVideo";
 
 import images from "@/components/images";
 
@@ -79,31 +79,54 @@ export default function Home() {
       </motion.div>
 
       <Hero />
-      <ParallaxVideoData
-        sections={[
-          {
-            text: "Georgia.",
-            top: true,
-            sourcePath: "/_fordgt.mp4",
-            colourTo: "#f0f0f0",
-            font: "font-serif",
-          },
-          {
-            text: "Maguntia",
-            sourcePath: "/_porsche.mp4",
-            colourTo: "#212121",
-            font: "font-custom2",
-          },
-          {
-            text: "ANTON",
-            sourcePath: "/_mclaren.mp4",
-            bottom: true,
-            colourFrom: "#212121",
-            colourTo: "#f0f0f0",
-            font: "font-custom",
-          },
-        ]}
-      />
+
+      <ParallaxVideo top={true} sourcePath="/_fordgt.mp4" colourTo="#f0f0f0">
+        <div className="whitespace-nowrap">
+          <span className="font-allura text-[24rem]">All</span>
+          <span className="font-montserrat tracking-tighter text-9xl">
+            {" "}
+            ura
+          </span>
+        </div>
+        <div className="flex justify-between font-montserrat text-xl font-thin -translate-y-[680%]">
+          <span className="tracking-widest">PAIRED</span>
+          <span className="tracking-normal">WITH</span>
+          <span className="tracking-tighter">MONSERRAT</span>
+        </div>
+      </ParallaxVideo>
+
+      <ParallaxVideo sourcePath="/_porsche.mp4" colourTo="#f0f0f0">
+        <div className="">
+          <div className="font-lora text-[14rem] -tracking-[0.8rem] whitespace-nowrap">
+            Lora
+          </div>
+          <div className="text-3xl ">
+            <div className="font-lora translate-x-1/4 -translate-y-[200%]">
+              with
+            </div>
+            <div className="font-opensans tracking-tighter text-7xl translate-x-[45%] -translate-y-[175%]">
+              Open Sans
+            </div>
+          </div>
+        </div>
+      </ParallaxVideo>
+
+      <ParallaxVideo
+        sourcePath="/_mclaren.mp4"
+        bottom={true}
+        colourFrom="#212121"
+        colourTo="#f0f0f0"
+      >
+        <div className="flex items-center">
+          <span className="font-nunito text-2xl whitespace-nowrap">
+            Nunito Meets
+          </span>
+          <span className="font-anton font-bold tracking-tight text-[12rem]">
+            ANTON
+          </span>
+        </div>
+      </ParallaxVideo>
+
       <div className="h-[100vh] bg-[#f0f0f0"></div>
 
       <TransitionFade
@@ -169,28 +192,16 @@ export default function Home() {
 
       <div className="h-[20vh]"></div>
 
-      <ParallaxImageData
-        sections={[
-          {
-            sourcePath: images[6].src,
-            top: true,
-            alt: true,
-          },
-        ]}
-      />
+      <ParallaxImage sourcePath={images[6].src} top={true} alt={true} />
 
       <ImageWheel />
 
-      <ParallaxImageData
-        sections={[
-          {
-            sourcePath: images[6].src,
-            colourFrom: "#674974",
-            colourTo: "#674974",
-            bottom: true,
-            alt: true,
-          },
-        ]}
+      <ParallaxImage
+        sourcePath={images[6].src}
+        colourFrom="#674974"
+        colourTo="#674974"
+        bottom={true}
+        alt={true}
       />
 
       <StickyStack />
