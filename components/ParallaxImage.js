@@ -34,22 +34,19 @@ export default function ParallaxImage({
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     // console.log(latest);
-    if (bottom) {
-      if (latest >= 0.525) {
+    if (bottom)
+      if (latest >= 0.525)
         document.documentElement.style.setProperty("--color6", colourTo);
-      } else {
-        document.documentElement.style.setProperty("--color6", colourFrom);
-      }
-    }
+      else document.documentElement.style.setProperty("--color6", colourFrom);
   });
 
   return (
     <div
-      className={`h-[130vh] ${
+      className={`h-[130vh] w-full ${
         top && alt
-          ? "[clip-path:polygon(0_0,0%_100%,100%_90%,100%_0%)]"
+          ? "[clip-path:polygon(0_0,0%_95%,100%_100%,100%_0%)]"
           : bottom && alt
-          ? "[clip-path:polygon(0%_5%,0%_100%,100%_100%,100%_0%)]"
+          ? "[clip-path:polygon(0%_0%,0%_100%,100%_100%,100%_5%)]"
           : ""
       } `}
       ref={scrollRef}

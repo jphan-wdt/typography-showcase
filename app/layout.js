@@ -1,13 +1,12 @@
 import {
-  Inter, // Bebas, Anton
-  Anton, // Nunito, Open Sans
+  Inter, // Bebas, Anton P2
+  Anton, // Nunito, Open Sans P1
   UnifrakturMaguntia, // Mont, Lora
-  Montserrat, // Lora
-  Nunito, // Open Sans
-  Bebas_Neue, // Nunito
-  Lora, // Open Sans, Mont
-  Open_Sans, // Lora
-  Allura, // (Dianora) Mont
+  Montserrat, // Lora P1
+  Nunito, // Open Sans P1
+  Lora, // Open Sans, Mont P1 P2
+  Open_Sans, // Lora P1
+  Allura, // (Dianora) Mont P1
   Beau_Rivage, // (Affair) Inter
 } from "next/font/google";
 import "./globals.css";
@@ -27,7 +26,7 @@ const maguntia = UnifrakturMaguntia({
 });
 
 const montserrat = Montserrat({
-  weight: "400",
+  weight: "variable",
   subsets: ["latin"],
   display: "swap",
   variable: "--font-montserrat",
@@ -39,21 +38,21 @@ const inter = Inter({
 });
 
 const nunito = Nunito({
-  weight: "400",
+  weight: "variable",
   subsets: ["latin"],
   display: "swap",
   variable: "--font-nunito",
 });
 
 const lora = Lora({
-  weight: "400",
+  weight: "variable",
   subsets: ["latin"],
   display: "swap",
   variable: "--font-lora",
 });
 
 const openSans = Open_Sans({
-  weight: "400",
+  weight: "variable",
   subsets: ["latin"],
   display: "swap",
   variable: "--font-open-sans",

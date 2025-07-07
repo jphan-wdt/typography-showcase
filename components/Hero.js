@@ -10,7 +10,7 @@ export default function Hero() {
     offset: ["start end", "end start"],
   });
   const scale = useTransform(scrollYProgress, [0, 0.5], ["100%", "90%"]);
-  const opacity = useTransform(scrollYProgress, [0, 1], ["100%", "20%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], ["100%", "20%"]);
   const y = useTransform(scrollYProgress, [0, 0.2, 1], ["0%", "50%", "175%"]);
 
   return (

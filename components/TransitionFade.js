@@ -56,14 +56,6 @@ export default function TransitionFade({
     return () => unsub();
   }, [duration]);
 
-  const handleMetadataLoaded = () => {
-    const video = videoRef.current;
-    if (video) {
-      setDuration(video.duration);
-      console.log("Video metadata loaded:", video.duration);
-    }
-  };
-
   return (
     <div className="relative mb-[-120vh] mt-[-100vh] w-full -z-10 overflow-hiddn">
       <div className="sticky top-0 h-screen overflow-hidden">
@@ -73,7 +65,6 @@ export default function TransitionFade({
           muted
           playsInline
           preload="auto"
-          onLoadedMetadata={handleMetadataLoaded}
           style={{ opacity }}
         >
           <source src={sourcePath} type="video/mp4" />
