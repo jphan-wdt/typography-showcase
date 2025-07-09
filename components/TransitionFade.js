@@ -22,29 +22,34 @@ export default function TransitionFade({
   });
 
   const videoRef = useRef(null);
-  const [duration, setDuration] = useState(0);
 
   const opacity = useTransform(
     scrollYProgress,
-    [0.12, 0.2, 0.56, 0.64],
+    [0.06, 0.12, 0.64, 0.68],
     [0, 1, 1, 0]
   );
 
-  // #372316
+  // 0.12, 0.2, 0.56, 0.64
+
+  const blur = useTransform(
+    scrollYProgress,
+    [0.12, 0.2, 0.56, 0.64],
+    ["blur(100px)", "blur(0px)", "blur(0px)", "blur(100px)"]
+  );
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     document.documentElement.style.setProperty(
       "--color6",
       latest >= 0.25 ? colourTo : colourFrom
     );
-    // console.log(latest);
+    console.log(latest);
   });
 
   useEffect(() => {
     const unsub = scrollYProgress.on("change", (latest) => {
       const video = videoRef.current;
-      setDuration(video.duration);
       if (video && video.readyState >= 2) {
+        const duration = video.duration;
         if (latest >= 0.1 && latest <= 0.66) {
           const relativeProgress = (latest - 0.12) / (0.64 - 0.12);
           const time = Math.min(relativeProgress * duration, duration - 0.1);
@@ -54,7 +59,7 @@ export default function TransitionFade({
     });
 
     return () => unsub();
-  }, [duration]);
+  }, []);
 
   return (
     <div className="relative mb-[-120vh] mt-[-100vh] w-full -z-10 overflow-hiddn">
@@ -65,7 +70,7 @@ export default function TransitionFade({
           muted
           playsInline
           preload="auto"
-          style={{ opacity }}
+          style={{ opacity, filter: blur }}
         >
           <source src={sourcePath} type="video/mp4" />
         </motion.video>

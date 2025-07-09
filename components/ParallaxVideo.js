@@ -15,7 +15,7 @@ export default function ParallaxVideo({
   sourcePath,
   colourFrom,
   colourTo,
-  font,
+  blur,
 }) {
   const scrollRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -61,13 +61,15 @@ export default function ParallaxVideo({
                       ? "h-[200vh] sticky top-0"
                       : "h-[130vh] relative"
                   }`}
-        style={{ scale: top ? topScale : 1 }}
+        style={{ scale: top && !alt ? topScale : 1 }}
       >
         {/* Clip overlay */}
 
         <motion.div className="h-full w-full" style={{ y: y2 }}>
           <motion.video
-            className="relative h-full w-full object-cover"
+            className={`relative h-full w-full object-cover ${
+              blur ? "blur-md" : ""
+            }`}
             muted
             autoPlay
             loop

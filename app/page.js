@@ -49,7 +49,12 @@ export default function Home() {
 
       <Hero />
 
-      <ParallaxVideo top={true} sourcePath="/_fordgt.mp4" colourTo="#f0f0f0">
+      <ParallaxVideo
+        top={true}
+        sourcePath="/_fordgt.mp4"
+        colourTo="#f0f0f0"
+        blur={true}
+      >
         <div className="relative max-w-fit h-full left-1/2 -translate-x-1/2">
           <span className="font-allura text-[24rem]">All</span>
           <span className="font-montserrat tracking-tighter text-9xl">
@@ -71,7 +76,7 @@ export default function Home() {
         </div>
       </ParallaxVideo>
 
-      <ParallaxVideo sourcePath="/_porsche.mp4" colourTo="#f0f0f0">
+      <ParallaxVideo sourcePath="/_porsche.mp4" colourTo="#f0f0f0" blur={true}>
         <div className="relative max-w-fit h-full left-1/2 -translate-x-1/2">
           <div className="font-lora text-[18rem] -tracking-[0.8rem] whitespace-nowrap">
             Lora
@@ -99,6 +104,7 @@ export default function Home() {
         bottom={true}
         colourFrom="#212121"
         colourTo="#f0f0f0"
+        blur={true}
       >
         <div className="relative max-w-fit">
           <div className="flex items-center whitespace-nowrap">
@@ -199,23 +205,28 @@ export default function Home() {
         sourcePath={"/_mclaren.mp4"}
       />
 
-      <div className="h-[20vh]"></div>
-
-      <ParallaxImage sourcePath={images[6].src} top={true} alt={true} />
-
-      <GradientText colourFrom="#da4d80" colourTo="#fadbb7" font="">
-        COMING MAY 26 2026
-      </GradientText>
+      <StickyStack />
 
       <ParallaxVideo
         sourcePath="/_mclaren.mp4"
-        bottom={true}
+        top={true}
         colourFrom="#664873"
         colourTo="#664873"
         alt={true}
       />
 
-      <StickyStack />
+      <GradientText colourFrom="#da4d80" colourTo="#fadbb7" font="">
+        LOREM IPSUM DOLOR
+      </GradientText>
+
+      <ParallaxImage
+        sourcePath={images[6].src}
+        bottom={true}
+        alt={true}
+        colourFrom="#664873"
+        colourTo="#664873"
+      />
+
       <StickyScroll />
       <ParallaxGallery />
       <ImageWheel />

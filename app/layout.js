@@ -1,15 +1,23 @@
 import {
   Inter, // Bebas, Anton P2
   Anton, // Nunito, Open Sans P1
-  UnifrakturMaguntia, // Mont, Lora
   Montserrat, // Lora P1
   Nunito, // Open Sans P1
   Lora, // Open Sans, Mont P1 P2
   Open_Sans, // Lora P1
   Allura, // (Dianora) Mont P1
-  Beau_Rivage, // (Affair) Inter
+  Caveat,
+  Luxurious_Script,
+  Babylonica,
+  Playfair_Display,
+  Dangrek,
 } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const anton = Anton({
   weight: "400",
@@ -18,23 +26,11 @@ const anton = Anton({
   variable: "--font-anton",
 });
 
-const maguntia = UnifrakturMaguntia({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-maguntia",
-});
-
 const montserrat = Montserrat({
   weight: "variable",
   subsets: ["latin"],
   display: "swap",
   variable: "--font-montserrat",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
 });
 
 const nunito = Nunito({
@@ -65,11 +61,39 @@ const allura = Allura({
   variable: "--font-allura",
 });
 
-const beauRivage = Beau_Rivage({
+const caveat = Caveat({
+  weight: "variable",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-caveat",
+});
+
+const luxurious = Luxurious_Script({
   weight: "400",
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-beau",
+  variable: "--font-luxurious",
+});
+
+const babylonica = Babylonica({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-babylonica",
+});
+
+const playfair = Playfair_Display({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-playfair",
+});
+
+const dangrek = Dangrek({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-dangrek",
 });
 
 export const metadata = {
@@ -82,14 +106,17 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`
-        ${anton.variable}
-        ${maguntia.variable}
-        ${montserrat.variable}
-        ${nunito.variable}
-        ${lora.variable}
-        ${openSans.variable}
-        ${allura.variable}
-        ${beauRivage.variable}`}
+        ${anton.variable} // script
+        ${montserrat.variable} // sans
+        ${nunito.variable} // sans round
+        ${lora.variable} // serif
+        ${openSans.variable} // sans
+        ${allura.variable} // script
+        ${caveat.variable} // script
+        ${luxurious.variable} // script
+        ${babylonica.variable} // script
+        ${playfair.variable} // serif
+        ${dangrek.variable}`} // script/sans
     >
       <body className={`${inter.className} antialiased`}>{children}</body>
     </html>

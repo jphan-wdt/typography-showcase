@@ -1,3 +1,5 @@
+const { Babylonica } = require("next/font/google");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -13,13 +15,16 @@ module.exports = {
       },
       fontFamily: {
         anton: ["var(--font-anton)"],
-        maguntia: ["var(--font-maguntia)"],
         montserrat: ["var(--font-montserrat)"],
         nunito: ["var(--font-nunito)"],
         lora: ["var(--font-lora)"],
         opensans: ["var(--font-open-sans)"],
         allura: ["var(--font-allura)"],
-        beau: ["var(--font-beau)"],
+        caveat: ["var(--font-caveat)"],
+        luxurious: ["var(--font-luxurious)"],
+        babylonica: ["var(--font-babylonica)"],
+        playfair: ["var(--font-playfair)"],
+        dangrek: ["var(--font-dangrek)"],
       },
     },
   },

@@ -84,7 +84,7 @@ export default function StickyPanel({
     const itemsAlign = side === "left" ? "items-end " : "items-start";
     return (
       <motion.div
-        className={`top-0 w-full flex flex-col gap-10 justify-between ${itemsAlign} ${font2} ${colour} tracking-tighter font-thin`}
+        className={`top-0 w-full flex flex-col gap-10 justify-between ${itemsAlign} ${colour} tracking-tighter font-thin`}
         style={left}
       >
         <div
@@ -97,14 +97,14 @@ export default function StickyPanel({
         <div
           className={`relative w-3/5 ${
             side === "left" ? "" : "left-[10%]"
-          } text-5xl`}
+          } text-5xl ${font2}`}
         >
           {h2}
         </div>
         <div
           className={`relative w-3/5 ${
             side === "left" ? "" : "left-[10%]"
-          } text-2xl`}
+          } text-2xl ${font2}`}
         >
           {h3}
         </div>

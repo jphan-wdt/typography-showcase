@@ -23,8 +23,8 @@ export default function ParallaxImage({
     offset: ["start end", "end start"],
   });
   const y = bottom
-    ? useTransform(scrollYProgress, [0, 1], ["-1060%", "530%"])
-    : useTransform(scrollYProgress, [0, 1], ["-770%", "770%"]); // text parallax
+    ? useTransform(scrollYProgress, [0, 1], ["-140vh", "20vh"]) // bottom
+    : useTransform(scrollYProgress, [0, 1], ["-120vh", "40vh"]); // text parallax
   const y2 = bottom
     ? useTransform(scrollYProgress, [0, 1], ["-30%", "30%"])
     : useTransform(scrollYProgress, [0, 1], ["-65%", "65%"]); // image parallax

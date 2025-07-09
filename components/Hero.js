@@ -1,7 +1,9 @@
 import Image from "next/image";
 import images from "@/components/images";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+
+import TextSlide from "./TextSlide";
 
 export default function Hero() {
   const scrollRef = useRef(null);
@@ -28,13 +30,16 @@ export default function Hero() {
         />
         <div className="absolute bottom-96">
           <div className="relative top-96 pt-64 p-12 text-[#fff0e0]">
-            <div className="font-anton text-8xl tracking-tight text-balance">
+            <TextSlide
+              className={"font-anton text-8xl tracking-tight text-balance"}
+            >
               "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING CONSEQUAT..."
-            </div>
+            </TextSlide>
             <div className="w-2/5 text-lg tracking-tighter font-extralight text-pretty">
               The text above is set in the Anton typeface. This text is set in
               the Inter typeface. All images created and captured from the block
-              game Minecraft with community-made shaders. TODO: (scale effect?)
+              game Minecraft with community-made shaders. TODO: imageWheel click
+              to open image + overlay text, display collection
             </div>
           </div>
         </div>
