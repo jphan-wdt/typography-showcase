@@ -1,16 +1,19 @@
 import {
-  Inter, // Bebas, Anton P2
-  Anton, // Nunito, Open Sans P1
-  Montserrat, // Lora P1
-  Nunito, // Open Sans P1
-  Lora, // Open Sans, Mont P1 P2
-  Open_Sans, // Lora P1
-  Allura, // (Dianora) Mont P1
-  Caveat,
-  Luxurious_Script,
-  Babylonica,
-  Playfair_Display,
-  Dangrek,
+  Inter,
+  Allura, // ll
+  Major_Mono_Display, // ll
+  Lora, // ll
+  Open_Sans, // ll
+  Anton, // l
+  Nunito, // ll
+  Montserrat, // ll
+  Caveat, // l
+  Luxurious_Script, // l
+  Dangrek, // l
+  Babylonica, // l
+  Playfair_Display, // l
+  Ballet, // l
+  Forum, // l
 } from "next/font/google";
 import "./globals.css";
 
@@ -96,6 +99,27 @@ const dangrek = Dangrek({
   variable: "--font-dangrek",
 });
 
+const majorMono = Major_Mono_Display({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-majormono",
+});
+
+const ballet = Ballet({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-ballet",
+});
+
+const forum = Forum({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-forum",
+});
+
 export const metadata = {
   title: "Gallery",
   description: "Picture gallery",
@@ -116,7 +140,10 @@ export default function RootLayout({ children }) {
         ${luxurious.variable} // script
         ${babylonica.variable} // script
         ${playfair.variable} // serif
-        ${dangrek.variable}`} // script/sans
+        ${dangrek.variable}
+        ${majorMono.variable}
+        ${ballet.variable}
+        ${forum.variable}`} // script/sans
     >
       <body className={`${inter.className} antialiased`}>{children}</body>
     </html>

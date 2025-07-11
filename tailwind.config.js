@@ -1,4 +1,4 @@
-const { Babylonica } = require("next/font/google");
+const { Babylonica, Niconne } = require("next/font/google");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -25,6 +25,9 @@ module.exports = {
         babylonica: ["var(--font-babylonica)"],
         playfair: ["var(--font-playfair)"],
         dangrek: ["var(--font-dangrek)"],
+        majormono: ["var(--font-majormono)"],
+        ballet: ["var(--font-ballet)"],
+        forum: ["var(--font-forum)"],
       },
     },
   },

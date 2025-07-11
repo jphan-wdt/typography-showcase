@@ -68,7 +68,7 @@ export default function ParallaxVideo({
         <motion.div className="h-full w-full" style={{ y: y2 }}>
           <motion.video
             className={`relative h-full w-full object-cover ${
-              blur ? "blur-md" : ""
+              blur ? "blur-md scale-105" : ""
             }`}
             muted
             autoPlay

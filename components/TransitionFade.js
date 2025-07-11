@@ -37,6 +37,12 @@ export default function TransitionFade({
     ["blur(100px)", "blur(0px)", "blur(0px)", "blur(100px)"]
   );
 
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.56, 0.68],
+    [1.5, 1, 1, 1.2]
+  );
+
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     document.documentElement.style.setProperty(
       "--color6",
@@ -70,7 +76,7 @@ export default function TransitionFade({
           muted
           playsInline
           preload="auto"
-          style={{ opacity, filter: blur }}
+          style={{ opacity, scale, filter: blur }}
         >
           <source src={sourcePath} type="video/mp4" />
         </motion.video>
