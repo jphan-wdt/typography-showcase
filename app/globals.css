@@ -20,6 +20,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-kerning: none;
 }
 
 body {
@@ -29,19 +30,25 @@ body {
   margin-right: 12px; */
 }
 
-@media (max-width: 639px) {
+@media (min-width: 320px) {
+  html {
+    font-size: 9px;
+  }
+}
+
+@media (min-width: 600px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 1080px) {
   html {
     font-size: 12px;
   }
 }
 
-@media (min-width: 640px) and (max-width: 1023px) {
-  html {
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   html {
     font-size: 16px;
   }

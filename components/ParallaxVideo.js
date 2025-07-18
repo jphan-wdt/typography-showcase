@@ -3,6 +3,7 @@ import {
   useScroll,
   useTransform,
   useMotionValueEvent,
+  useSpring,
 } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
@@ -22,16 +23,13 @@ export default function ParallaxVideo({
     target: scrollRef,
     offset: ["start end", "end start"],
   });
-  const y = bottom
-    ? useTransform(scrollYProgress, [0, 1], ["-140vh", "20vh"]) // bottom
-    : useTransform(scrollYProgress, [0, 1], ["-120vh", "40vh"]); // text parallax
-  const y2 = bottom
-    ? useTransform(scrollYProgress, [0, 1], ["-30%", "30%"]) // bottom
-    : useTransform(scrollYProgress, [0, 1], ["-65%", "65%"]); // image parallax
-  const textScale = bottom
-    ? useTransform(scrollYProgress, [0.6, 0.7, 0.8, 0.85], [1, 5, 25, 80])
-    : 1;
-  const topScale = useTransform(scrollYProgress, [0.05, 0.48], [0.9, 1]);
+
+  const y = useTransform(scrollYProgress, [0, 1], [-400, 400]); // bottom 400
+
+  const textScale =
+    bottom && !alt
+      ? useTransform(scrollYProgress, [0.6, 0.7, 0.8, 0.85], [1, 5, 25, 80])
+      : 1;
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     // console.log(latest);
@@ -43,7 +41,7 @@ export default function ParallaxVideo({
 
   return (
     <div
-      className={`h-[130vh] ${
+      className={`h-[120svh] ${
         top && alt
           ? "[clip-path:polygon(0_0,0%_95%,100%_100%,100%_0%)]"
           : bottom && alt
@@ -52,21 +50,21 @@ export default function ParallaxVideo({
       } `}
       ref={scrollRef}
     >
-      <motion.div
+      <div
         className={`w-full overflow-hidden
                   ${
                     top && !alt
-                      ? "h-[130vh] relative rounded-t-xl drop-shadow-[0px_-50px_100px_rgba(0,0,0,1)]"
+                      ? "h-[120svh] relative rounded-t-xl"
                       : bottom && !alt
-                      ? "h-[200vh] sticky top-0"
-                      : "h-[130vh] relative"
+                      ? "h-[200svh] sticky top-0"
+                      : "h-[120svh] relative"
                   }`}
-        style={{ scale: top && !alt ? topScale : 1 }}
       >
-        {/* Clip overlay */}
-
-        <motion.div className="h-full w-full" style={{ y: y2 }}>
-          <motion.video
+        <motion.div
+          className="h-full w-full transform-cpu will-change-transform"
+          style={{ y }}
+        >
+          <video
             className={`relative h-full w-full object-cover ${
               blur ? "blur-md scale-105" : ""
             }`}
@@ -76,21 +74,22 @@ export default function ParallaxVideo({
             preload="auto"
           >
             <source src={sourcePath} type="video/mp4" />
-          </motion.video>
+          </video>
+          <motion.div
+            className={`absolute top-1/4  ${
+              bottom && !alt ? "" : "h-full w-full"
+            }`}
+            style={{
+              color: colourTo,
+              scale: textScale,
+              left: "50%",
+              x: "-50%",
+            }}
+          >
+            {children}
+          </motion.div>
         </motion.div>
-        <motion.div
-          className={`absolute top-1/2 ${bottom ? "" : "h-full w-full"}`}
-          style={{
-            y,
-            color: colourTo,
-            scale: textScale,
-            left: "50%",
-            x: "-50%",
-          }}
-        >
-          {children}
-        </motion.div>
-      </motion.div>
+      </div>
     </div>
   );
 }

@@ -8,6 +8,8 @@ import {
   useTransform,
 } from "framer-motion";
 
+import TextSlide from "./TextSlide";
+
 // parallax types: stretch height, translate y
 export default function StickyPanel({
   layout,
@@ -92,21 +94,21 @@ export default function StickyPanel({
             side === "left" ? "" : "left-[10%]"
           } text-8xl ${font1}`}
         >
-          {h1}
+          <TextSlide>{h1}</TextSlide>
         </div>
         <div
           className={`relative w-3/5 ${
             side === "left" ? "" : "left-[10%]"
           } text-5xl ${font2}`}
         >
-          {h2}
+          <TextSlide>{h2}</TextSlide>
         </div>
         <div
           className={`relative w-3/5 ${
             side === "left" ? "" : "left-[10%]"
           } text-2xl ${font2}`}
         >
-          {h3}
+          <TextSlide>{h3}</TextSlide>
         </div>
         <div className="relative right-0 aspect-square w-[80%]">
           <Image
@@ -120,9 +122,9 @@ export default function StickyPanel({
         <div
           className={`relative w-3/5 mt-10 ${
             side === "left" ? "" : "left-[10%]"
-          } text-2xl`}
+          } text-5xl ${font2}`}
         >
-          {h4}
+          <TextSlide>{h4}</TextSlide>
         </div>
       </motion.div>
     );
@@ -132,7 +134,7 @@ export default function StickyPanel({
     const itemsAlign = side === "left" ? "items-end" : "items-start";
     return (
       <motion.div
-        className={`sticky top-[20%] h-full w-full flex flex-col ${itemsAlign} text-8xl gap-5 `}
+        className={`sticky top-[20%] h-full w-full flex flex-col ${itemsAlign} text-8xl gap-5`}
         style={right}
       >
         <div className="relative right-0 aspect-square w-[80%]">

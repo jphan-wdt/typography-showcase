@@ -10,7 +10,7 @@ import {
   Caveat, // l
   Luxurious_Script, // l
   Dangrek, // l
-  Babylonica, // l
+  Rock_Salt, // l
   Playfair_Display, // l
   Ballet, // l
   Forum, // l
@@ -78,11 +78,11 @@ const luxurious = Luxurious_Script({
   variable: "--font-luxurious",
 });
 
-const babylonica = Babylonica({
+const rocksalt = Rock_Salt({
   weight: "400",
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-babylonica",
+  variable: "--font-rocksalt",
 });
 
 const playfair = Playfair_Display({
@@ -138,7 +138,7 @@ export default function RootLayout({ children }) {
         ${allura.variable} // script
         ${caveat.variable} // script
         ${luxurious.variable} // script
-        ${babylonica.variable} // script
+        ${rocksalt.variable} // script
         ${playfair.variable} // serif
         ${dangrek.variable}
         ${majorMono.variable}

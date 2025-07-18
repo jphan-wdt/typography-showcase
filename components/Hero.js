@@ -11,14 +11,14 @@ export default function Hero() {
     target: scrollRef,
     offset: ["start end", "end start"],
   });
-  const scale = useTransform(scrollYProgress, [0, 0.5], ["100%", "90%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.6], ["100%", "20%"]);
-  const y = useTransform(scrollYProgress, [0, 0.2, 1], ["0%", "50%", "175%"]);
+  const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.9]);
+  const opacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 0.4], [0, 250]);
 
   return (
     <div className="mb-[-100vh]">
       <motion.div
-        className="sticky pt-4 px-4 w-full h-[100svh] overflow-hidden"
+        className=" pt-4 px-4 w-full h-[100svh] overflow-hidden transform-cpu will-change-transform"
         style={{ scale, opacity, y }}
       >
         <Image
@@ -29,17 +29,18 @@ export default function Hero() {
           className="relative h-full w-full rounded-xl object-cover"
         />
         <div className="absolute bottom-96">
-          <div className="relative top-96 pt-64 p-12 text-[#fff0e0]">
-            <TextSlide
-              className={"font-anton text-8xl tracking-tight text-balance"}
-            >
-              "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING CONSEQUAT..."
-            </TextSlide>
-            <div className="w-2/5 text-lg tracking-tighter font-extralight text-pretty">
-              The text above is set in the Anton typeface. This text is set in
-              the Inter typeface. All images created and captured from the block
-              game Minecraft with community-made shaders. TODO: imageWheel click
-              to open image + overlay text, display collection
+          <div className="relative top-96 p-12 text-[#fff0e0]">
+            <div className="font-forum text-[12rem] tracking-tight text-balance translate-y-10">
+              <TextSlide>Type and Motion</TextSlide>
+            </div>
+            <div className="w-2/5 text-xl tracking-tighter font-extralight text-pretty">
+              <TextSlide delay={0.3}>
+                An experiment in animation and typography. The text above is set
+                in the <strong>Forum</strong> typeface. This text is set in the
+                <strong> Inter</strong> typeface. All fonts provided by{" "}
+                <strong>Google Fonts</strong>. All images created and captured
+                using assets from <strong>Forza Motorsport</strong>.
+              </TextSlide>
             </div>
           </div>
         </div>

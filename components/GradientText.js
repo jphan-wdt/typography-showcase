@@ -29,12 +29,12 @@ export default function GradientText({
   );
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log(latest);
+    // console.log(latest);
   });
 
   return (
     <motion.div
-      className={`h-full text-center flex items-center justify-center font-bold text-transparent bg-clip-text leading-none p-8 ${font}`}
+      className={`h-full text-center flex items-center justify-center text-transparent bg-clip-text leading-none p-8 ${font}`}
       style={{
         backgroundColor: colourBg,
         backgroundImage: radialGradient,

@@ -4,29 +4,27 @@ import {
   useScroll,
   useTransform,
   useMotionValueEvent,
+  useSpring,
+  AnimatePresence,
 } from "framer-motion";
 import Image from "next/image";
 import images from "./images";
 
 export default function ScrollWheel() {
-  const [activeText, setActiveText] = useState("");
-  const [activeFont, setActiveFont] = useState("font-custom");
-
   const scrollRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: scrollRef,
     offset: ["start start", "end end"],
   });
 
-  const sinSmoothing = 7; // smoothness of curve path
-  const sinOffset = 15; // height of base 15%
-  const sinScale = -30; // height of curve -30%
+  const sinSmoothing = 20; // smoothness of curve path 7
+  const sinOffset = 0; // height of base 15%
+  const sinScale = 0; // height of top of curve -30%
 
-  const rotation = 20; // start/end orientation in deg 25
+  const rotation = 0; // start/end orientation in deg 25
 
-  const xStart = 220;
-  const xEnd = -320;
-  const xMid = (xStart + xEnd) / 2;
+  const xStart = 120;
+  const xEnd = -60;
 
   // array of sin values for y
   const sinArray = useMemo(() => {
@@ -34,100 +32,113 @@ export default function ScrollWheel() {
     for (let i = 0; i <= sinSmoothing; i++) {
       const angle = (i * Math.PI) / sinSmoothing;
       const sinValue = Math.sin(angle);
-      arr.push(`${sinOffset + sinValue * sinScale}%`);
+      arr.push(`${sinOffset + sinValue * sinScale}rem`);
     }
-    arr[arr.length - 1] = `${sinOffset}%`;
+    arr[arr.length - 1] = `${sinOffset}rem`;
     return arr;
   }, []);
 
-  let index = -1; // index for active image
+  const generateStartToEnd = (start, end) => {
+    return Array.from(
+      { length: sinSmoothing + 1 },
+      (_, i) => start + (i * (end - start)) / sinSmoothing
+    );
+  };
+
+  const displayImages = useMemo(() => images.slice(0, 1), [images]);
+
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     console.log(latest);
-
-    const lastIndex = Math.min(
-      Math.floor((latest - 0.1) / (0.7 / images.slice(0, 5).length)),
-      images.slice(0, 5).length - 1
-    );
-
-    if (latest < 0.1 || latest >= 0.9) {
-      if (index !== -1) {
-        setActiveFont("font-custom");
-        setActiveText("");
-        index = -1;
-      }
-      return;
-    }
-
-    if (index !== lastIndex) {
-      setActiveFont("font-custom2");
-      setActiveText(`${lastIndex + 1}.`);
-      index = lastIndex;
-    }
   });
 
+  const [expandedIndex, setExpandedIndex] = useState(null);
+
   return (
-    <div className="relative h-[300vh] w-full" ref={scrollRef}>
-      <div className="sticky top-4 p-4 text-2xl tracking-tight text-center text-white">
-        <div
-          className={`${activeFont} ${
-            activeFont === "font-custom"
-              ? ""
-              : "text-9xl tracking-widest text-left"
-          }`}
-        >
-          {activeText}
-          {/* animate to number and back*/}
+    <div
+      className="relative h-[300vh] w-full snap-y snap-mandatory snap-"
+      ref={scrollRef}
+    >
+      <div className="sticky h-screen w-full top-0 overflow-hidden">
+        <div className="absolute h-screen w-full">
+          {displayImages.map(({ src }, index) => {
+            const start = (0.8 * index) / displayImages.length; // scale scroll range of all images
+            const end = start + 0.5; // scroll duration of individual image
+
+            // maps inital and final values to start and end
+            const x = useTransform(
+              scrollYProgress,
+              [start, end],
+              [`${xStart}rem`, `${xEnd}rem`]
+            );
+
+            // array to map sin values to y values
+            const startToEnd = useMemo(
+              () => generateStartToEnd(start, end, sinSmoothing),
+              [start, end, sinSmoothing]
+            );
+
+            const y = useTransform(scrollYProgress, startToEnd, sinArray);
+
+            const rotate = useTransform(
+              scrollYProgress,
+              [start, (start + end) / 2, end],
+              [`${rotation}deg`, "0deg", `-${rotation}deg`]
+            );
+
+            return (
+              <motion.div
+                key={index}
+                className={`absolute`}
+                style={
+                  expandedIndex === index
+                    ? {
+                        x: 0,
+                        y: 0,
+                        rotate: 0,
+                        height: "100vh",
+                        width: "100vw",
+                        zIndex: 10,
+                        transition: "all 0.6s ease-in-out",
+                      }
+                    : {
+                        x,
+                        y,
+                        rotate,
+                        willChange: "transform",
+                      }
+                }
+                onClick={() => setExpandedIndex(index)}
+              >
+                <Image
+                  src={src}
+                  width={1200}
+                  height={675}
+                  loading="lazy"
+                  alt={`Image ${index + 1}`}
+                  className={`
+                    ${
+                      expandedIndex === index
+                        ? "h-[40vw] w-full p-0"
+                        : "h-[40vw] w-[25vw] p-4 rounded-xl border border-transparent hover:border-white hover:p-2 hover:cursor-pointer"
+                    }  
+                    object-cover transition-all duration-500`}
+                />
+                {expandedIndex === index && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setExpandedIndex(null);
+                      console.log(expandedIndex);
+                    }}
+                    className="absolute top-4 left-4 text-white bg-black/50 rounded-full h-8 w-8"
+                  >
+                    ✕
+                  </button>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
-      </div>
-      {/* todo: make text go on right side screen */}
-      <div className="sticky bg-slate-30 h-screen w-full top-0 overflow-hidden">
-        {images.slice(0, 5).map(({ src }, index) => {
-          const start = (0.6 * index) / images.slice(0, 5).length; // scale scroll range of all images
-          const end = start + 0.5; // scroll duration of individual image
-
-          // maps inital and final values to start and end
-          const x = useTransform(
-            scrollYProgress,
-            [start, (start + end) / 2, end],
-            [`${xStart}%`, `${xMid}%`, `${xEnd}%`]
-          );
-
-          // array to map sin values to y values
-          const startToEnd = [];
-          for (let i = 0; i <= sinSmoothing; i++) {
-            const value = start + (i * (end - start)) / sinSmoothing;
-            startToEnd.push(value);
-          }
-
-          const y = useTransform(scrollYProgress, startToEnd, sinArray);
-
-          const rotate = useTransform(
-            scrollYProgress,
-            [start, (start + end) / 2, end],
-            [`${rotation}deg`, "0deg", `-${rotation}deg`]
-          );
-
-          return (
-            <motion.div
-              key={index}
-              className="absolute left-1/2 bottom-0"
-              style={{ x, y, rotate, willChange: "transform" }}
-            >
-              <Image
-                src={src}
-                width={1200}
-                height={675}
-                loading="lazy"
-                alt={`Image ${index + 1}`}
-                className={`h-[70vh] w-[50vh] rounded-xl transition-all duration-500 object-cover ${
-                  activeText === index + 1 + "."
-                    ? "border border-white p-2"
-                    : "p-10"
-                }`}
-              />
-            </motion.div>
-          );
-        })}
       </div>
     </div>
   );

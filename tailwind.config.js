@@ -22,7 +22,7 @@ module.exports = {
         allura: ["var(--font-allura)"],
         caveat: ["var(--font-caveat)"],
         luxurious: ["var(--font-luxurious)"],
-        babylonica: ["var(--font-babylonica)"],
+        rocksalt: ["var(--font-rocksalt)"],
         playfair: ["var(--font-playfair)"],
         dangrek: ["var(--font-dangrek)"],
         majormono: ["var(--font-majormono)"],

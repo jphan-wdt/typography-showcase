@@ -1,7 +1,9 @@
-import { useEffect, useRef } from "react";
+"use client";
+
+import { React, useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 
-export default function TextSlide({ children, delay, className }) {
+export default function TextSlide({ children, className, onClick, delay }) {
   const controls = useAnimation();
   const ref = useRef(null);
   const inView = useInView(ref);
@@ -12,30 +14,24 @@ export default function TextSlide({ children, delay, className }) {
     } else {
       controls.start("hidden");
     }
-  }, [inView]);
+  }, [controls, inView]);
 
   const variants = {
-    hidden: { y: "0" },
-    visible: { y: "-100%" },
-  };
-
-  const variants2 = {
-    hidden: { y: "100%" },
-    visible: { y: "0" },
+    hidden: { y: 100, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
   };
 
   return (
-    <div ref={ref} className="flex absolute top-16 overflow-hidden h-1/2">
-      <motion.div
-        initial="hidden"
-        animate={controls}
-        variants={variants}
-        transition={{ duration: 0.6, ease: "easeOut", delay: delay }}
-        className={`flex flex-col ${className ?? ""}`}
-      >
-        <span>{children}</span>
-        <span>{children}</span>
-      </motion.div>
-    </div>
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={variants}
+      transition={{ duration: 0.6, ease: "easeOut", delay: delay }}
+      className={className}
+      onClick={onClick}
+    >
+      {children}
+    </motion.div>
   );
 }

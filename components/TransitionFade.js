@@ -25,7 +25,7 @@ export default function TransitionFade({
 
   const opacity = useTransform(
     scrollYProgress,
-    [0.06, 0.12, 0.64, 0.68],
+    [0.06, 0.12, 0.62, 0.66],
     [0, 1, 1, 0]
   );
 
@@ -48,7 +48,7 @@ export default function TransitionFade({
       "--color6",
       latest >= 0.25 ? colourTo : colourFrom
     );
-    console.log(latest);
+    // console.log(latest);
   });
 
   useEffect(() => {
