@@ -25,9 +25,10 @@ export default function GradientText({
     offset: ["start end", "end start"],
   });
 
-  const yPos = scroll
-    ? useTransform(scrollYProgress, [0.1, 1], ["180%", "-40%"])
-    : useMotionValue("100%");
+  const yTransform = useTransform(scrollYProgress, [0.1, 1], ["180%", "-40%"]);
+  const yStatic = useMotionValue("100%");
+
+  const yPos = scroll ? yTransform : yStatic;
 
   const radialGradient = useTransform(
     yPos,

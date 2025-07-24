@@ -44,7 +44,7 @@ export default function StickyPanel({
     });
 
     return () => unsub();
-  }, []);
+  });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     // console.log(latest);
@@ -77,13 +77,13 @@ export default function StickyPanel({
     const itemsAlign = side === "left" ? "items-end " : "items-start";
     return (
       <motion.div
-        className={`top-0 w-full flex flex-col gap-10 justify-between ${itemsAlign} ${colour} tracking-tighter font-thin`}
+        className={`top-0 w-full flex flex-col gap-10 justify-between ${itemsAlign} ${colour} leading-none tracking-tighter font-thin`}
         style={left}
       >
         <div
           className={`relative w-3/5 ${
             side === "left" ? "" : "left-[10%]"
-          } text-8xl ${font1}`}
+          } ${font1}`}
         >
           <FadeIn>{h1}</FadeIn>
         </div>

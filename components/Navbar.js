@@ -26,7 +26,7 @@ export default function Navbar() {
 
   return (
     <div>
-      {/* <motion.div
+      <motion.div
         className="fixed top-0 w-full h-40 bg-transparent z-10 flex justify-between items-center text-center text-white"
         initial={{ y: "-100%" }}
         animate={{ y: 0 }}
@@ -45,7 +45,7 @@ export default function Navbar() {
         >
           =
         </div>
-      </motion.div> */}
+      </motion.div>
 
       <AnimatePresence>
         {tabVisible && (

@@ -3,6 +3,7 @@ import {
   useScroll,
   useTransform,
   useMotionValueEvent,
+  useMotionValue,
 } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
@@ -27,10 +28,13 @@ export default function ParallaxVideo({
 
   const y = useTransform(scrollYProgress, [0, 1], [-300, 300]); // bottom 400
 
-  const textScale =
-    bottom && !alt
-      ? useTransform(scrollYProgress, [0.6, 0.7, 0.8, 0.85], [1, 5, 25, 80])
-      : 1;
+  const scaleTransform = useTransform(
+    scrollYProgress,
+    [0.6, 0.7, 0.8, 0.85],
+    [1, 5, 25, 80]
+  );
+  const scaleStatic = 1;
+  const textScale = bottom && !alt ? scaleTransform : scaleStatic;
 
   const topScale = useTransform(scrollYProgress, [0.05, 0.48], [0.9, 1]);
 
@@ -48,12 +52,23 @@ export default function ParallaxVideo({
       ([entry]) => {
         setInView(entry.isIntersecting);
       },
-      { threshold: 0, rootMargin: "300px 0px" }
+      { threshold: 0, rootMargin: "800px 0px" }
     );
 
     observer.observe(scrollRef.current);
     return () => observer.disconnect();
   }, []);
+
+  const videoRef = useRef(null);
+  useEffect(() => {
+    if (!videoRef.current) return;
+
+    if (inView) {
+      videoRef.current.play().catch(() => {});
+    } else {
+      videoRef.current.pause();
+    }
+  }, [inView]);
 
   return (
     <div
@@ -78,28 +93,19 @@ export default function ParallaxVideo({
         style={{ scale: top && !alt ? topScale : 1 }}
       >
         <motion.div className="h-full w-full" style={{ y }}>
-          {inView && (
-            <video
-              className={`relative h-full w-full object-cover ${
-                blur ? "blur-sm" : ""
-              }`}
-              muted
-              playsInline
-              autoPlay
-              loop
-              preload="none"
-            >
-              <source src={sourcePath} type="video/mp4" />
-            </video>
-          )}
+          <video
+            className={`relative h-full w-full object-cover ${
+              blur ? "blur-sm" : ""
+            }`}
+            muted
+            playsInline
+            loop
+            preload="none"
+            ref={videoRef}
+          >
+            <source src={sourcePath} type="video/mp4" />
+          </video>
           {blur && <div className="absolute inset-0 bg-black/60" />}
-          {/* <Image
-            src={images[0].src}
-            width={1600}
-            height={900}
-            alt="1"
-            className="relative h-full w-full rounded-xl object-cover"
-          /> */}
           <motion.div
             className={`absolute top-1/4 ${
               bottom && !alt ? "" : "h-full w-full"

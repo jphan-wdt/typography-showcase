@@ -41,20 +41,6 @@ export default function TransitionFade({ sourcePath, colourFrom, colourTo }) {
     // console.log(latest);
   });
 
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setInView(entry.isIntersecting);
-      },
-      { threshold: 0, rootMargin: "500px 0px" }
-    );
-
-    observer.observe(scrollRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   useEffect(() => {
     const unsub = scrollYProgress.on("change", (latest) => {
       const video = videoRef.current;
@@ -69,23 +55,21 @@ export default function TransitionFade({ sourcePath, colourFrom, colourTo }) {
     });
 
     return () => unsub();
-  }, []);
+  });
 
   return (
     <div className="relative mb-[-100vh] mt-[-100vh] w-full -z-10 overflow-hiddn">
       <div className="sticky top-0 h-screen overflow-hidden">
-        {inView && (
-          <motion.video
-            ref={videoRef}
-            className="absolute h-screen w-full object-cover overflow-hidden"
-            muted
-            playsInline
-            preload="auto"
-            style={{ opacity, scale, filter: blur }}
-          >
-            <source src={sourcePath} type="video/mp4" />
-          </motion.video>
-        )}
+        <motion.video
+          ref={videoRef}
+          className="absolute h-screen w-full object-cover overflow-hidden"
+          muted
+          playsInline
+          preload="auto"
+          style={{ opacity, scale, filter: blur }}
+        >
+          <source src={sourcePath} type="video/mp4" />
+        </motion.video>
       </div>
       <div className="h-[300vh] w-full overflow-hidden" ref={scrollRef} />
     </div>

@@ -107,7 +107,6 @@ const majorMono = Major_Mono_Display({
 });
 
 const ballet = Ballet({
-  weight: "400",
   subsets: ["latin"],
   display: "swap",
   variable: "--font-ballet",

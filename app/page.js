@@ -4,32 +4,21 @@ import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useScroll,
-  useTransform,
   useMotionValueEvent,
-  useAnimation,
   AnimatePresence,
 } from "framer-motion";
 import Lenis from "lenis";
 
-import StickyScroll from "@/components/StickyScroll";
 import Hero from "@/components/Hero";
-import ImageWheel from "@/components/ImageWheel";
-import StickyStack from "@/components/StickyStack";
-import StickyStackItem from "@/components/StickyStackItem";
-import ParallaxGallery from "@/components/ParallaxGallery";
 import StickyPanel from "@/components/StickyPanel";
 import TransitionFade from "@/components/TransitionFade";
-import ParallaxImage from "@/components/ParallaxImage";
 import ParallaxVideo from "@/components/ParallaxVideo";
 import RadialGradient from "@/components/RadialGradient";
 import GradientText from "@/components/GradientText";
-import FadeIn from "@/components/FadeIn";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
 import images from "@/components/images";
-import Image from "next/image";
-import Carousel from "@/components/Carousel";
 import LoadEverything from "@/components/LoadUtil";
 
 export default function Home() {
@@ -49,7 +38,7 @@ export default function Home() {
     const Load = async () => {
       const loadPromise = LoadEverything();
       const timeoutPromise = new Promise((resolve) =>
-        setTimeout(resolve, 1000)
+        setTimeout(resolve, 5000)
       );
 
       try {
@@ -128,11 +117,11 @@ export default function Home() {
             delay={0.4}
           >
             <strong>Allura</strong> and <strong>Major Mono Display</strong>{" "}
-            combine flowing elegance with sharp modernism. Allura's graceful
-            script creates a refined, personal feel, while Major Mono Display
-            provides strong, structured clarity. The result is a polished,
-            stylish pairing, ideal for upscale branding, invitations, or
-            design-focused websites.
+            combine flowing elegance with sharp modernism. Allura&apos;s
+            graceful script creates a refined, personal feel, while Major Mono
+            Display provides strong, structured clarity. The result is a
+            polished, stylish pairing, ideal for upscale branding, invitations,
+            or design-focused websites.
           </div>
         </div>
       </ParallaxVideo>
@@ -154,8 +143,8 @@ export default function Home() {
           </div>
           <div className="absolute w-[160%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
             The pairing of Lora and Open Sans brings together classic form and
-            modern clarity. Lora's subtle serifs provide warmth and elegance,
-            while Open Sans delivers clean, neutral readability. This
+            modern clarity. Lora&apos;s subtle serifs provide warmth and
+            elegance, while Open Sans delivers clean, neutral readability. This
             combination is both timeless and professional, ideal for editorial
             layouts, blogs, or sophisticated web designs.
           </div>
@@ -225,7 +214,7 @@ export default function Home() {
           h2: "A statement in every curve.",
           h3: `Precision-crafted for performance — and presentation. Smooth on the eyes, sharp in its presence. What first appears sleek and modern hides layers of balance and heritage underneath. Styled with intent. Behind every angle is a reason — and behind every detail, control.`,
           h4: "That's Montserrat and Lora — unmistakably refined, purposefully bold.",
-          font1: "font-montserrat",
+          font1: "font-montserrat text-8xl",
           font2: "font-lora",
           colour: "text-[#212121]",
         }}
@@ -251,13 +240,13 @@ export default function Home() {
           height: ["200vh", "150vh"],
           translate: ["0vw", "0vw"],
         }}
-        images={[images[10].src, images[11].src, images[12].src]}
+        images={[images[3].src, images[4].src, images[5].src]}
         content={{
           h1: "Lotus Evija",
           h2: "lightweight. direct. built to DISRUPT.",
           h3: "every curve feels hand-drawn — expressive, human, unfiltered. it's a striking contrast, engineered for impact.",
           h4: "this is caveat and mono major — pure style, no compromise.",
-          font1: "font-caveat tracking-tighter",
+          font1: "font-caveat tracking-tighter text-[10rem]",
           font2: "font-majormono -tracking-[0.2rem]",
           colour: "text-[#f0f0f0]",
         }}
@@ -279,9 +268,9 @@ export default function Home() {
           </div>
           <div className="absolute w-[165%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
             The elegance of Luxurious Script meets the clarity of Open Sans for
-            a look that's both refined and accessible. Luxurious Script brings
-            high-end flair with sweeping, ornate strokes, while Open Sans keeps
-            things grounded with clean, modern readability. This duo suits
+            a look that&apos;s both refined and accessible. Luxurious Script
+            brings high-end flair with sweeping, ornate strokes, while Open Sans
+            keeps things grounded with clean, modern readability. This duo suits
             luxury brands, upscale event sites, or any layout needing grace with
             function.
           </div>
@@ -317,11 +306,11 @@ export default function Home() {
             NUNITO
           </div>
           <div className="absolute w-[100%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
-            Dangrek's distinct, angular personality pairs with Nunito's soft,
-            rounded friendliness for a uniquely modern contrast. Dangrek adds
-            sharp cultural character and edge, while Nunito balances with warmth
-            and approachability. Great for creative projects that want
-            personality without sacrificing readability.
+            Dangrek&apos;s distinct, angular personality pairs with
+            Nunito&apos;s soft, rounded friendliness for a uniquely modern
+            contrast. Dangrek adds sharp cultural character and edge, while
+            Nunito balances with warmth and approachability. Great for creative
+            projects that want personality without sacrificing readability.
           </div>
         </div>
       </ParallaxVideo>
@@ -375,13 +364,13 @@ export default function Home() {
           height: ["200vh", "100vh"],
           translate: ["0vw", "0vw"],
         }}
-        images={[images[3].src, images[4].src, images[5].src]}
+        images={[images[6].src, images[7].src, images[8].src]}
         content={{
           h1: "Bugatti Chiron",
           h2: "Built for extremes, detailed for elegance.",
           h3: "Crafted to impress both eye and mind, every surface curves with control, smooth balance, and quiet precision. It's power is undeniable, but never loud. Styled to perform with grace and strength.",
           h4: "It's Allura and Montserrat — script with structure.",
-          font1: "font-allura",
+          font1: "font-allura text-[10rem]",
           font2: "font-montserrat",
           colour: "text-[#ffffff]",
         }}
@@ -406,13 +395,13 @@ export default function Home() {
           height: ["120vh", "300vh"],
           translate: ["0vw", "0vw"],
         }}
-        images={[images[3].src, images[4].src, images[5].src]}
+        images={[images[9].src, images[10].src, images[11].src]}
         content={{
           h1: "Porsche 911 GT2 RS",
           h2: "Every curve is deliberate.",
           h3: "Not flashy — but unforgettable. Smooth curves give way to complex engineering, while detail rewards the second glance more than the first. It's luxury by intention, and performance by design. Refined, articulate, and built to endure.",
           h4: "Lora and Forum — classic form meeting contemporary clarity.",
-          font1: "font-lora tracking-tighter",
+          font1: "font-lora tracking-tighter text-[7rem]",
           font2: "font-forum -tracking-[0.2rem",
           colour: "text-[#f0f0f0]",
         }}
@@ -433,11 +422,12 @@ export default function Home() {
             Ballet
           </div>
           <div className="absolute w-[200%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
-            Forum's historical, architectural elegance combines with Ballet's
-            graceful modernity for a pairing full of poise and character. Forum
-            grounds the text with sculpted Roman-inspired forms, while Ballet
-            dances across the page with movement and charm. Ideal for artistic
-            portfolios, boutique brands, or storytelling with flair.
+            Forum&apos;s historical, architectural elegance combines with
+            Ballet&apos;s graceful modernity for a pairing full of poise and
+            character. Forum grounds the text with sculpted Roman-inspired
+            forms, while Ballet dances across the page with movement and charm.
+            Ideal for artistic portfolios, boutique brands, or storytelling with
+            flair.
           </div>
         </div>
       </ParallaxVideo>
@@ -451,7 +441,7 @@ export default function Home() {
           id="majormono-inter"
           className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
         >
-          <div className="relative w-fit left-1/2 -translate-x-1/2 font-majormono text-[12rem]">
+          <div className="relative w-fit left-1/2 -translate-x-1/2 font-majormono text-[12rem] text-nowrap">
             major mono
           </div>
           <div className="relative w-fit left-1/2 -translate-x-[92%] -translate-y-[120%] font-inter tracking-[2.3rem] text-5xl">
@@ -459,8 +449,8 @@ export default function Home() {
           </div>
           <div className="absolute w-[60%] top-1/3 left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
             Crisp and functional, Major Mono Display and Inter deliver a
-            tech-savvy aesthetic with polish. Mono's monospaced structure gives
-            personality and precision, while Inter keeps it legible and
+            tech-savvy aesthetic with polish. Mono&apos;s monospaced structure
+            gives personality and precision, while Inter keeps it legible and
             flexible. A confident pairing for developer portfolios, creative
             tech brands, or data-driven storytelling.
           </div>
@@ -496,10 +486,10 @@ export default function Home() {
             ANTON
           </div>
           <div className="absolute w-[160%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
-            Caveat's informal script energy meets Anton's loud, no-nonsense
-            impact. The result is punchy and playful — handwriting meets
-            headline. It's perfect for bold campaigns, youth-focused designs, or
-            any project that needs both voice and volume.
+            Caveat&apos;s informal script energy meets Anton&apos;s loud,
+            no-nonsense impact. The result is punchy and playful — handwriting
+            meets headline. It&apos;s perfect for bold campaigns, youth-focused
+            designs, or any project that needs both voice and volume.
           </div>
         </div>
       </ParallaxVideo>

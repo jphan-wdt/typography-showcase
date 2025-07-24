@@ -28,7 +28,7 @@ export default function Hero() {
 
   useEffect(() => {
     controls.start("visible").then(() => setScrollActive(true));
-  }, []);
+  });
 
   const variants = {
     hidden: { y: "50%", opacity: 0 },
@@ -62,13 +62,13 @@ export default function Hero() {
           playsInline
           autoPlay
           loop
-          preload="none"
+          preload="auto"
         >
           <source src={"/PorscheFE.mp4"} type="video/mp4" />
         </video>
         <div className="absolute bottom-96">
           <div className="relative top-96 p-12 text-white">
-            <div className="font-allura text-[12rem] tracking-tight text-balance translate-y-10">
+            <div className="font-allura text-[12rem] tracking-tight leading-none text-balance translate-y-6">
               <GradientText
                 colourCenter="#87d8ff"
                 colourEdge="#d4b5ff"
