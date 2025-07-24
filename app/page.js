@@ -21,6 +21,7 @@ import Navbar from "@/components/Navbar";
 import images from "@/components/images";
 import LoadEverything from "@/components/LoadUtil";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 export default function Home() {
   const scrollRef = useRef(null);
@@ -80,6 +81,7 @@ export default function Home() {
   return (
     <main ref={scrollRef}>
       <SpeedInsights />
+      <Analytics />
       <AnimatePresence>
         {!ready && (
           <motion.div
@@ -102,7 +104,7 @@ export default function Home() {
       <ParallaxVideo top={true} sourcePath="/Porsche.mp4" blur={true}>
         <div
           id="allura-majormono"
-          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 text-white"
         >
           <span className="font-allura text-[24rem]">All</span>
           <span className="font-majormono tracking-tighter text-[5rem] pl-5">
@@ -115,15 +117,16 @@ export default function Home() {
             <span className="-tracking-[0.12rem]">display</span>
           </h3>
           <p
-            className="absolute w-[130%] left-1/2 -translate-x-1/2 -translate-y-full font-extralight text-balance text-lg text-center"
+            className="absolute w-full left-1/2 -translate-x-1/2 -translate-y-full font-extralight text-balance text-lg text-center"
             delay={0.4}
           >
             <strong>Allura</strong> and <strong>Major Mono Display</strong>{" "}
-            combine flowing elegance with sharp modernism. Allura&apos;s
-            graceful script creates a refined, personal feel, while Major Mono
-            Display provides strong, structured clarity. The result is a
-            polished, stylish pairing, ideal for upscale branding, invitations,
-            or design-focused websites.
+            combine flowing elegance with sharp modernism.{" "}
+            <strong>Allura&apos;s</strong> graceful script creates a refined,
+            personal feel, while <strong>Major Mono Display</strong> provides
+            strong, structured clarity. The result is a polished, stylish
+            pairing, ideal for upscale branding, invitations, or design-focused
+            websites.
           </p>
         </div>
       </ParallaxVideo>
@@ -132,23 +135,26 @@ export default function Home() {
           id="lora-opensans"
           className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
         >
-          <h1 className="font-lora text-[18rem] -tracking-[1rem] whitespace-nowrap">
-            Lora
-          </h1>
-          <h2 className="text-4xl">
-            <div className="font-lora translate-x-1/4 -translate-y-[200%]">
-              with
-            </div>
-            <div className="font-opensans tracking-tighter text-8xl translate-x-[45%] -translate-y-[160%]">
-              Open Sans
-            </div>
-          </h2>
-          <p className="absolute w-[160%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
-            The pairing of Lora and Open Sans brings together classic form and
-            modern clarity. Lora&apos;s subtle serifs provide warmth and
-            elegance, while Open Sans delivers clean, neutral readability. This
-            combination is both timeless and professional, ideal for editorial
-            layouts, blogs, or sophisticated web designs.
+          <div className="-translate-x-16">
+            <h1 className="font-lora text-[18rem] -tracking-[1rem] whitespace-nowrap">
+              Lora
+            </h1>
+            <h2 className="text-4xl">
+              <div className="font-lora translate-x-1/4 -translate-y-[200%]">
+                with
+              </div>
+              <div className="font-opensans tracking-tighter text-8xl translate-x-[45%] -translate-y-[160%]">
+                Open Sans
+              </div>
+            </h2>
+          </div>
+          <p className="absolute w-full left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
+            The pairing of <strong>Lora</strong> and <strong>Open Sans</strong>{" "}
+            brings together classic form and modern clarity.{" "}
+            <strong>Lora&apos;s</strong> subtle serifs provide warmth and
+            elegance, while <strong>Open Sans</strong> delivers clean, neutral
+            readability. This combination is both timeless and professional,
+            ideal for editorial layouts, blogs, or sophisticated web designs.
           </p>
         </div>
       </ParallaxVideo>
@@ -169,12 +175,13 @@ export default function Home() {
               ANTON
             </span>
           </h2>
-          <p className="absolute w-[120%] left-1/2 -translate-x-1/2 text-lg text-balance font-extralight text-center">
-            The blend of Nunito and Anton delivers bold impact with friendly
-            tone. Anton commands attention with strong geometric weight, while
-            Nunito offers a rounded, approachable feel. Together, they strike a
-            confident balance, perfect for modern brands, landing pages, or
-            creative portfolios.
+          <p className="absolute w-full left-1/2 -translate-x-1/2 text-lg text-balance font-extralight text-center">
+            The blend of <strong>Nunito</strong> and <strong>Anton</strong>{" "}
+            delivers bold impact with friendly tone. <strong>Anton</strong>{" "}
+            commands attention with strong geometric weight, while{" "}
+            <strong>Nunito</strong> offers a rounded, approachable feel.
+            Together, they strike a confident balance, perfect for modern
+            brands, landing pages, or creative portfolios.
           </p>
         </div>
       </ParallaxVideo>
@@ -260,7 +267,7 @@ export default function Home() {
       <ParallaxVideo top={true} alt={true} sourcePath="/R8.mp4" blur={true}>
         <section
           id="luxurious-opensans"
-          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 text-white"
         >
           <h2 className="relative w-fit left-1/2 -translate-x-1/2 font-luxurious text-[12rem]">
             Luxurious
@@ -268,10 +275,12 @@ export default function Home() {
           <h3 className="relative w-fit left-1/2 -translate-x-[20%] -translate-y-[220%] font-opensans font-light tracking-[1.6rem] text-4xl">
             OPEN SANS
           </h3>
-          <p className="absolute w-[165%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
-            The elegance of Luxurious Script meets the clarity of Open Sans for
-            a look that&apos;s both refined and accessible. Luxurious Script
-            brings high-end flair with sweeping, ornate strokes, while Open Sans
+          <p className="absolute w-full left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
+            The elegance of <strong>Luxurious Script</strong> meets the clarity
+            of <strong>Open Sans</strong> for a look that&apos;s both refined
+            and accessible. <strong>Luxurious Script </strong>
+            brings high-end flair with sweeping, ornate strokes, while{" "}
+            <strong>Open Sans </strong>
             keeps things grounded with clean, modern readability. This duo suits
             luxury brands, upscale event sites, or any layout needing grace with
             function.
@@ -299,38 +308,43 @@ export default function Home() {
       >
         <div
           id="dangrek-nunito"
-          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-[#f0f0f0]"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 text-[#f0f0f0]"
         >
-          <h2 className="relative w-fit left-1/2 -translate-x-1/2 font-dangrek text-[16rem]">
+          <h2 className="relative w-fit left-1/2 -translate-x-1/2 font-dangrek text-[14rem]">
             Dangrek
           </h2>
-          <h3 className="relative w-fit left-1/2 -translate-x-[105%] -translate-y-[200%] font-nunito tracking-[2.3rem] text-5xl">
+          <h3 className="relative w-fit left-1/2 -translate-x-[105%] -translate-y-[200%] font-nunito tracking-[1.8rem] text-5xl">
             NUNITO
           </h3>
-          <p className="absolute w-[100%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
-            Dangrek&apos;s distinct, angular personality pairs with
-            Nunito&apos;s soft, rounded friendliness for a uniquely modern
-            contrast. Dangrek adds sharp cultural character and edge, while
-            Nunito balances with warmth and approachability. Great for creative
-            projects that want personality without sacrificing readability.
+          <p className="absolute w-full left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
+            <strong>Dangrek&apos;s</strong> distinct, angular personality pairs
+            with
+            <strong> Nunito&apos;s</strong> soft, rounded friendliness for a
+            uniquely modern contrast. <strong>Dangrek</strong> adds sharp
+            cultural character and edge, while
+            <strong> Nunito</strong> balances with warmth and approachability.
+            Great for creative projects that want personality without
+            sacrificing readability.
           </p>
         </div>
       </ParallaxVideo>
       <ParallaxVideo top={true} alt={true} sourcePath="/NSX.mp4" blur={true}>
         <div
           id="rocksalt-playfair"
-          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 text-white"
         >
           <h2 className="relative w-full flex justify-between translate-y-[50%] font-playfair tracking-wide text-5xl">
             <div>PLAYFAIR</div>
             <div>DISPLAY</div>
           </h2>
-          <h3 className="relative w-full font-rocksalt text-[8rem] text-nowrap">
+          <h3 className="relative w-full font-rocksalt text-[7rem] text-nowrap">
             Rock Salt
           </h3>
-          <p className="absolute w-[100%] left-1/2 top-1/3 -translate-x-1/2 font-extralight text-lg text-balance text-center">
-            Classic meets chaos in this expressive pairing. Playfair Display
-            brings editorial class with high-contrast serifs, while Rock Salt
+          <p className="absolute w-full left-1/2 top-1/3 -translate-x-1/2 font-extralight text-lg text-balance text-center">
+            Classic meets chaos in this expressive pairing.{" "}
+            <strong>Playfair Display </strong>
+            brings editorial class with high-contrast serifs, while{" "}
+            <strong>Rock Salt </strong>
             injects a raw, handwritten punch. Poised, but never polished.
             Perfect for brands or layouts that want a stylish edge with a
             rebellious twist.
@@ -403,7 +417,7 @@ export default function Home() {
           h2: "Every curve is deliberate.",
           h3: "Not flashy — but unforgettable. Smooth curves give way to complex engineering, while detail rewards the second glance more than the first. It's luxury by intention, and performance by design. Refined, articulate, and built to endure.",
           h4: "Lora and Forum — classic form meeting contemporary clarity.",
-          font1: "font-lora tracking-tighter text-[7rem]",
+          font1: "font-lora tracking-tighter text-[6rem]",
           font2: "font-forum -tracking-[0.2rem",
           colour: "text-[#f0f0f0]",
         }}
@@ -415,7 +429,7 @@ export default function Home() {
       <ParallaxVideo sourcePath="/Evija.mp4" blur={true}>
         <div
           id="ballet-forum"
-          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 text-white"
         >
           <h3 className="relative w-fit left-1/2 -translate-x-[45%] font-forum tracking-widest text-5xl">
             FORUM
@@ -423,13 +437,13 @@ export default function Home() {
           <h2 className="relative w-fit left-1/2 -translate-x-[60%] -translate-y-[20%] font-ballet text-[12rem]">
             Ballet
           </h2>
-          <p className="absolute w-[200%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
-            Forum&apos;s historical, architectural elegance combines with
-            Ballet&apos;s graceful modernity for a pairing full of poise and
-            character. Forum grounds the text with sculpted Roman-inspired
-            forms, while Ballet dances across the page with movement and charm.
-            Ideal for artistic portfolios, boutique brands, or storytelling with
-            flair.
+          <p className="absolute w-full left-1/2 -translate-x-1/2 font-extralight text-lg text-pretty text-center">
+            <strong>Forum&apos;s</strong> elegance combines with{" "}
+            <strong>Ballet&apos;s</strong> graceful modernity for a pairing of
+            poise and character. <strong>Forum</strong> grounds the text with
+            Roman-inspired forms, while <strong>Ballet</strong> dances across
+            the page. Ideal for artistic portfolios, boutique brands, or
+            storytelling with flair.
           </p>
         </div>
       </ParallaxVideo>
@@ -441,18 +455,19 @@ export default function Home() {
       >
         <div
           id="majormono-inter"
-          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 text-white"
         >
-          <h2 className="relative w-fit left-1/2 -translate-x-1/2 font-majormono text-[12rem] text-nowrap">
+          <h2 className="relative w-fit left-1/2 -translate-x-1/2 font-majormono text-[6rem] text-nowrap">
             major mono
           </h2>
-          <h3 className="relative w-fit left-1/2 -translate-x-[92%] -translate-y-[120%] font-inter tracking-[2.3rem] text-5xl">
+          <h3 className="relative w-fit left-1/2 -translate-x-[90%] -translate-y-[70%] font-inter tracking-[2.3rem] text-4xl">
             INTER
           </h3>
-          <p className="absolute w-[60%] top-1/3 left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
-            Crisp and functional, Major Mono Display and Inter deliver a
-            tech-savvy aesthetic with polish. Mono&apos;s monospaced structure
-            gives personality and precision, while Inter keeps it legible and
+          <p className="absolute w-full top-1/3 left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
+            Crisp and functional, <strong>Major Mono Display</strong> and{" "}
+            <strong>Inter</strong> deliver a tech-savvy aesthetic with polish.{" "}
+            <strong>Mono&apos;s</strong> monospaced structure gives personality
+            and precision, while <strong>Inter</strong> keeps it legible and
             flexible. A confident pairing for developer portfolios, creative
             tech brands, or data-driven storytelling.
           </p>
@@ -479,7 +494,7 @@ export default function Home() {
       >
         <div
           id="anton-caveat"
-          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-[#f0f0f0]"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 text-[#f0f0f0]"
         >
           <h3 className="relative w-fit left-1/2 -translate-x-[140%] font-caveat tracking-widest text-7xl">
             Caveat
@@ -487,31 +502,33 @@ export default function Home() {
           <h2 className="relative w-fit left-1/2 -translate-x-[50%] -translate-y-[20%] font-anton font-bold text-[16rem]">
             ANTON
           </h2>
-          <p className="absolute w-[160%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
-            Caveat&apos;s informal script energy meets Anton&apos;s loud,
-            no-nonsense impact. The result is punchy and playful — handwriting
-            meets headline. It&apos;s perfect for bold campaigns, youth-focused
-            designs, or any project that needs both voice and volume.
+          <p className="absolute w-full left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
+            <strong>Caveat&apos;s</strong> informal script energy meets{" "}
+            <strong>Anton&apos;s</strong> loud, no-nonsense impact. The result
+            is punchy and playful — handwriting meets headline. It&apos;s
+            perfect for bold campaigns, youth-focused designs, or any project
+            that needs both voice and volume.
           </p>
         </div>
       </ParallaxVideo>
       <ParallaxVideo top={true} alt={true} sourcePath="/Chiron.mp4" blur={true}>
         <div
           id="mont-rocksalt"
-          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 text-white"
         >
-          <h3 className="relative w-fit left-1/2 -translate-x-[50%] font-rocksalt tracking-widest text-5xl">
+          <h3 className="relative w-fit left-1/2 -translate-x-[50%] font-rocksalt tracking-widest text-4xl">
             Rock Salt
           </h3>
-          <h2 className="relative w-fit left-1/2 -translate-x-[50%] -translate-y-[20%] font-montserrat font-light text-[12rem]">
+          <h2 className="relative w-fit left-1/2 -translate-x-[50%] -translate-y-[20%] font-montserrat font-light text-[7rem]">
             MONTSERRAT
           </h2>
-          <p className="absolute w-[60%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
-            Rock Salt brings the grit, Montserrat brings the grid. This combo
-            fuses grunge with modern geometry — expressive, urban, and stylishly
-            raw. Rock Salt scrawls with attitude, while Montserrat delivers
-            strong structure. Great for edgy branding, fashion sites, or bold
-            landing pages.
+          <p className="absolute w-full left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
+            <strong>Rock Salt</strong> brings the grit,{" "}
+            <strong>Montserrat</strong> brings the grid. This combo fuses grunge
+            with modern geometry — expressive, urban, and stylishly raw.{" "}
+            <strong>Rock Salt</strong> scrawls with attitude, while{" "}
+            <strong>Montserrat</strong> delivers strong structure. Great for
+            edgy branding, fashion sites, or bold landing pages.
           </p>
         </div>
       </ParallaxVideo>
