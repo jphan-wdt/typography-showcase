@@ -63,7 +63,7 @@ export default function Navbar() {
             onClick={toggleTab}
           >
             <motion.div
-              className="h-full w-[50%] absolute top-0 right-0 bg-[var(--color6)] transition-colors duration-300"
+              className="h-full max-w-full w-[90vh] absolute top-0 right-0 bg-[var(--color6)] transition-colors duration-300"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -107,7 +107,7 @@ export default function Navbar() {
 
                 {activeMenu === "fonts" && (
                   <motion.div
-                    className="w-full h-full flex flex-col gap-1 pl-20 py-10 text-white text-4xl"
+                    className="w-full h-full flex flex-col gap-1 pl-20 py-10 text-white text-4xl overflow-y-scroll overflow-x-hidden"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
