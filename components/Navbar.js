@@ -70,13 +70,13 @@ export default function Navbar() {
               transition={{ duration: 0.8, ease: [0.87, 0, 0.13, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div
+              <button
                 className="absolute h-40 w-40 top-0 right-0 flex justify-center items-center 
                  text-3xl font-bold text-white hover:cursor-pointer"
                 onClick={toggleTab}
               >
                 ✕
-              </div>
+              </button>
 
               <div className="h-full w-full flex flex-col">
                 <div className="w-full flex pt-16 pl-20">

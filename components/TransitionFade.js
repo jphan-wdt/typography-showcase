@@ -58,7 +58,7 @@ export default function TransitionFade({ sourcePath, colourFrom, colourTo }) {
   });
 
   return (
-    <div className="relative mb-[-100vh] mt-[-100vh] w-full -z-10 overflow-hiddn">
+    <section className="relative mb-[-100vh] mt-[-100vh] w-full -z-10 overflow-hiddn">
       <div className="sticky top-0 h-screen overflow-hidden">
         <motion.video
           ref={videoRef}
@@ -72,6 +72,6 @@ export default function TransitionFade({ sourcePath, colourFrom, colourTo }) {
         </motion.video>
       </div>
       <div className="h-[300vh] w-full overflow-hidden" ref={scrollRef} />
-    </div>
+    </section>
   );
 }

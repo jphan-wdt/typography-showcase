@@ -80,20 +80,20 @@ export default function StickyPanel({
         className={`top-0 w-full flex flex-col gap-10 justify-between ${itemsAlign} ${colour} leading-none tracking-tighter font-thin`}
         style={left}
       >
-        <div
+        <h1
           className={`relative w-3/5 ${
             side === "left" ? "" : "left-[10%]"
           } ${font1}`}
         >
           <FadeIn>{h1}</FadeIn>
-        </div>
-        <div
+        </h1>
+        <h2
           className={`relative w-3/5 ${
             side === "left" ? "" : "left-[10%]"
           } text-5xl ${font2}`}
         >
           <FadeIn>{h2}</FadeIn>
-        </div>
+        </h2>
         <div
           className={`relative w-3/5 ${
             side === "left" ? "" : "left-[10%]"

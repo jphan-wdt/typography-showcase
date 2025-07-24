@@ -6,7 +6,7 @@ import { useScroll } from "framer-motion";
 export default function Footer() {
   const scrollRef = useRef(null);
   return (
-    <div>
+    <footer>
       <div
         className="h-[200vh] flex items-center justify-center text-2xl -z-10"
         ref={scrollRef}
@@ -60,6 +60,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }

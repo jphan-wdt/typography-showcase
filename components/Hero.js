@@ -68,7 +68,7 @@ export default function Hero() {
         </video>
         <div className="absolute bottom-96">
           <div className="relative top-96 p-12 text-white">
-            <div className="font-allura text-[12rem] tracking-tight leading-none text-balance translate-y-6">
+            <h1 className="font-allura text-[12rem] tracking-tight leading-none text-balance translate-y-6">
               <GradientText
                 colourCenter="#87d8ff"
                 colourEdge="#d4b5ff"
@@ -80,7 +80,7 @@ export default function Hero() {
                 Type and Motion
               </GradientText>
               {/* <FadeIn></FadeIn> */}
-            </div>
+            </h1>
             <div className="w-2/5 text-xl tracking-tighter font-extralight text-pretty">
               <FadeIn delay={0.3}>
                 An experiment in animation and typography. The text above is set

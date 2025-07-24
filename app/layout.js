@@ -120,8 +120,8 @@ const forum = Forum({
 });
 
 export const metadata = {
-  title: "Gallery",
-  description: "Picture gallery",
+  title: "Type and Motion",
+  description: "",
 };
 
 export default function RootLayout({ children }) {

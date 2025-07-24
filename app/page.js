@@ -20,6 +20,7 @@ import Navbar from "@/components/Navbar";
 
 import images from "@/components/images";
 import LoadEverything from "@/components/LoadUtil";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export default function Home() {
   const scrollRef = useRef(null);
@@ -77,7 +78,8 @@ export default function Home() {
   }, [ready]);
 
   return (
-    <div ref={scrollRef}>
+    <main ref={scrollRef}>
+      <SpeedInsights />
       <AnimatePresence>
         {!ready && (
           <motion.div
@@ -107,12 +109,12 @@ export default function Home() {
             {""}
             ura
           </span>
-          <div className="flex justify-between -translate-y-[600%] font-majormono font-light text-2xl">
+          <h3 className="flex justify-between -translate-y-[600%] font-majormono font-light text-2xl">
             <span className="tracking-[0.2rem]">major</span>
             <span className="tracking-normal">mono</span>
             <span className="-tracking-[0.12rem]">display</span>
-          </div>
-          <div
+          </h3>
+          <p
             className="absolute w-[130%] left-1/2 -translate-x-1/2 -translate-y-full font-extralight text-balance text-lg text-center"
             delay={0.4}
           >
@@ -122,7 +124,7 @@ export default function Home() {
             Display provides strong, structured clarity. The result is a
             polished, stylish pairing, ideal for upscale branding, invitations,
             or design-focused websites.
-          </div>
+          </p>
         </div>
       </ParallaxVideo>
       <ParallaxVideo sourcePath="/Ford.mp4" blur={true}>
@@ -130,24 +132,24 @@ export default function Home() {
           id="lora-opensans"
           className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
         >
-          <div className="font-lora text-[18rem] -tracking-[1rem] whitespace-nowrap">
+          <h1 className="font-lora text-[18rem] -tracking-[1rem] whitespace-nowrap">
             Lora
-          </div>
-          <div className="text-4xl">
+          </h1>
+          <h2 className="text-4xl">
             <div className="font-lora translate-x-1/4 -translate-y-[200%]">
               with
             </div>
             <div className="font-opensans tracking-tighter text-8xl translate-x-[45%] -translate-y-[160%]">
               Open Sans
             </div>
-          </div>
-          <div className="absolute w-[160%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
+          </h2>
+          <p className="absolute w-[160%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
             The pairing of Lora and Open Sans brings together classic form and
             modern clarity. Lora&apos;s subtle serifs provide warmth and
             elegance, while Open Sans delivers clean, neutral readability. This
             combination is both timeless and professional, ideal for editorial
             layouts, blogs, or sophisticated web designs.
-          </div>
+          </p>
         </div>
       </ParallaxVideo>
       {/* /////////////////////////////// COLOUR CHANGE ///////////////////////////// */}
@@ -159,21 +161,21 @@ export default function Home() {
         blur={true}
       >
         <div id="anton-nunito" className="relative max-w-fit -translate-y-[5%]">
-          <div className="flex items-center whitespace-nowrap">
+          <h2 className="flex items-center whitespace-nowrap">
             <span className="font-nunito text-2xl font-extralight">
               Nunito Meets
             </span>
             <span className="font-anton font-bold tracking-tight text-[16rem]">
               ANTON
             </span>
-          </div>
-          <div className="absolute w-[120%] left-1/2 -translate-x-1/2 text-lg text-balance font-extralight text-center">
+          </h2>
+          <p className="absolute w-[120%] left-1/2 -translate-x-1/2 text-lg text-balance font-extralight text-center">
             The blend of Nunito and Anton delivers bold impact with friendly
             tone. Anton commands attention with strong geometric weight, while
             Nunito offers a rounded, approachable feel. Together, they strike a
             confident balance, perfect for modern brands, landing pages, or
             creative portfolios.
-          </div>
+          </p>
         </div>
       </ParallaxVideo>
       {/* /////////////////////////////// PARALLAX 3.1 ///////////////////////////// */}
@@ -256,25 +258,25 @@ export default function Home() {
       {/* /////////////////////////////// PARALLAX SECTION ///////////////////////////// */}
       <div className="h-[20vh]"></div>
       <ParallaxVideo top={true} alt={true} sourcePath="/R8.mp4" blur={true}>
-        <div
+        <section
           id="luxurious-opensans"
           className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
         >
-          <div className="relative w-fit left-1/2 -translate-x-1/2 font-luxurious text-[12rem]">
+          <h2 className="relative w-fit left-1/2 -translate-x-1/2 font-luxurious text-[12rem]">
             Luxurious
-          </div>
-          <div className="relative w-fit left-1/2 -translate-x-[20%] -translate-y-[220%] font-opensans font-light tracking-[1.6rem] text-4xl">
+          </h2>
+          <h3 className="relative w-fit left-1/2 -translate-x-[20%] -translate-y-[220%] font-opensans font-light tracking-[1.6rem] text-4xl">
             OPEN SANS
-          </div>
-          <div className="absolute w-[165%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
+          </h3>
+          <p className="absolute w-[165%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
             The elegance of Luxurious Script meets the clarity of Open Sans for
             a look that&apos;s both refined and accessible. Luxurious Script
             brings high-end flair with sweeping, ornate strokes, while Open Sans
             keeps things grounded with clean, modern readability. This duo suits
             luxury brands, upscale event sites, or any layout needing grace with
             function.
-          </div>
-        </div>
+          </p>
+        </section>
       </ParallaxVideo>
       <div className="h-[90vh] text-[12vw] text-balance overflow-hidden">
         <GradientText
@@ -299,19 +301,19 @@ export default function Home() {
           id="dangrek-nunito"
           className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-[#f0f0f0]"
         >
-          <div className="relative w-fit left-1/2 -translate-x-1/2 font-dangrek text-[16rem]">
+          <h2 className="relative w-fit left-1/2 -translate-x-1/2 font-dangrek text-[16rem]">
             Dangrek
-          </div>
-          <div className="relative w-fit left-1/2 -translate-x-[105%] -translate-y-[200%] font-nunito tracking-[2.3rem] text-5xl">
+          </h2>
+          <h3 className="relative w-fit left-1/2 -translate-x-[105%] -translate-y-[200%] font-nunito tracking-[2.3rem] text-5xl">
             NUNITO
-          </div>
-          <div className="absolute w-[100%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
+          </h3>
+          <p className="absolute w-[100%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
             Dangrek&apos;s distinct, angular personality pairs with
             Nunito&apos;s soft, rounded friendliness for a uniquely modern
             contrast. Dangrek adds sharp cultural character and edge, while
             Nunito balances with warmth and approachability. Great for creative
             projects that want personality without sacrificing readability.
-          </div>
+          </p>
         </div>
       </ParallaxVideo>
       <ParallaxVideo top={true} alt={true} sourcePath="/NSX.mp4" blur={true}>
@@ -319,20 +321,20 @@ export default function Home() {
           id="rocksalt-playfair"
           className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
         >
-          <div className="relative w-full flex justify-between translate-y-[50%] font-playfair tracking-wide text-5xl">
+          <h2 className="relative w-full flex justify-between translate-y-[50%] font-playfair tracking-wide text-5xl">
             <div>PLAYFAIR</div>
             <div>DISPLAY</div>
-          </div>
-          <div className="relative w-full font-rocksalt text-[8rem] text-nowrap">
+          </h2>
+          <h3 className="relative w-full font-rocksalt text-[8rem] text-nowrap">
             Rock Salt
-          </div>
-          <div className="absolute w-[100%] left-1/2 top-1/3 -translate-x-1/2 font-extralight text-lg text-balance text-center">
+          </h3>
+          <p className="absolute w-[100%] left-1/2 top-1/3 -translate-x-1/2 font-extralight text-lg text-balance text-center">
             Classic meets chaos in this expressive pairing. Playfair Display
             brings editorial class with high-contrast serifs, while Rock Salt
             injects a raw, handwritten punch. Poised, but never polished.
             Perfect for brands or layouts that want a stylish edge with a
             rebellious twist.
-          </div>
+          </p>
         </div>
       </ParallaxVideo>
       <div className="h-[90vh] text-[12vw] text-balance overflow-hidden">
@@ -415,20 +417,20 @@ export default function Home() {
           id="ballet-forum"
           className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
         >
-          <div className="relative w-fit left-1/2 -translate-x-[45%] font-forum tracking-widest text-5xl">
+          <h3 className="relative w-fit left-1/2 -translate-x-[45%] font-forum tracking-widest text-5xl">
             FORUM
-          </div>
-          <div className="relative w-fit left-1/2 -translate-x-[60%] -translate-y-[20%] font-ballet text-[12rem]">
+          </h3>
+          <h2 className="relative w-fit left-1/2 -translate-x-[60%] -translate-y-[20%] font-ballet text-[12rem]">
             Ballet
-          </div>
-          <div className="absolute w-[200%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
+          </h2>
+          <p className="absolute w-[200%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
             Forum&apos;s historical, architectural elegance combines with
             Ballet&apos;s graceful modernity for a pairing full of poise and
             character. Forum grounds the text with sculpted Roman-inspired
             forms, while Ballet dances across the page with movement and charm.
             Ideal for artistic portfolios, boutique brands, or storytelling with
             flair.
-          </div>
+          </p>
         </div>
       </ParallaxVideo>
       <ParallaxVideo
@@ -441,19 +443,19 @@ export default function Home() {
           id="majormono-inter"
           className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
         >
-          <div className="relative w-fit left-1/2 -translate-x-1/2 font-majormono text-[12rem] text-nowrap">
+          <h2 className="relative w-fit left-1/2 -translate-x-1/2 font-majormono text-[12rem] text-nowrap">
             major mono
-          </div>
-          <div className="relative w-fit left-1/2 -translate-x-[92%] -translate-y-[120%] font-inter tracking-[2.3rem] text-5xl">
+          </h2>
+          <h3 className="relative w-fit left-1/2 -translate-x-[92%] -translate-y-[120%] font-inter tracking-[2.3rem] text-5xl">
             INTER
-          </div>
-          <div className="absolute w-[60%] top-1/3 left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
+          </h3>
+          <p className="absolute w-[60%] top-1/3 left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
             Crisp and functional, Major Mono Display and Inter deliver a
             tech-savvy aesthetic with polish. Mono&apos;s monospaced structure
             gives personality and precision, while Inter keeps it legible and
             flexible. A confident pairing for developer portfolios, creative
             tech brands, or data-driven storytelling.
-          </div>
+          </p>
         </div>
       </ParallaxVideo>
       <div className="h-[90vh] text-[12vw] text-balance overflow-hidden">
@@ -479,18 +481,18 @@ export default function Home() {
           id="anton-caveat"
           className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-[#f0f0f0]"
         >
-          <div className="relative w-fit left-1/2 -translate-x-[140%] font-caveat tracking-widest text-7xl">
+          <h3 className="relative w-fit left-1/2 -translate-x-[140%] font-caveat tracking-widest text-7xl">
             Caveat
-          </div>
-          <div className="relative w-fit left-1/2 -translate-x-[50%] -translate-y-[20%] font-anton font-bold text-[16rem]">
+          </h3>
+          <h2 className="relative w-fit left-1/2 -translate-x-[50%] -translate-y-[20%] font-anton font-bold text-[16rem]">
             ANTON
-          </div>
-          <div className="absolute w-[160%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
+          </h2>
+          <p className="absolute w-[160%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
             Caveat&apos;s informal script energy meets Anton&apos;s loud,
             no-nonsense impact. The result is punchy and playful — handwriting
             meets headline. It&apos;s perfect for bold campaigns, youth-focused
             designs, or any project that needs both voice and volume.
-          </div>
+          </p>
         </div>
       </ParallaxVideo>
       <ParallaxVideo top={true} alt={true} sourcePath="/Chiron.mp4" blur={true}>
@@ -498,19 +500,19 @@ export default function Home() {
           id="mont-rocksalt"
           className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
         >
-          <div className="relative w-fit left-1/2 -translate-x-[50%] font-rocksalt tracking-widest text-5xl">
+          <h3 className="relative w-fit left-1/2 -translate-x-[50%] font-rocksalt tracking-widest text-5xl">
             Rock Salt
-          </div>
-          <div className="relative w-fit left-1/2 -translate-x-[50%] -translate-y-[20%] font-montserrat font-light text-[12rem]">
+          </h3>
+          <h2 className="relative w-fit left-1/2 -translate-x-[50%] -translate-y-[20%] font-montserrat font-light text-[12rem]">
             MONTSERRAT
-          </div>
-          <div className="absolute w-[60%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
+          </h2>
+          <p className="absolute w-[60%] left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
             Rock Salt brings the grit, Montserrat brings the grid. This combo
             fuses grunge with modern geometry — expressive, urban, and stylishly
             raw. Rock Salt scrawls with attitude, while Montserrat delivers
             strong structure. Great for edgy branding, fashion sites, or bold
             landing pages.
-          </div>
+          </p>
         </div>
       </ParallaxVideo>
       <div className="h-[90vh] text-[12vw] text-balance overflow-hidden">
@@ -531,74 +533,6 @@ export default function Home() {
         colourTo="#0f0f0f"
       />
       <Footer />
-      {/* <div className="relative h-[330vh] w-full">
-        <StickyStackItem>
-          <Image
-            src={images[0].src}
-            width={1600}
-            height={900}
-            alt="1"
-            className="h-screen w-full object-cover blur-md scale-110"
-          />
-          <div className="absolute top-0 left-0 h-full w-full text-white">
-            <div className="relative w-fit left-1/2 top-1/4 -translate-x-1/2 -translate-y-1/2">
-              <div className="relative w-full font-playfair text-[16rem]">
-                playfair
-              </div>
-              <div className="relative w-full flex justify-between -translate-y-[80%] font-dangrek tracking-wide text-5xl">
-                <div>WITH</div>
-                <div>DANGREK</div>
-              </div>
-            </div>
-          </div>
-        </StickyStackItem>
-
-        <StickyStackItem>
-          <Image
-            src={images[0].src}
-            width={1600}
-            height={900}
-            alt="1"
-            className="h-screen w-full object-cover blur-md scale-110"
-          />
-          <div className="absolute top-0 left-0 h-full w-full text-white">
-            <div className="relative w-full left-1/2 top-1/2 -translate-y-1/2">
-              <div className="relative w-fit translate-x-[0%] translate-y-[50%] font-ballet text-[16rem]">
-                fair
-              </div>
-              <div className="relative w-fit -translate-x-[105%] -translate-y-[60%] font-playfair tracking-tighter text-[10rem]">
-                Play
-              </div>
-              <div className="relative w-fit -translate-x-[25%] -translate-y-[100%] font-ballet  text-[6rem]">
-                Ballet
-              </div>
-            </div>
-          </div>
-        </StickyStackItem>
-
-        <StickyStackItem>
-          <Image
-            src={images[0].src}
-            width={1600}
-            height={900}
-            alt="1"
-            className="h-screen w-full object-cover blur-md scale-110"
-          />
-          <div className="absolute top-0 left-0 h-full w-full text-white">
-            <div className="relative w-full left-1/2 top-1/2 -translate-y-1/2">
-              <div className="relative w-fit -translate-x-[50%] font-forum tracking-tighter text-[12rem]">
-                Forum
-              </div>
-              <div className="relative w-fit -translate-x-[50%] -translate-y-[20%] font-montserrat font-thin text-[1rem]">
-                MONTSERRAT
-              </div>
-            </div>
-          </div>
-        </StickyStackItem>
-      </div> */}
-      {/* <StickyScroll />
-      <ParallaxGallery />
-      <ImageWheel Carousel /> */}
-    </div>
+    </main>
   );
 }
