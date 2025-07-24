@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useScroll,
   useTransform,
   useMotionValueEvent,
+  useAnimation,
+  AnimatePresence,
 } from "framer-motion";
 import Lenis from "lenis";
 
@@ -21,23 +23,16 @@ import ParallaxImage from "@/components/ParallaxImage";
 import ParallaxVideo from "@/components/ParallaxVideo";
 import RadialGradient from "@/components/RadialGradient";
 import GradientText from "@/components/GradientText";
-import TextSlide from "@/components/TextSlide";
+import FadeIn from "@/components/FadeIn";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 
 import images from "@/components/images";
 import Image from "next/image";
 import Carousel from "@/components/Carousel";
+import LoadEverything from "@/components/LoadUtil";
 
 export default function Home() {
-  useEffect(() => {
-    const lenis = new Lenis();
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-  }, []);
-
   const scrollRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: scrollRef,
@@ -48,18 +43,76 @@ export default function Home() {
     console.log(latest);
   });
 
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const Load = async () => {
+      const loadPromise = LoadEverything();
+      const timeoutPromise = new Promise((resolve) =>
+        setTimeout(resolve, 1000)
+      );
+
+      try {
+        await Promise.race([loadPromise, timeoutPromise]);
+      } finally {
+        setReady(true);
+        document.body.classList.remove("overflow-hidden");
+      }
+    };
+
+    Load();
+  }, []);
+
+  const variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+
+  useEffect(() => {
+    if (!ready) return;
+
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, [ready]);
+
   return (
     <div ref={scrollRef}>
+      <AnimatePresence>
+        {!ready && (
+          <motion.div
+            className="h-screen w-full fixed flex flex-col items-center justify-center
+              text-balance tracking-tighter font-thin text-white
+            bg-[#0f0f0f] z-10 overflow-hidden"
+            initial="visible"
+            variants={variants}
+            exit="hidden"
+          >
+            <div className="text-9xl">Loading</div>
+            <div className="text-2xl">Best experienced on desktop</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <Navbar />
       <RadialGradient scrollRef={scrollRef} />
       <Hero />
       {/* /////////////////////////////// PARALLAX VIDEO 3 ///////////////////////////// */}
-      <ParallaxVideo
-        top={true}
-        sourcePath="/_fordgt.mp4"
-        colourTo="#f0f0f0"
-        blur={true}
-      >
-        <div className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%]">
+      <ParallaxVideo top={true} sourcePath="/Porsche.mp4" blur={true}>
+        <div
+          id="allura-majormono"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
+        >
           <span className="font-allura text-[24rem]">All</span>
           <span className="font-majormono tracking-tighter text-[5rem] pl-5">
             {""}
@@ -83,8 +136,11 @@ export default function Home() {
           </div>
         </div>
       </ParallaxVideo>
-      <ParallaxVideo sourcePath="/_porsche.mp4" colourTo="#f0f0f0" blur={true}>
-        <div className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%]">
+      <ParallaxVideo sourcePath="/Ford.mp4" blur={true}>
+        <div
+          id="lora-opensans"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
+        >
           <div className="font-lora text-[18rem] -tracking-[1rem] whitespace-nowrap">
             Lora
           </div>
@@ -105,14 +161,15 @@ export default function Home() {
           </div>
         </div>
       </ParallaxVideo>
+      {/* /////////////////////////////// COLOUR CHANGE ///////////////////////////// */}
       <ParallaxVideo
-        sourcePath="/_f1.mp4"
+        sourcePath="/Valhalla.mp4"
         bottom={true}
-        colourFrom="#212121"
-        colourTo="#f0f0f0"
+        colourFrom="#0f0f0f"
+        colourTo="#f0f0f0" // soft white
         blur={true}
       >
-        <div className="relative max-w-fit -translate-y-[5%]">
+        <div id="anton-nunito" className="relative max-w-fit -translate-y-[5%]">
           <div className="flex items-center whitespace-nowrap">
             <span className="font-nunito text-2xl font-extralight">
               Nunito Meets
@@ -121,7 +178,7 @@ export default function Home() {
               ANTON
             </span>
           </div>
-          <div className="absolute w-[120%] left-1/2 -translate-x-1/2 text-lg text-balance text-center">
+          <div className="absolute w-[120%] left-1/2 -translate-x-1/2 text-lg text-balance font-extralight text-center">
             The blend of Nunito and Anton delivers bold impact with friendly
             tone. Anton commands attention with strong geometric weight, while
             Nunito offers a rounded, approachable feel. Together, they strike a
@@ -130,26 +187,28 @@ export default function Home() {
           </div>
         </div>
       </ParallaxVideo>
-      {/* /////////////////////////////// PARALLAX VIDEO 3 ///////////////////////////// */}
-
+      {/* /////////////////////////////// PARALLAX 3.1 ///////////////////////////// */}
+      {/* /////////////////////////////// GRADIENT TEXT 1 ///////////////////////////// */}
       <div className="h-[70vh]" />
-
-      <div className="h-[90vh] text-[12vw] text-balance overflow-">
+      <div className="h-[90vh] text-[12vw] text-balance">
         <GradientText
-          colourEdge="#e75a5f"
-          colourCenter="#f7ba88"
-          colourBg="#642558"
+          colourCenter="#87d8ff"
+          colourEdge="#d4b5ff"
+          colourBg="#ffab9a"
           font="font-allura"
         >
           Perfection in Print
         </GradientText>
       </div>
-
+      {/* /////////////////////////////// GRADIENT TEXT 1 ///////////////////////////// */}
+      {/* /////////////////////////////// FERRARI ///////////////////////////// */}
+      {/* /////////////////////////////// COLOUR CHANGE ///////////////////////////// */}
       <TransitionFade
-        sourcePath={"/_LaFerrari.mp4"}
+        sourcePath={"/LaFerrari1.mp4"}
         colourFrom="#f0f0f0"
-        colourTo="#f0f0f0"
+        colourTo="#fcd5ce"
       />
+      <div id="mont-lora" />
       <StickyPanel
         layout={{
           left: "text",
@@ -168,17 +227,20 @@ export default function Home() {
           h4: "That's Montserrat and Lora — unmistakably refined, purposefully bold.",
           font1: "font-montserrat",
           font2: "font-lora",
-          colour: "text-[#1a1a1a]",
+          colour: "text-[#212121]",
         }}
-        sourcePath={"/_laferrari.mp4"}
+        sourcePath={"/LaFerrari2.mp4"}
       />
-
+      {/* /////////////////////////////// FERRARI ///////////////////////////// */}
+      {/* /////////////////////////////// EVIJA ///////////////////////////// */}
+      {/* /////////////////////////////// COLOUR CHANGE ///////////////////////////// */}
       <TransitionFade
-        sourcePath={"/_chiron.mp4"}
+        sourcePath={"/Evija1.mp4"}
         top={true}
-        colourFrom="#f0f0f0"
-        colourTo="#2c375a"
+        colourFrom="#fcd5ce"
+        colourTo="#664974" // purple
       />
+      <div id="caveat-majormono" />
       <StickyPanel
         layout={{
           left: "images",
@@ -186,32 +248,29 @@ export default function Home() {
         }}
         parallax={{ left: "height", right: "translate" }}
         ranges={{
-          height: ["200vh", "70vh"],
+          height: ["200vh", "150vh"],
           translate: ["0vw", "0vw"],
         }}
         images={[images[10].src, images[11].src, images[12].src]}
         content={{
-          h1: "Bugatti Chiron",
-          h2: "Built for extremes, detailed for elegance.",
-          h3: "Crafted to impress both eye and mind, every surface curves with control, smooth balance, and quiet precision. It's power is undeniable, but never loud. Styled to perform with grace and strength.",
-          h4: "It's Allura and Montserrat — script with structure.",
-          font1: "font-allura",
-          font2: "font-montserrat",
-          colour: "text-[#ffffff]",
+          h1: "Lotus Evija",
+          h2: "lightweight. direct. built to DISRUPT.",
+          h3: "every curve feels hand-drawn — expressive, human, unfiltered. it's a striking contrast, engineered for impact.",
+          h4: "this is caveat and mono major — pure style, no compromise.",
+          font1: "font-caveat tracking-tighter",
+          font2: "font-majormono -tracking-[0.2rem]",
+          colour: "text-[#f0f0f0]",
         }}
-        sourcePath={"/_chiron.mp4"}
+        sourcePath={"/Evija2.mp4"}
       />
-
+      {/* /////////////////////////////// EVIJA ///////////////////////////// */}
+      {/* /////////////////////////////// PARALLAX SECTION ///////////////////////////// */}
       <div className="h-[20vh]"></div>
-
-      <ParallaxVideo
-        top={true}
-        alt={true}
-        sourcePath="/_fordgt.mp4"
-        colourTo="#f0f0f0"
-        blur={true}
-      >
-        <div className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%]">
+      <ParallaxVideo top={true} alt={true} sourcePath="/R8.mp4" blur={true}>
+        <div
+          id="luxurious-opensans"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
+        >
           <div className="relative w-fit left-1/2 -translate-x-1/2 font-luxurious text-[12rem]">
             Luxurious
           </div>
@@ -228,27 +287,29 @@ export default function Home() {
           </div>
         </div>
       </ParallaxVideo>
-
       <div className="h-[90vh] text-[12vw] text-balance overflow-hidden">
         <GradientText
-          colourEdge="#e75a5f"
-          colourCenter="#f7ba88"
-          colourBg="#642558"
+          colourCenter="#e8511e"
+          colourEdge="#d4124e"
+          colourBg="#5a0953"
           font="font-allura"
         >
           Strokes of Character
         </GradientText>
       </div>
-
+      {/* /////////////////////////////// COLOUR CHANGE ///////////////////////////// */}
       <ParallaxVideo
         bottom={true}
         alt={true}
-        sourcePath="/_fordgt.mp4"
-        colourFrom="#2c375a"
-        colourTo="#2c375a"
+        sourcePath="/Italia.mp4"
+        colourFrom="#664974"
+        colourTo="#333952" // blue grey
         blur={true}
       >
-        <div className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-[#f0f0f0]">
+        <div
+          id="dangrek-nunito"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-[#f0f0f0]"
+        >
           <div className="relative w-fit left-1/2 -translate-x-1/2 font-dangrek text-[16rem]">
             Dangrek
           </div>
@@ -264,15 +325,11 @@ export default function Home() {
           </div>
         </div>
       </ParallaxVideo>
-
-      <ParallaxVideo
-        top={true}
-        alt={true}
-        sourcePath="/_porsche.mp4"
-        colourTo="#f0f0f0"
-        blur={true}
-      >
-        <div className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%]">
+      <ParallaxVideo top={true} alt={true} sourcePath="/NSX.mp4" blur={true}>
+        <div
+          id="rocksalt-playfair"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
+        >
           <div className="relative w-full flex justify-between translate-y-[50%] font-playfair tracking-wide text-5xl">
             <div>PLAYFAIR</div>
             <div>DISPLAY</div>
@@ -289,24 +346,25 @@ export default function Home() {
           </div>
         </div>
       </ParallaxVideo>
-
       <div className="h-[90vh] text-[12vw] text-balance overflow-hidden">
         <GradientText
-          colourEdge="#e75a5f"
-          colourCenter="#f7ba88"
-          colourBg="#642558"
+          colourCenter="#d4124e"
+          colourEdge="#9985f3"
+          colourBg="#5a0953"
           font="font-allura"
         >
-          Just My Type
+          Type Art
         </GradientText>
       </div>
-
-      {/* /////////////////////////////// STICKY PANEL 3 ///////////////////////////// */}
+      {/* /////////////////////////////// PARALLAX 3.2 ///////////////////////////// */}
+      {/* /////////////////////////////// CHIRON ///////////////////////////// */}
+      {/* /////////////////////////////// COLOUR CHANGE ///////////////////////////// */}
       <TransitionFade
-        sourcePath={"/_Evija.mp4"}
-        colourFrom="#2c375a"
-        colourTo="#664873"
+        sourcePath={"/Chiron1.mp4"}
+        colourFrom="#333952"
+        colourTo="#2c375b" // dark blue
       />
+      <div id="allura-mont" />
       <StickyPanel
         layout={{
           left: "text",
@@ -314,28 +372,30 @@ export default function Home() {
         }}
         parallax={{ left: "height", right: "translate" }}
         ranges={{
-          height: ["200vh", "70vh"],
+          height: ["200vh", "100vh"],
           translate: ["0vw", "0vw"],
         }}
         images={[images[3].src, images[4].src, images[5].src]}
         content={{
-          h1: "Lotus Evija",
-          h2: "lightweight. direct. built to DISRUPT.",
-          h3: "every curve feels hand-drawn — expressive, human, unfiltered. it's a striking contrast, engineered for impact.",
-          h4: "this is caveat and mono major — pure style, no compromise.",
-          font1: "font-caveat tracking-tighter",
-          font2: "font-majormono -tracking-[0.2rem]",
-          colour: "text-[#f0f0f0]",
+          h1: "Bugatti Chiron",
+          h2: "Built for extremes, detailed for elegance.",
+          h3: "Crafted to impress both eye and mind, every surface curves with control, smooth balance, and quiet precision. It's power is undeniable, but never loud. Styled to perform with grace and strength.",
+          h4: "It's Allura and Montserrat — script with structure.",
+          font1: "font-allura",
+          font2: "font-montserrat",
+          colour: "text-[#ffffff]",
         }}
-        sourcePath={"/_Evija.mp4"}
+        sourcePath={"/Chiron2.mp4"}
       />
-      {/* /////////////////////////////// STICKY PANEL 3 ///////////////////////////// */}
-
+      {/* /////////////////////////////// CHIRON ///////////////////////////// */}
+      {/* /////////////////////////////// SPYDER ///////////////////////////// */}
+      {/* /////////////////////////////// COLOUR CHANGE ///////////////////////////// */}
       <TransitionFade
-        sourcePath={"/_Spyder.mp4"}
-        colourFrom="#664873"
-        colourTo="#2c375a"
+        sourcePath={"/Porsche1.mp4"}
+        colourFrom="#2c375b"
+        colourTo="#2f4135" // green
       />
+      <div id="lora-forum" />
       <StickyPanel
         layout={{
           left: "images",
@@ -348,7 +408,7 @@ export default function Home() {
         }}
         images={[images[3].src, images[4].src, images[5].src]}
         content={{
-          h1: "Porsche 918 Spyder",
+          h1: "Porsche 911 GT2 RS",
           h2: "Every curve is deliberate.",
           h3: "Not flashy — but unforgettable. Smooth curves give way to complex engineering, while detail rewards the second glance more than the first. It's luxury by intention, and performance by design. Refined, articulate, and built to endure.",
           h4: "Lora and Forum — classic form meeting contemporary clarity.",
@@ -356,18 +416,16 @@ export default function Home() {
           font2: "font-forum -tracking-[0.2rem",
           colour: "text-[#f0f0f0]",
         }}
-        sourcePath={"/_Spyder.mp4"}
+        sourcePath={"/Porsche2.mp4"}
       />
-
+      {/* /////////////////////////////// SPYDER ///////////////////////////// */}
+      {/* /////////////////////////////// PARALLAX 3.3 ///////////////////////////// */}
       <div className="h-[20vh]"></div>
-
-      <ParallaxVideo
-        sourcePath="/_porsche.mp4"
-        colourFrom="#2c375a"
-        colourTo="#f0f0f0"
-        blur={true}
-      >
-        <div className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%]">
+      <ParallaxVideo sourcePath="/Evija.mp4" blur={true}>
+        <div
+          id="ballet-forum"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
+        >
           <div className="relative w-fit left-1/2 -translate-x-[45%] font-forum tracking-widest text-5xl">
             FORUM
           </div>
@@ -383,16 +441,16 @@ export default function Home() {
           </div>
         </div>
       </ParallaxVideo>
-
       <ParallaxVideo
         top={true}
         alt={true}
-        sourcePath="/_porsche.mp4"
-        colourFrom="#2c375a"
-        colourTo="#f0f0f0"
+        sourcePath="/Valhalla.mp4"
         blur={true}
       >
-        <div className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%]">
+        <div
+          id="majormono-inter"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
+        >
           <div className="relative w-fit left-1/2 -translate-x-1/2 font-majormono text-[12rem]">
             major mono
           </div>
@@ -408,27 +466,29 @@ export default function Home() {
           </div>
         </div>
       </ParallaxVideo>
-
       <div className="h-[90vh] text-[12vw] text-balance overflow-hidden">
         <GradientText
-          colourEdge="#e75a5f"
-          colourCenter="#f7ba88"
-          colourBg="#642558"
+          colourCenter="#55844a"
+          colourEdge="#18442a"
+          colourBg="#001c00"
           font="font-allura"
         >
-          Style, Scripted
+          Style in Script
         </GradientText>
       </div>
-
+      {/* /////////////////////////////// COLOUR CHANGE ///////////////////////////// */}
       <ParallaxVideo
         bottom={true}
         alt={true}
-        sourcePath="/_porsche.mp4"
-        colourFrom="#2c375a"
-        colourTo="#2c375a"
+        sourcePath="/LaFerrari.mp4"
+        colourFrom="#2f4135"
+        colourTo="#6d3c5e"
         blur={true}
       >
-        <div className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-[#f0f0f0]">
+        <div
+          id="anton-caveat"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-[#f0f0f0]"
+        >
           <div className="relative w-fit left-1/2 -translate-x-[140%] font-caveat tracking-widest text-7xl">
             Caveat
           </div>
@@ -443,15 +503,11 @@ export default function Home() {
           </div>
         </div>
       </ParallaxVideo>
-
-      <ParallaxVideo
-        top={true}
-        alt={true}
-        sourcePath="/_porsche.mp4"
-        colourTo="#f0f0f0"
-        blur={true}
-      >
-        <div className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%]">
+      <ParallaxVideo top={true} alt={true} sourcePath="/Chiron.mp4" blur={true}>
+        <div
+          id="mont-rocksalt"
+          className="relative max-w-fit h-full left-1/2 -translate-x-1/2 -translate-y-[5%] text-white"
+        >
           <div className="relative w-fit left-1/2 -translate-x-[50%] font-rocksalt tracking-widest text-5xl">
             Rock Salt
           </div>
@@ -467,7 +523,6 @@ export default function Home() {
           </div>
         </div>
       </ParallaxVideo>
-
       <div className="h-[90vh] text-[12vw] text-balance overflow-hidden">
         <GradientText
           colourEdge="#e75a5f"
@@ -478,15 +533,14 @@ export default function Home() {
           Fine Prints
         </GradientText>
       </div>
-
+      {/* /////////////////////////////// PARALLAX 3.3 ///////////////////////////// */}
+      {/* /////////////////////////////// COLOUR CHANGE ///////////////////////////// */}
       <TransitionFade
-        sourcePath={"/_jesko.mp4"}
-        colourFrom="#2c375a"
-        colourTo="#000000"
+        sourcePath={"/PorscheFEOutro.mp4"}
+        colourFrom="#6d3c5e"
+        colourTo="#0f0f0f"
       />
-
       <Footer />
-
       {/* <div className="relative h-[330vh] w-full">
         <StickyStackItem>
           <Image
@@ -552,7 +606,6 @@ export default function Home() {
           </div>
         </StickyStackItem>
       </div> */}
-
       {/* <StickyScroll />
       <ParallaxGallery />
       <ImageWheel Carousel /> */}

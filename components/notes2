@@ -89,3 +89,37 @@ return [
     colSpan: 3,
   },
 ];
+
+
+| Pairing                            | Theme                             |
+| ---------------------------------- | --------------------------------- |
+| *Forum, Inter*    val               | Neo-Classical Tech                |
+
+| *Allura, Mono Major (mont caps)** jesk | Elegant Branding / Perfume Label  |
+| *Lora, Open Sans*  r8              | Minimal Editorial                 |
+| **Anton, Nunito*           revuelto       | Modern Startup / Bold UI          |
+
+| *Montserrat, Lora*               | Fashion Magazine                  |
+| *Caveat, Major Mono**             | Personal Blog / Quirky Portfolio  |
+
+| *Luxurious Script, Open Sans**  hhuayra  | High-End Fashion / Beauty         |
+| *Dangrek, Nunito**           rimac     | Youthful / Educational / Playful  |
+| *Rock Salt, Playfair Display** f1   | Punk x Luxury Zine                |
+
+| *Allura, Montserrat (lowercase)* | Romantic Webpage / Wedding Site   |
+**Lora, Forum*
+
+| *Ballet, Forum**       vulc            | Theatrical Poster / Drama Program |
+**Major Mono Display, Inter** 911 Theme: Brutalist UI / Tech Demo
+**Anton, Caveat* p1 Theme: Streetwear Brand / Rebellious Energy
+**Montserrat, Rock Salt* agera Theme: Indie Poster / Music Zine
+
+*Playfair Display, Dangrek** Theme: Maximalist Contrast / Editorial Chaos
+*Ballet, Playfair* Theme: Literary Blog / Poetry Collection
+**Dangrek, Major Mono**  Theme: Retro Toy Box / Glitch Pop
+*Forum, Montserrat**
+
+17, 4
+10, 2
+5, 9
+15, 13,

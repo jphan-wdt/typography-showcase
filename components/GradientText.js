@@ -3,29 +3,36 @@ import {
   useScroll,
   useMotionValueEvent,
   useTransform,
+  useMotionValue,
 } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 
 export default function GradientText({
   children,
+  className,
   colourCenter,
   colourEdge,
   colourBg,
   font,
+  parentRef = null,
+  center = false,
+  scroll = true,
 }) {
-  const scrollRef = useRef(null);
+  const internalRef = useRef(null);
+  const scrollRef = parentRef ?? internalRef;
   const { scrollYProgress } = useScroll({
     target: scrollRef,
     offset: ["start end", "end start"],
   });
 
-  const xPos = useTransform(scrollYProgress, [0, 1], ["50%", "50%"]);
-  const yPos = useTransform(scrollYProgress, [0.1, 1], ["125%", "-20%"]);
+  const yPos = scroll
+    ? useTransform(scrollYProgress, [0.1, 1], ["180%", "-40%"])
+    : useMotionValue("100%");
 
   const radialGradient = useTransform(
-    [xPos, yPos],
-    ([x, y]) =>
-      `radial-gradient(circle 800px at ${x} ${y}, ${colourCenter}, ${colourEdge}, transparent)`
+    yPos,
+    (y) =>
+      `radial-gradient(circle 800px at 50% ${y}, ${colourCenter}, ${colourEdge}, transparent)`
   );
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
@@ -34,7 +41,9 @@ export default function GradientText({
 
   return (
     <motion.div
-      className={`h-full text-center flex items-center justify-center text-transparent bg-clip-text leading-none p-8 ${font}`}
+      className={`h-full text-transparent bg-clip-text p-8 ${font} ${className} ${
+        !center ? "flex items-center justify-center" : ""
+      }`}
       style={{
         backgroundColor: colourBg,
         backgroundImage: radialGradient,

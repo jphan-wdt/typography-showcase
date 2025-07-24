@@ -3,10 +3,11 @@ import {
   useScroll,
   useTransform,
   useMotionValueEvent,
-  useSpring,
 } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+
 import Image from "next/image";
-import { useRef } from "react";
+import images from "@/components/images";
 
 export default function ParallaxVideo({
   children,
@@ -24,20 +25,35 @@ export default function ParallaxVideo({
     offset: ["start end", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [-400, 400]); // bottom 400
+  const y = useTransform(scrollYProgress, [0, 1], [-300, 300]); // bottom 400
 
   const textScale =
     bottom && !alt
       ? useTransform(scrollYProgress, [0.6, 0.7, 0.8, 0.85], [1, 5, 25, 80])
       : 1;
 
+  const topScale = useTransform(scrollYProgress, [0.05, 0.48], [0.9, 1]);
+
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    // console.log(latest);
-    if (bottom)
-      if (latest >= 0.525)
-        document.documentElement.style.setProperty("--color6", colourTo);
-      else document.documentElement.style.setProperty("--color6", colourFrom);
+    if (!bottom) return;
+    if (latest >= 0.525)
+      document.documentElement.style.setProperty("--color6", colourTo);
+    else document.documentElement.style.setProperty("--color6", colourFrom);
   });
+
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      { threshold: 0, rootMargin: "300px 0px" }
+    );
+
+    observer.observe(scrollRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div
@@ -50,7 +66,7 @@ export default function ParallaxVideo({
       } `}
       ref={scrollRef}
     >
-      <div
+      <motion.div
         className={`w-full overflow-hidden
                   ${
                     top && !alt
@@ -59,24 +75,33 @@ export default function ParallaxVideo({
                       ? "h-[200svh] sticky top-0"
                       : "h-[120svh] relative"
                   }`}
+        style={{ scale: top && !alt ? topScale : 1 }}
       >
-        <motion.div
-          className="h-full w-full transform-cpu will-change-transform"
-          style={{ y }}
-        >
-          <video
-            className={`relative h-full w-full object-cover ${
-              blur ? "blur-md scale-105" : ""
-            }`}
-            muted
-            autoPlay
-            loop
-            preload="auto"
-          >
-            <source src={sourcePath} type="video/mp4" />
-          </video>
+        <motion.div className="h-full w-full" style={{ y }}>
+          {inView && (
+            <video
+              className={`relative h-full w-full object-cover ${
+                blur ? "blur-sm" : ""
+              }`}
+              muted
+              playsInline
+              autoPlay
+              loop
+              preload="none"
+            >
+              <source src={sourcePath} type="video/mp4" />
+            </video>
+          )}
+          {blur && <div className="absolute inset-0 bg-black/60" />}
+          {/* <Image
+            src={images[0].src}
+            width={1600}
+            height={900}
+            alt="1"
+            className="relative h-full w-full rounded-xl object-cover"
+          /> */}
           <motion.div
-            className={`absolute top-1/4  ${
+            className={`absolute top-1/4 ${
               bottom && !alt ? "" : "h-full w-full"
             }`}
             style={{
@@ -89,7 +114,7 @@ export default function ParallaxVideo({
             {children}
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
     </div>
   );
 }

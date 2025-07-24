@@ -6,28 +6,31 @@ export default function RadialGradient({ scrollRef }) {
     offset: ["start end", "end start"],
   });
 
-  const colour = useTransform(
+  const origin = useTransform(
     scrollYProgress,
-    [0.18, 0.185, 0.32, 0.46],
+    [0.18, 0.2, 0.315, 0.425, 0.5, 0.56, 0.68, 0.815, 0.89, 0.94],
     [
-      "rgba(217, 202, 184, 0)",
-      "rgba(217, 202, 184, 1)",
-      "rgba(55, 113, 134, 1)",
-      "rgba(140, 125, 197, 1)",
+      "rgba(0, 0, 0, 0)",
+      "#d3e0f4", // ferrari
+      "#8b7cc4", // evija /
+      "#6d3c5e", // character: evija
+      "#555a73", // type
+      "#377186", // chiron /
+      "#525d48", // spyder /
+      "#377085", // style: spyder
+      "#ba6769", // fine print
+      "rgba(21, 21, 21, 0.4)",
     ]
   );
-  const gradient = useTransform([colour], ([c]) => {
-    return `radial-gradient(circle 1500px at 95% 5%, ${c}, transparent)`;
+
+  const gradient = useTransform([origin], ([c]) => {
+    return `radial-gradient(circle 1500px at 0% 0%, ${c}, transparent)`;
   });
 
   return (
     <motion.div
       className="fixed inset-0 pointer-events-none z-[-10]"
       style={{ background: gradient }}
-    >
-      <div className="absolute w-[100vw] h-[100vh]">
-        <div className="w-full h-full radial-gradient(circle at top left, rgba(255, 0, 0, 1), transparent)" />
-      </div>
-    </motion.div>
+    />
   );
 }

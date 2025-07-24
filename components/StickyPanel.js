@@ -1,5 +1,4 @@
 import Image from "next/image";
-import images from "@/components/images";
 import { useEffect, useRef, useState } from "react";
 import {
   motion,
@@ -8,7 +7,7 @@ import {
   useTransform,
 } from "framer-motion";
 
-import TextSlide from "./TextSlide";
+import FadeIn from "./FadeIn";
 
 // parallax types: stretch height, translate y
 export default function StickyPanel({
@@ -31,21 +30,13 @@ export default function StickyPanel({
   });
 
   const videoRef = useRef(null);
-  const [duration, setDuration] = useState(0);
-
-  const videoScrollRef = useRef(null);
-  const { scrollYProgress: videoScrollProgress } = useScroll({
-    target: videoScrollRef,
-    offset: ["start end", "end start"],
-  });
-
   useEffect(() => {
-    const unsub = videoScrollProgress.on("change", (latest) => {
+    const unsub = scrollYProgress.on("change", (latest) => {
       const video = videoRef.current;
-      setDuration(video.duration);
       if (video && video.readyState >= 2) {
-        if (latest >= 0 && latest <= 1) {
-          const relativeProgress = (latest - 0) / (1 - 0);
+        const duration = video.duration;
+        if (latest >= 0.1 && latest <= 0.66) {
+          const relativeProgress = (latest - 0.12) / (0.64 - 0.12);
           const time = Math.min(relativeProgress * duration, duration - 0.1);
           video.currentTime = time;
         }
@@ -53,7 +44,7 @@ export default function StickyPanel({
     });
 
     return () => unsub();
-  }, [duration]);
+  }, []);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     // console.log(latest);
@@ -94,37 +85,37 @@ export default function StickyPanel({
             side === "left" ? "" : "left-[10%]"
           } text-8xl ${font1}`}
         >
-          <TextSlide>{h1}</TextSlide>
+          <FadeIn>{h1}</FadeIn>
         </div>
         <div
           className={`relative w-3/5 ${
             side === "left" ? "" : "left-[10%]"
           } text-5xl ${font2}`}
         >
-          <TextSlide>{h2}</TextSlide>
+          <FadeIn>{h2}</FadeIn>
         </div>
         <div
           className={`relative w-3/5 ${
             side === "left" ? "" : "left-[10%]"
           } text-2xl ${font2}`}
         >
-          <TextSlide>{h3}</TextSlide>
+          <FadeIn>{h3}</FadeIn>
         </div>
-        <div className="relative right-0 aspect-square w-[80%]">
+        <FadeIn className="relative right-0 aspect-square w-[80%]">
           <Image
             src={images[0]}
             width={1600}
             height={900}
             alt="1"
-            className="h-full w-full mt-10 object-cover"
+            className="h-full w-full mt-10 object-cover transition-all duration-300 hover:border-8"
           />
-        </div>
+        </FadeIn>
         <div
           className={`relative w-3/5 mt-10 ${
             side === "left" ? "" : "left-[10%]"
           } text-5xl ${font2}`}
         >
-          <TextSlide>{h4}</TextSlide>
+          <FadeIn>{h4}</FadeIn>
         </div>
       </motion.div>
     );
@@ -137,20 +128,20 @@ export default function StickyPanel({
         className={`sticky top-[20%] h-full w-full flex flex-col ${itemsAlign} text-8xl gap-5`}
         style={right}
       >
-        <div className="relative right-0 aspect-square w-[80%]">
+        <FadeIn className="relative right-0 aspect-square w-[80%]">
           <Image
             src={images[1]}
             width={1600}
             height={900}
             alt="1"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover transition-all duration-300 hover:border-8"
           />
-        </div>
-        <div className="w-full h-[200vh]" ref={videoScrollRef}>
+        </FadeIn>
+        <FadeIn className="w-full h-[200vh]">
           <div className="h-screen w-full sticky top-0 overflow-hidden">
             <motion.video
               ref={videoRef}
-              className="absolute h-screen w-full object-cover"
+              className="absolute h-screen w-full object-cover transition-all duration-300 hover:border-8"
               muted
               playsInline
               preload="auto"
@@ -158,25 +149,22 @@ export default function StickyPanel({
               <source src={sourcePath} type="video/mp4" />
             </motion.video>
           </div>
-        </div>
-        <div className="w-[60%] right-0 aspect-square">
+        </FadeIn>
+        <FadeIn className="w-[60%] right-0 aspect-square">
           <Image
             src={images[2]}
             width={1600}
             height={900}
             alt="1"
-            className=" h-full w-full object-cover"
+            className=" h-full w-full object-cover transition-all duration-300 hover:border-8"
           />
-        </div>
+        </FadeIn>
       </motion.div>
     );
   };
 
   return (
-    <div
-      className="relative h-full w-full flex gap-5 bg-[#fff0e0"
-      ref={scrollRef}
-    >
+    <div className="relative h-full w-full flex gap-5" ref={scrollRef}>
       {leftLayout === "text" ? textLayout("left") : imageLayout("left")}
       {rightLayout === "text" ? textLayout("right") : imageLayout("right")}
     </div>

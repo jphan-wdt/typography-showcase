@@ -30,28 +30,28 @@ const anton = Anton({
 });
 
 const montserrat = Montserrat({
-  weight: "variable",
+  weight: ["100", "300"],
   subsets: ["latin"],
   display: "swap",
   variable: "--font-montserrat",
 });
 
 const nunito = Nunito({
-  weight: "variable",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
   variable: "--font-nunito",
 });
 
 const lora = Lora({
-  weight: "variable",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
   variable: "--font-lora",
 });
 
 const openSans = Open_Sans({
-  weight: "variable",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
   variable: "--font-open-sans",
@@ -65,7 +65,7 @@ const allura = Allura({
 });
 
 const caveat = Caveat({
-  weight: "variable",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
   variable: "--font-caveat",
@@ -145,7 +145,9 @@ export default function RootLayout({ children }) {
         ${ballet.variable}
         ${forum.variable}`} // script/sans
     >
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased overflow-hidden`}>
+        {children}
+      </body>
     </html>
   );
 }

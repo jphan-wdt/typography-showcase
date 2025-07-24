@@ -8,12 +8,7 @@
   --color3: #bdbdbd;
   --color4: #757575;
   --color5: #424242;
-  --color6: #212121;
-  --background: "#fff0e0";
-}
-
-.bg-background {
-  background-color: var(--background);
+  --color6: #0f0f0f;
 }
 
 * {
