@@ -77,7 +77,7 @@ export default function StickyPanel({
     const itemsAlign = side === "left" ? "items-end " : "items-start";
     return (
       <motion.div
-        className={`top-0 w-full flex flex-col gap-10 justify-between ${itemsAlign} ${colour} leading-none tracking-tighter font-thin whitespace-normal z-[5]`}
+        className={`top-0 w-full flex flex-col gap-10 justify-between ${itemsAlign} ${colour} leading-none tracking-tighter font-thin z-[5]`}
         style={left}
       >
         <h1
@@ -164,10 +164,7 @@ export default function StickyPanel({
   };
 
   return (
-    <div
-      className="relative h-full w-full flex gap-5 overflow-hidden"
-      ref={scrollRef}
-    >
+    <div className="relative h-full w-full flex gap-5" ref={scrollRef}>
       {leftLayout === "text" ? textLayout("left") : imageLayout("left")}
       {rightLayout === "text" ? textLayout("right") : imageLayout("right")}
     </div>

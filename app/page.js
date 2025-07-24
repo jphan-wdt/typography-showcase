@@ -252,7 +252,7 @@ export default function Home() {
         images={[images[3].src, images[4].src, images[5].src]}
         content={{
           h1: "Lotus Evija",
-          h2: "lightweight. direct. built to DISRUPT.",
+          h2: "sharp. direct. built to DISRUPT.",
           h3: "every curve feels hand-drawn — expressive, human, unfiltered. it's a striking contrast, engineered for impact.",
           h4: "this is caveat and mono major — pure style, no compromise.",
           font1: "font-caveat tracking-tighter text-[10rem]",
@@ -386,7 +386,7 @@ export default function Home() {
           h2: "Built for extremes, detailed for elegance.",
           h3: "Crafted to impress both eye and mind, every surface curves with control, smooth balance, and quiet precision. It's power is undeniable, but never loud. Styled to perform with grace and strength.",
           h4: "It's Allura and Montserrat — script with structure.",
-          font1: "font-allura text-[10rem]",
+          font1: "font-allura text-[8rem]",
           font2: "font-montserrat",
           colour: "text-[#ffffff]",
         }}
@@ -516,10 +516,10 @@ export default function Home() {
           id="mont-rocksalt"
           className="relative max-w-fit h-full left-1/2 -translate-x-1/2 text-white"
         >
-          <h3 className="relative w-fit left-1/2 -translate-x-[50%] font-rocksalt tracking-widest text-4xl">
+          <h3 className="relative w-fit left-1/2 -translate-x-[50%] font-rocksalt tracking-widest text-3xl">
             Rock Salt
           </h3>
-          <h2 className="relative w-fit left-1/2 -translate-x-[50%] -translate-y-[20%] font-montserrat font-light text-[7rem]">
+          <h2 className="relative w-fit left-1/2 -translate-x-[50%] -translate-y-[20%] font-montserrat font-light text-[6rem]">
             MONTSERRAT
           </h2>
           <p className="absolute w-full left-1/2 -translate-x-1/2 font-extralight text-lg text-balance text-center">
